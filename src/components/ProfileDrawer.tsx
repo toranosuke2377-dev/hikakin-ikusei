@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react";
-import { STAT_LABELS, TREND_LABELS, formatNumber, formatSubscribers } from "../game/format";
+import { TREND_LABELS, formatMoney, formatNumber, formatSubscribers } from "../game/format";
 import type { GameState } from "../game/types";
 
 interface ProfileDrawerProps {
@@ -7,29 +7,6 @@ interface ProfileDrawerProps {
   open: boolean;
   onClose: () => void;
 }
-
-const routeLabels = {
-  craft: "職人気質",
-  mainstream: "王道人気",
-  strategy: "戦略思考",
-  network: "人との縁",
-  controversy: "刺激への傾斜",
-  stability: "生活の安定"
-} as const;
-
-const relationLabels = {
-  hajime: "はじめ課長",
-  zeikin: "ゼイキン",
-  makoto: "マコト",
-  shibata: "柴田",
-  murai: "サックスむらい",
-  tetsu: "テツ",
-  shiruko: "シル子",
-  massuo: "まっすお",
-  danke: "ダンケ",
-  manager: "制作チーム",
-  supermarket: "スーパー"
-} as const;
 
 export function ProfileDrawer({ state, open, onClose }: ProfileDrawerProps) {
   const dialogRef = useRef<HTMLElement>(null);
@@ -86,6 +63,7 @@ export function ProfileDrawer({ state, open, onClose }: ProfileDrawerProps) {
             <span className="eyebrow">STATUS</span>
             <h2 id="profile-title">ヒカキン</h2>
             <p>登録者 {formatSubscribers(state.stats.subscribers)}人</p>
+            <p>所持金 {formatMoney(state.stats.money)}</p>
           </div>
           <button ref={closeButtonRef} className="icon-button" onClick={onClose} aria-label="閉じる" tabIndex={open ? 0 : -1}>×</button>
         </header>
@@ -101,46 +79,10 @@ export function ProfileDrawer({ state, open, onClose }: ProfileDrawerProps) {
         </section>
 
         <section>
-          <h3>能力</h3>
-          {(["expression", "production", "beatbox"] as const).map((key) => (
-            <div className="meter" key={key}>
-              <div><span>{STAT_LABELS[key]}</span><strong>{state.stats[key]}</strong></div>
-              <div className="meter__track"><i style={{ width: `${state.stats[key]}%` }} /></div>
-            </div>
-          ))}
-        </section>
-
-        <section>
-          <h3>現在の方向性</h3>
-          <div className="tag-cloud">
-            {(Object.keys(routeLabels) as (keyof typeof routeLabels)[])
-              .sort((a, b) => state.routes[b] - state.routes[a])
-              .slice(0, 3)
-              .map((key) => <span key={key}>{routeLabels[key]}</span>)}
-          </div>
-        </section>
-
-        <section>
           <h3>時代の流れ</h3>
           <div className="tag-cloud tag-cloud--trend">
             {state.worldTrends.map((trend) => <span key={trend}>{TREND_LABELS[trend]}</span>)}
           </div>
-        </section>
-
-        <section>
-          <h3>主な関係</h3>
-          <ul className="relationship-list">
-            {(Object.keys(relationLabels) as (keyof typeof relationLabels)[])
-              .filter((key) => state.relationships[key] !== 0)
-              .sort((a, b) => Math.abs(state.relationships[b]) - Math.abs(state.relationships[a]))
-              .slice(0, 6)
-              .map((key) => (
-                <li key={key}>
-                  <span>{relationLabels[key]}</span>
-                  <strong>{state.relationships[key] >= 60 ? "強い絆" : state.relationships[key] >= 25 ? "親しい" : state.relationships[key] < 0 ? "険悪" : "知り合い"}</strong>
-                </li>
-              ))}
-          </ul>
         </section>
 
         <section>

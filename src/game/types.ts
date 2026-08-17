@@ -82,6 +82,10 @@ export interface VideoRecord {
 export interface Effect {
   stats?: Partial<GameStats>;
   setStats?: Partial<GameStats>;
+  /** Uses the authored yen amount without applying the chapter-scale model. */
+  moneyScale?: "exact";
+  /** Keeps this share of the current balance before applying the yen delta. */
+  moneyMultiplier?: number;
   hidden?: Partial<HiddenStats>;
   routes?: Partial<RouteScores>;
   relationships?: Partial<Relationships>;

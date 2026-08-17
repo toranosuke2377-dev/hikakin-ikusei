@@ -350,6 +350,28 @@ video.visual-stage__background {
   margin: 0 0 1rem;
 }
 
+.branch-notice {
+  display: flex;
+  gap: 0.65rem;
+  padding: 0.7rem 0.8rem;
+  border: 1px solid rgba(93, 141, 255, 0.2);
+  border-radius: 9px;
+  color: #aebbd0;
+  background: rgba(93, 141, 255, 0.055);
+  font-size: 0.72rem;
+  line-height: 1.5;
+  align-items: center;
+}
+
+.branch-notice span {
+  flex: 0 0 auto;
+  color: #7fa5ef;
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 0.58rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+}
+
 blockquote {
   position: relative;
   margin: 1.6rem 0 0;
@@ -373,6 +395,33 @@ blockquote span {
   gap: 0.7rem;
   margin-top: auto;
   padding-top: 2rem;
+}
+
+.decision-prompt {
+  display: grid;
+  gap: 0.3rem;
+  margin-top: auto;
+  padding-top: 1.8rem;
+  border-top: 1px solid var(--line);
+}
+
+.decision-prompt + .choice-list {
+  margin-top: 0;
+  padding-top: 0.85rem;
+}
+
+.decision-prompt span,
+.outcome-timing span {
+  color: #7fa5ef;
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 0.58rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+}
+
+.decision-prompt strong {
+  color: #dfe6f2;
+  font-size: 0.86rem;
 }
 
 .choice-button {
@@ -461,11 +510,20 @@ blockquote span {
   max-width: 16em;
 }
 
-.delta-row {
+.outcome-timing {
   display: flex;
+  gap: 0.6rem;
+  margin: 0.75rem 0 0;
+  color: #aeb8c9;
+  font-size: 0.72rem;
+  align-items: center;
+}
+
+.delta-row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 0.45rem;
   margin: 1.4rem 0 1.8rem;
-  flex-wrap: wrap;
 }
 
 .video-result {
@@ -504,12 +562,23 @@ blockquote span {
 }
 
 .delta-row span {
-  padding: 0.38rem 0.62rem;
+  display: grid;
+  gap: 0.38rem;
+  padding: 0.7rem 0.8rem;
   border: 1px solid var(--line);
-  border-radius: 999px;
+  border-radius: 10px;
   font-family: "Space Grotesk", "Noto Sans JP", sans-serif;
-  font-size: 0.68rem;
-  font-weight: 700;
+  font-size: 0.72rem;
+}
+
+.delta-row span b { font-weight: 700; }
+
+.delta-row span small {
+  color: #9ca7b8;
+  font-family: "Noto Sans JP", sans-serif;
+  font-size: 0.62rem;
+  font-weight: 400;
+  line-height: 1.55;
 }
 
 .delta-row .is-positive {
@@ -522,6 +591,62 @@ blockquote span {
   border-color: rgba(255, 93, 104, 0.28);
   color: #ff8790;
   background: rgba(255, 93, 104, 0.06);
+}
+
+.result-panel__no-change {
+  margin: 1.15rem 0 0.65rem;
+  color: #8e98aa;
+  font-size: 0.72rem;
+}
+
+.carryover-row {
+  display: flex;
+  gap: 0.35rem;
+  margin: -0.55rem 0 0.8rem;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.carryover-row small {
+  margin-right: 0.25rem;
+  color: #818c9f;
+  font-size: 0.62rem;
+}
+
+.carryover-row span {
+  padding: 0.25rem 0.48rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 999px;
+  color: #b8c2d2;
+  background: rgba(255, 255, 255, 0.025);
+  font-size: 0.6rem;
+}
+
+.result-totals {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.6rem;
+  margin: 0.75rem 0 1.3rem;
+}
+
+.result-totals span {
+  display: grid;
+  gap: 0.18rem;
+  padding: 0.72rem 0.8rem;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.025);
+}
+
+.result-totals small {
+  color: #8993a5;
+  font-size: 0.62rem;
+}
+
+.result-totals strong {
+  color: #eef3ff;
+  font-family: "Space Grotesk", "Noto Sans JP", sans-serif;
+  font-size: 0.86rem;
 }
 
 .primary-button {
@@ -1175,6 +1300,10 @@ blockquote span {
 }
 
 @media (max-width: 620px) {
+  .delta-row {
+    grid-template-columns: 1fr;
+  }
+
   .game-header__brand span,
   .ghost-button--desktop {
     display: none;

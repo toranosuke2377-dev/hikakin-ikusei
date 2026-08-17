@@ -36,7 +36,7 @@ export const chapter1Events: StoryEvent[] = [
           "東京へ着いた夜、派手な街の灯りを社員寮の小さな窓から眺める。焦りはある。それでも、倒れずに続けることを最初の作戦にした。"
         ],
         {
-          stats: { money: 2_000, energy: 6 },
+          stats: { energy: 6 },
           hidden: { ambition: 2 },
           routes: { stability: 3 },
           addFlags: ["ch1_cash_guarded", "ch1_arrival_cautious", "ch1_ski_discipline", "ch1_food_box_arrival"],
@@ -145,7 +145,7 @@ export const chapter1Events: StoryEvent[] = [
           "今すぐ華やかな一歩を踏み出せなくても、練習を続けられる生活を作る。それも夢への投資だと決めた。"
         ],
         {
-          stats: { money: 1_000, energy: 4 },
+          stats: { energy: 4 },
           routes: { stability: 4, strategy: 1 },
           addFlags: ["ch1_cash_guarded", "ch1_budget_planned", "ch1_food_box_arrival"],
           queueEvent: "ch1_s1_envelope_budget"
@@ -426,7 +426,7 @@ export const chapter1Events: StoryEvent[] = [
           "派手な上京初日ではない。それでも、こうして一日ずつ積み上げれば必ず機材へ届くと信じた。"
         ],
         {
-          stats: { money: 1_000, energy: 3 },
+          stats: { energy: 3 },
           hidden: { fatigue: -1 },
           routes: { stability: 4 },
           relationships: { supermarket: 1 },
@@ -554,10 +554,11 @@ export const chapter1Events: StoryEvent[] = [
         "誰より早く仕事を覚える",
         [
           "品出しの順番をメモし、分からないことはその場で聞いた。数日後には先輩から、一人で任せられると言われる。",
-          "撮影前に眠ってしまう夜は増えたが、東京で生活を続ける足場と職場の信用を得た。"
+          "撮影前に眠ってしまう夜は増えたが、東京で生活を続ける足場と職場の信用を得た。",
+          "月末、寮費と最低限の生活費を差し引いた最初の給料が入り、所持金は十万円増えた。"
         ],
         {
-          stats: { money: 8_000, energy: -10, trust: 2 },
+          stats: { money: 100_000, energy: -10, trust: 2 },
           hidden: { fatigue: 4 },
           routes: { stability: 4 },
           relationships: { supermarket: 6 },
@@ -570,10 +571,11 @@ export const chapter1Events: StoryEvent[] = [
         "仕事は最低限こなし、夜へ体力を残す",
         [
           "頼まれたことはこなすが、自分から残業は引き受けなかった。先輩の視線は少し冷たい。",
-          "その夜はマイクの前に立てた。職場での評価と、自分が本当に使いたい時間の間に最初の溝ができる。"
+          "その夜はマイクの前に立てた。職場での評価と、自分が本当に使いたい時間の間に最初の溝ができる。",
+          "月末、寮費と生活費を差し引いた給料が入り、手元には九万五千円が残った。"
         ],
         {
-          stats: { money: 5_000, energy: 4, production: 1 },
+          stats: { money: 95_000, energy: 4, production: 1 },
           hidden: { ambition: 2 },
           routes: { craft: 2 },
           relationships: { supermarket: -3 },
@@ -586,10 +588,11 @@ export const chapter1Events: StoryEvent[] = [
         "売り場の会話や流行を観察する",
         [
           "品出しをしながら、子供が欲しがる菓子や、客が迷う商品の説明を覚えていった。売り場には、人が何へ反応するかという答えが毎日並んでいる。",
-          "作業速度は少し落ちたが、普通の人の興味を動画へ変える視点を得た。"
+          "作業速度は少し落ちたが、普通の人の興味を動画へ変える視点を得た。",
+          "月末、寮費と生活費を差し引いた給料が入り、手元には九万五千円が残った。"
         ],
         {
-          stats: { money: 5_000, expression: 2, production: 2, energy: -5 },
+          stats: { money: 95_000, expression: 2, production: 2, energy: -5 },
           routes: { mainstream: 2, strategy: 2 },
           relationships: { supermarket: 2 },
           addFlags: ["ch1_store_observer", "ch1_customer_interests"]
@@ -626,10 +629,11 @@ export const chapter1Events: StoryEvent[] = [
         "好意を受け取り、早番を引き受ける",
         [
           "温かい定食を食べると、体にようやく力が戻った。翌朝は眠かったが、約束どおり誰より先に売り場へ立つ。",
-          "先輩は動画のことを面白がり、困った時は言えと話した。借りを返す関係が、職場での居場所になる。"
+          "先輩は動画のことを面白がり、困った時は言えと話した。借りを返す関係が、職場での居場所になる。",
+          "その月の給料から寮費と生活費を引くと、九万五千円が手元へ残った。奢られた食事そのものが金を増やしたわけではない。"
         ],
         {
-          stats: { energy: 7, money: 2_000, trust: 2 },
+          stats: { energy: 7, money: 95_000, trust: 2 },
           hidden: { fatigue: 2 },
           routes: { stability: 3, network: 1 },
           relationships: { supermarket: 7 },
@@ -642,10 +646,11 @@ export const chapter1Events: StoryEvent[] = [
         "断って寮へ戻り、予定どおり撮影する",
         [
           "空腹をごまかすように水を飲み、浴室へマイクを持ち込んだ。低音を出すたび腹が鳴り、何度も録り直す。",
-          "完成した音には意地が残った。生活を危うくしてまで作った経験は、強さにも危うさにもなる。"
+          "完成した音には意地が残った。生活を危うくしてまで作った経験は、強さにも危うさにもなる。",
+          "空腹を選んでも給料日は同じように来た。寮費と生活費を引いた九万五千円が入り、ようやく残高だけは持ち直した。"
         ],
         {
-          stats: { energy: -9, beatbox: 3, production: 1 },
+          stats: { money: 95_000, energy: -9, beatbox: 3, production: 1 },
           hidden: { fatigue: 5, ambition: 3, perfectionism: 2 },
           routes: { craft: 4 },
           addFlags: ["ch1_hungry_recording", "ch1_self_reliant_to_fault", "ch1_two_hundred_yen_meal"]
@@ -657,10 +662,11 @@ export const chapter1Events: StoryEvent[] = [
         "撮影を一週間休み、追加勤務で取り戻す",
         [
           "動画の予定を消し、空いた勤務をすべて引き受けた。財布は少し戻ったが、チャンネルには新しい動きがない。",
-          "夢を守るために夢を休む。その判断ができた自分へ安堵しながらも、置いていかれる焦りは残った。"
+          "夢を守るために夢を休む。その判断ができた自分へ安堵しながらも、置いていかれる焦りは残った。",
+          "月末には通常の給料に追加勤務分が加わり、寮費と生活費を引いて十万五千円が手元へ残った。"
         ],
         {
-          stats: { money: 10_000, energy: -5 },
+          stats: { money: 105_000, energy: -5 },
           hidden: { ambition: 2, fatigue: 2 },
           routes: { stability: 5 },
           relationships: { supermarket: 4 },
@@ -699,10 +705,11 @@ export const chapter1Events: StoryEvent[] = [
         "リクエストに応えて休憩室を沸かせる",
         [
           "冷蔵庫の音やレジの電子音を口で再現すると、疲れていた同僚たちが笑った。誰かの一日を少し軽くできることが嬉しい。",
-          "一方で、勤務中に遊んでいたと誤解されないよう、撮影データは投稿せず自分だけの練習資料にした。"
+          "一方で、勤務中に遊んでいたと誤解されないよう、撮影データは投稿せず自分だけの練習資料にした。",
+          "月末、寮費と生活費を差し引いた最初の給料から、九万五千円が手元へ残った。"
         ],
         {
-          stats: { expression: 3, beatbox: 1, trust: 2 },
+          stats: { money: 95_000, expression: 3, beatbox: 1, trust: 2 },
           hidden: { origin: 2 },
           routes: { mainstream: 2, network: 2 },
           relationships: { supermarket: 6 },
@@ -715,10 +722,11 @@ export const chapter1Events: StoryEvent[] = [
         "動画活動と職場の線引きを先に確認する",
         [
           "制服、売り場、客の顔は絶対に映さない。店の名前も勝手に出さない。曖昧だった境界を、上司と一緒に紙へ書き出した。",
-          "自由は少し狭くなったが、後で取り返せない問題を避ける習慣が身についた。"
+          "自由は少し狭くなったが、後で取り返せない問題を避ける習慣が身についた。",
+          "月末、寮費と生活費を差し引いた最初の給料から、九万五千円が手元へ残った。"
         ],
         {
-          stats: { trust: 4, production: 1 },
+          stats: { money: 95_000, trust: 4, production: 1 },
           routes: { strategy: 2, stability: 2 },
           relationships: { supermarket: 7 },
           addFlags: ["ch1_work_permission_clear", "ch1_work_privacy_learned"]
@@ -730,10 +738,11 @@ export const chapter1Events: StoryEvent[] = [
         "動画のことは伏せ、仕事だけに集中する",
         [
           "笑って話題を変え、チャンネル名は教えなかった。職場と夢が混ざれば、どちらも失う気がした。",
-          "静かに働くことで評価は得たが、成功しても相談できない秘密が一つ増えた。"
+          "静かに働くことで評価は得たが、成功しても相談できない秘密が一つ増えた。",
+          "月末、寮費と生活費を差し引いた最初の給料から、九万五千円が手元へ残った。動画を隠したこと自体が収入を生んだわけではない。"
         ],
         {
-          stats: { money: 7_000, energy: -4 },
+          stats: { money: 95_000, energy: -4 },
           hidden: { ambition: 2 },
           routes: { stability: 3 },
           relationships: { supermarket: 2 },
@@ -2341,102 +2350,226 @@ export const chapter1Events: StoryEvent[] = [
   }),
 
   // ---------------------------------------------------------------------------
-  // SLOT 10: 24時間20万、1週間100万（固定アンカー）
+  // SLOT 10: 公開結果。準備・公開判断・時代の波で四つの人生へ分岐する。
   // ---------------------------------------------------------------------------
   event({
-    id: "ch1_s10_viral_fallback",
+    id: "ch1_s10_delayed_breakout",
     chapter: 1,
     slot: 10,
-    title: "数字が壊れた朝",
-    date: "2010年・公開翌日",
-    location: "社員寮からスーパーマーケットへ",
+    title: "三か月後の通知",
+    date: "2010年・公開三か月後",
+    location: "スーパーマーケット・休憩室",
     body: [
-      "公開から一時間で八十一回。三時間後には千回を超え、ヒカキンは集計画面が壊れたと思った。出勤前には数字が一万を越え、更新するたび桁が変わる。",
-      "スーパーへ向かう駅のホームでも数字は増え続けた。眠れなかった夜、二百円の定食、浴室で消したテイクが一つずつ報われた気がして、電車が来る前に涙がにじんだ。それでも制服の上着を整え、いつもの職場へ向かう。",
-      "勤務を終えて寮へ戻るころ、アクセスは二十万へ迫っていた。一週間後には百万人が見て、日本国内の月間アクセス一位として名前が表示される。",
-      "長い時間をかけ、動画は三百万回を超えて伸び続けた。昨日まで誰も知らなかった青年へ、『次も同じものを』という期待が一斉に向けられる。"
+      "公開直後の再生数は数千回で止まった。ヒカキンは失敗を受け入れ、スーパーと次の動画へ戻った。三か月後、休憩中の携帯電話に見慣れない言語の通知が連続して届く。",
+      "海外のゲーム動画紹介者が一本を取り上げたことをきっかけに、止まっていた数字が再び動き始めた。一週間で十万、さらに時間をかけて百万人へ届く。",
+      "奇跡は公開日に来るとは限らない。だが、波が来た今も早番の勤務は変わらない。"
     ],
     speaker: "ヒカキン",
-    quote: "昨日までゼロだったのに、今日は数字の向こうに人が多すぎて見えない。",
+    quote: "終わったと思ってた動画が、まだ走ってる。",
     choices: [
       choice(
-        "ch1_s10_viral_read_comments",
-        "眠らず、届いたコメントを読み続ける",
-        [
-          "称賛、技術への質問、偽物だという疑い、海外の言葉。すべてを追ううち朝になった。",
-          "視聴者が何を見たのかは分かったが、体は限界に近い。次の一本を誰へ向けるかという輪郭ができる。"
-        ],
+        "ch1_s10_delayed_followup",
+        "休憩中に続編の構成を書き始める",
+        "次の休みまで待たず、伝わった要素と直す箇所をノートへ書いた。遅れて来た波へ、今度は準備して乗ろうとする。",
         {
-          stats: { subscribers: 95_000, trust: 4, production: 3, energy: -10 },
-          hidden: { fatigue: 6, origin: 3, ambition: 5 },
-          routes: { strategy: 3, network: 2 },
-          addFlags: ["ch1_viral_comments_read", "ch1_viral_moderate", "ch1_domestic_monthly_number_one"],
-          video: {
-            title: "スーパーマッチ棒ブラザーズBGMをビートボックスで再現",
-            views: 3_400_000,
-            subscribersGained: 95_000,
-            kind: "game-beatbox",
-            chapter: 1
-          }
+          stats: { subscribers: 82_000, production: 4, energy: -5 },
+          hidden: { ambition: 6, fatigue: 2 },
+          routes: { strategy: 5 },
+          addFlags: ["ch1_viral_delayed", "ch1_video_1m", "ch1_delayed_followup_ready"],
+          video: { title: "スーパーマッチ棒ブラザーズBGMをビートボックスで再現", views: 1_000_000, subscribersGained: 82_000, kind: "game-beatbox-delayed", chapter: 1 }
         },
-        { tone: "warm", subtext: "大勢の反応を一人ずつ受け止める" }
+        { tone: "bold", subtext: "来るのが遅かった波へ、すぐ次を返す" }
       ),
       choice(
-        "ch1_s10_viral_make_followup",
-        "勢いが消える前に次回作へ着手する",
-        [
-          "喜ぶ時間を区切り、次のゲーム音をノートへ並べた。登録者が増える速度より速く、次への期待が積み上がっていく。",
-          "機会を逃さない判断は成長を加速するが、成功を味わう暇も体を休める暇もなくした。"
-        ],
+        "ch1_s10_delayed_thank_curator",
+        "紹介した投稿者へ、自分から礼を送る",
+        "拙い英語でも、紹介で人生が動いたことを伝えた。一本の紹介が海外との長い縁へ変わり、次の動画を待つ入口ができる。",
         {
-          stats: { subscribers: 110_000, production: 4, beatbox: 2, energy: -12 },
-          hidden: { fatigue: 7, ambition: 7 },
-          routes: { strategy: 4, craft: 2 },
-          addFlags: ["ch1_followup_immediate", "ch1_viral_moderate", "ch1_domestic_monthly_number_one"],
-          video: {
-            title: "スーパーマッチ棒ブラザーズBGMをビートボックスで再現",
-            views: 3_800_000,
-            subscribersGained: 110_000,
-            kind: "game-beatbox",
-            chapter: 1
-          }
-        },
-        { tone: "risky", subtext: "成功を祝わず、次の期待へ走る" }
-      ),
-      choice(
-        "ch1_s10_viral_call_family",
-        "数字の意味が分からないまま、家族へ電話する",
-        [
-          "兄のゼイキンは最初、二十万という数字を冗談だと思った。動画を確認した後、音の重ね方を褒め、次は一緒に何か作ろうと話す。",
-          "画面の数字が、知っている声によってようやく現実になる。兄弟で音楽を作る小さな種も残った。"
-        ],
-        {
-          stats: { subscribers: 100_000, energy: 5, trust: 3 },
+          stats: { subscribers: 76_000, trust: 6, expression: 2 },
           hidden: { origin: 5, ambition: 4 },
-          routes: { network: 3 },
-          relationships: { zeikin: 8 },
-          addFlags: ["ch1_called_zeikin_after_viral", "ch1_music_collab_seed", "ch1_viral_moderate", "ch1_domestic_monthly_number_one"],
+          routes: { network: 5 },
+          addFlags: ["ch1_viral_delayed", "ch1_video_1m", "ch1_delayed_curator_contact"],
+          video: { title: "スーパーマッチ棒ブラザーズBGMをビートボックスで再現", views: 1_000_000, subscribersGained: 76_000, kind: "game-beatbox-delayed", chapter: 1 }
+        },
+        { tone: "warm", subtext: "偶然を、一人との関係へ結び直す" }
+      ),
+      choice(
+        "ch1_s10_delayed_finish_shift",
+        "勤務を終えるまで、数字を見ない",
+        "通知を切り、品出しへ戻った。勤務後には再生数がさらに一桁増えていた。遅れて来た成功にも、生活を奪わせない基準を守った。",
+        {
+          stats: { subscribers: 72_000, trust: 4, energy: 3 },
+          hidden: { origin: 4, fatigue: -2 },
+          routes: { stability: 5 },
+          relationships: { supermarket: 4 },
+          addFlags: ["ch1_viral_delayed", "ch1_video_1m", "ch1_delayed_work_kept"],
+          video: { title: "スーパーマッチ棒ブラザーズBGMをビートボックスで再現", views: 1_000_000, subscribersGained: 72_000, kind: "game-beatbox-delayed", chapter: 1 }
+        },
+        { tone: "steady", subtext: "成功が遅くても、今日の約束を守る" }
+      )
+    ],
+    when: when({ flagsAny: ["ch1_game_published_late", "ch1_game_published_after_shift", "ch1_game_tiny_metadata_error", "ch1_game_scheduled_at_work"] }),
+    mandatory: true,
+    priority: 75,
+    oncePerRun: true,
+    tags: ["anchor", "delayed-hit", "game-video"],
+    visual: { background: "bg/ch1_supermarket_breakroom_phone", portrait: "portrait/hikakin_young", expression: "stunned_quiet", eventCg: "cg/ch1_delayed_counter", accent: "green" }
+  }),
+
+  event({
+    id: "ch1_s10_niche_recognition",
+    chapter: 1,
+    slot: 10,
+    title: "分かる人には分かる",
+    date: "2010年・公開一か月後",
+    location: "スーパー社員寮・自室",
+    body: [
+      "再生数は十二万回。一般の急上昇欄には届かなかったが、ビートボックスの掲示板とゲーム音再現の界隈では、細かな技術を検証する投稿が続いた。",
+      "有名人にはなれない。それでも、自分より詳しい人たちが音を止め、戻し、語っている。広く届かなかった一本が、狭い場所では確かな基準になった。",
+      "この評価を深く掘るか、専門外の人へ翻訳するかで、次の視聴者が変わる。"
+    ],
+    speaker: "ヒカキン",
+    quote: "百万人じゃない。でも、この人たちは音を聞いてる。",
+    choices: [
+      choice(
+        "ch1_s10_niche_deepen",
+        "さらに難しい音へ挑戦する",
+        "少人数でも技術を待つ人へ、次は誰も再現していない音を選んだ。職人としての名は濃くなる。",
+        {
+          stats: { subscribers: 9_500, beatbox: 5, energy: -4 },
+          hidden: { origin: 4, perfectionism: 2 },
+          routes: { craft: 6 },
+          addFlags: ["ch1_viral_niche", "ch1_video_niche", "ch1_niche_deepen"],
+          video: { title: "スーパーマッチ棒ブラザーズ完全再現", views: 120_000, subscribersGained: 9_500, kind: "game-beatbox-niche", chapter: 1 }
+        },
+        { tone: "bold", subtext: "少人数でも、最も深く届く音を選ぶ" }
+      ),
+      choice(
+        "ch1_s10_niche_explain",
+        "初心者にも分かる制作解説を作る",
+        "専門用語を減らし、音を一つずつ分けて見せた。技術を薄めず、入口だけを広くする方法を探し始める。",
+        {
+          stats: { subscribers: 12_000, production: 4, expression: 3, trust: 4 },
+          routes: { strategy: 4, mainstream: 2 },
+          addFlags: ["ch1_viral_niche", "ch1_video_niche", "ch1_niche_explained"],
+          video: { title: "ゲーム音を口だけで作る方法", views: 160_000, subscribersGained: 12_000, kind: "beatbox-explainer", chapter: 1 }
+        },
+        { tone: "warm", subtext: "専門技術を、初めて見る人へ翻訳する" }
+      ),
+      choice(
+        "ch1_s10_niche_broaden",
+        "次はビートボックス以外も試す",
+        "技術を評価されたからこそ、その名前で別の動画を開いてもらえるか試すことにした。総合YouTuberへの細い道が生まれる。",
+        {
+          stats: { subscribers: 10_500, expression: 3, production: 2 },
+          hidden: { ambition: 5 },
+          routes: { mainstream: 4, strategy: 2 },
+          addFlags: ["ch1_viral_niche", "ch1_video_niche", "ch1_niche_broaden"],
+          video: { title: "スーパーマッチ棒ブラザーズBGMをビートボックスで再現", views: 140_000, subscribersGained: 10_500, kind: "game-beatbox-niche", chapter: 1 }
+        },
+        { tone: "steady", subtext: "狭い評価を、別ジャンルの入口にする" }
+      )
+    ],
+    when: when({ flagsAny: ["ch1_game_accuracy_max", "ch1_game_all_mouth", "ch1_game_self_judged", "ch1_game_no_compromise", "ch1_game_best_theme_only"], maxStats: { beatbox: 41 } }),
+    mandatory: true,
+    priority: 69,
+    oncePerRun: true,
+    tags: ["anchor", "niche-hit", "game-video", "craft"],
+    visual: { background: "bg/ch1_dorm_niche_forum", portrait: "portrait/hikakin_young", expression: "quiet_pride", eventCg: "cg/ch1_niche_comments", accent: "violet" }
+  }),
+
+  event({
+    id: "ch1_s10_flop_fallback",
+    chapter: 1,
+    slot: 10,
+    title: "八百四十二回",
+    date: "2010年・公開三日後",
+    location: "スーパー社員寮・自室",
+    body: [
+      "公開から三日。渾身の動画は八百四十二回で止まった。更新しても数字は変わらない。海外の掲示板にも、国内のゲームファンにも大きな波は起きなかった。",
+      "ヒカキンはしばらく画面を見た後、何も言わずブラウザを閉じた。出勤時刻を確認し、鞄へ制服を入れる。泣く時間も、失敗を誰かのせいにする言葉も出てこない。",
+      "その直後、机の引き出しから新しい企画ノートを取り出した。奇跡が来ない世界では、自分で次の入口を探すしかない。"
+    ],
+    speaker: "ヒカキン",
+    quote: "……次、何を作ろう。",
+    choices: [
+      choice(
+        "ch1_s10_flop_keep_public",
+        "削除せず、八百四十二回を記録に残す",
+        [
+          "失敗した一本も、その時点の全力だった。数字を隠さず残し、次の企画ノートの一ページ目へ八百四十二と書いた。",
+          "後にこの数字が、成功を測る最初の基準になる。"
+        ],
+        {
+          stats: { subscribers: 84, trust: 2, energy: 1 },
+          hidden: { origin: 6, ambition: 5 },
+          routes: { stability: 2, craft: 1 },
+          addFlags: ["ch1_video_flop", "ch1_flop_kept_public", "ch1_842_notebook"],
           video: {
             title: "スーパーマッチ棒ブラザーズBGMをビートボックスで再現",
-            views: 3_600_000,
-            subscribersGained: 100_000,
+            views: 842,
+            subscribersGained: 84,
             kind: "game-beatbox",
             chapter: 1
           }
         },
-        { tone: "warm", subtext: "大きすぎる成功を家族の声で受け止める" }
+        { tone: "steady", subtext: "失敗を消さず、次の基準にする" }
+      ),
+      choice(
+        "ch1_s10_flop_delete",
+        "動画を削除し、同じ題材を作り直す",
+        [
+          "公開した三日間までなかったことにし、音の弱かった箇所を最初から録り直した。",
+          "完成度は上がる。しかし、誰にも見られなかった一本へ時間を重ねる判断が正しいかは、まだ分からない。"
+        ],
+        {
+          stats: { subscribers: 20, production: 3, beatbox: 3, energy: -6 },
+          hidden: { perfectionism: 5, ambition: 4 },
+          routes: { craft: 5 },
+          addFlags: ["ch1_video_flop", "ch1_flop_deleted", "ch1_flop_remake_seed"],
+          video: {
+            title: "スーパーマッチ棒ブラザーズBGMをビートボックスで再現",
+            views: 842,
+            subscribersGained: 20,
+            kind: "game-beatbox",
+            chapter: 1
+          }
+        },
+        { tone: "risky", subtext: "失敗を消し、技術でもう一度挑む" }
+      ),
+      choice(
+        "ch1_s10_flop_analyze",
+        "八百四十二人がどこで離れたか調べる",
+        [
+          "再生が止まった秒数、検索された言葉、最後まで見た人の割合を紙へ書き出した。",
+          "才能が否定されたと決めつけず、届かなかった理由を次の動画で試せる形へ変えた。"
+        ],
+        {
+          stats: { subscribers: 84, production: 5, energy: -3 },
+          hidden: { ambition: 6, perfectionism: -2 },
+          routes: { strategy: 6 },
+          addFlags: ["ch1_video_flop", "ch1_flop_analyzed", "ch1_second_breakthrough_seed"],
+          video: {
+            title: "スーパーマッチ棒ブラザーズBGMをビートボックスで再現",
+            views: 842,
+            subscribersGained: 84,
+            kind: "game-beatbox",
+            chapter: 1
+          }
+        },
+        { tone: "steady", subtext: "失敗を次に使える材料へ変える" }
       )
     ],
     mandatory: true,
-    priority: 50,
+    priority: 40,
     oncePerRun: true,
-    tags: ["anchor", "viral", "game-video"],
+    tags: ["anchor", "flop", "game-video"],
     visual: {
-      background: "bg/ch1_dorm_analytics_dawn",
+      background: "bg/ch1_dorm_analytics_night",
       portrait: "portrait/hikakin_young",
-      expression: "stunned",
-      eventCg: "cg/ch1_viral_counter",
-      accent: "gold"
+      expression: "quietly_hurt",
+      eventCg: "cg/ch1_842_counter",
+      accent: "blue"
     }
   }),
 
@@ -2636,8 +2769,81 @@ export const chapter1Events: StoryEvent[] = [
   }),
 
   // ---------------------------------------------------------------------------
-  // SLOT 11: YouTube側からのパートナーオファー（固定アンカー）
+  // SLOT 11: 公開結果ごとに、次の質問そのものが変わる章末。
   // ---------------------------------------------------------------------------
+  event({
+    id: "ch1_s11_delayed_wave_decision",
+    chapter: 1,
+    slot: 11,
+    title: "遅れて来た波に間に合うか",
+    date: "2010年",
+    location: "スーパー社員寮・自室",
+    body: [
+      "百万人へ届いたころ、YouTubeからパートナーへの案内が届いた。公開直後なら迷わず喜べたかもしれない。しかし今は、次の早番と三か月分の企画ノートが机にある。",
+      "遅れて来た成功へ急いで合わせるか、紹介してくれた縁を育てるか、生活を崩さず次の休日を待つか。世界的大ヒットとは違う時間の使い方が必要だった。"
+    ],
+    choices: [
+      choice("ch1_s11_delayed_sequel_now", "今夜、続編の撮影を始める", "契約を確認して承諾し、眠る時間を次の一本へ使った。波には間に合うが、成功と同時に無理をする癖が残る。", { stats: { money: 55_000, production: 4, energy: -9 }, hidden: { ambition: 7, fatigue: 4 }, routes: { strategy: 4 }, addFlags: ["ch1_partner_offer", "ch1_partner_accepted", "ch1_delayed_sequel_started", "ch1_chapter_complete"] }, { tone: "risky", subtext: "遅れた三か月を、一晩で取り戻そうとする" }),
+      choice("ch1_s11_delayed_build_bridge", "海外の紹介者と次の企画を相談する", "契約を受けた後、紹介者へ次に見たい音を尋ねた。偶然の紹介を、一度きりでない海外との入口へ変える。", { stats: { money: 48_000, trust: 6, expression: 3 }, hidden: { origin: 4 }, routes: { network: 5 }, addFlags: ["ch1_partner_offer", "ch1_partner_accepted", "ch1_delayed_bridge_built", "ch1_chapter_complete"] }, { tone: "warm", subtext: "数字ではなく、波を起こした人とつながる" }),
+      choice("ch1_s11_delayed_wait_dayoff", "勤務を守り、次の休日に一本作る", "契約条件を読み、撮影日は休日へ置いた。速度は落ちても、仕事の信用と続けられる生活を守る。", { stats: { money: 45_000, trust: 5, energy: 4 }, hidden: { fatigue: -3 }, routes: { stability: 6 }, relationships: { supermarket: 5 }, addFlags: ["ch1_partner_offer", "ch1_partner_accepted", "ch1_delayed_paced", "ch1_chapter_complete"] }, { tone: "steady", subtext: "成功しても、生活の速度を急に変えない" })
+    ],
+    when: when({ flagsAll: ["ch1_viral_delayed"] }),
+    mandatory: true,
+    priority: 75,
+    oncePerRun: true,
+    tags: ["anchor", "delayed-hit", "chapter-end"],
+    visual: { background: "bg/ch1_dorm_delayed_plan", portrait: "portrait/hikakin_young", expression: "thinking", eventCg: "cg/ch1_delayed_choice", accent: "green" }
+  }),
+
+  event({
+    id: "ch1_s11_niche_crossroads",
+    chapter: 1,
+    slot: 11,
+    title: "狭い場所で、深く届いた",
+    date: "2010年",
+    location: "スーパー社員寮・自室",
+    body: [
+      "収益化を断られた事実は変わらない。だが今は、十二万回の再生と、技術を待つ少数の視聴者がいる。一般人気へ広げる前に、何を武器として持っていくか決める時だった。",
+      "専門家として深く潜る道も、分かりやすく伝える道も、まったく別の動画へ挑む道もある。"
+    ],
+    choices: [
+      choice("ch1_s11_niche_craft", "ビートボックスの技術をさらに磨く", "収益より先に、名前を見れば技術を期待される存在を目指した。小さな界隈で、ヒカキンの音が基準になり始める。", { stats: { beatbox: 5, subscribers: 4_000, energy: -4 }, hidden: { origin: 5, perfectionism: 2 }, routes: { craft: 7 }, addFlags: ["ch1_niche_craft_path", "ch1_chapter_complete"] }, { tone: "bold", subtext: "広さより、誰にも負けない深さを選ぶ" }),
+      choice("ch1_s11_niche_reapply", "実績を添えて、収益化へ再申請する", "再生維持率と視聴者の反応を整理して申請した。すぐ生活は変わらなくても、技術を仕事へつなぐ入口が開く。", { stats: { money: 25_000, production: 4, trust: 3 }, routes: { strategy: 5 }, addFlags: ["ch1_partner_reapplied", "ch1_partner_accepted", "ch1_niche_strategy_path", "ch1_chapter_complete"] }, { tone: "steady", subtext: "狭い評価を、次の機会へ翻訳する" }),
+      choice("ch1_s11_niche_expand", "次は商品紹介かゲーム実況を試す", "ビートボックスを捨てず、その名前で別の動画も開かれるか試す。総合YouTuberへの道は細いが、初めて具体的になった。", { stats: { expression: 4, production: 2, subscribers: 3_000 }, hidden: { ambition: 5 }, routes: { mainstream: 5 }, addFlags: ["ch1_niche_variety_path", "ch1_second_breakthrough_seed", "ch1_chapter_complete"] }, { tone: "warm", subtext: "専門の外へ、本人の魅力を持ち出す" })
+    ],
+    when: when({ flagsAll: ["ch1_viral_niche"] }),
+    mandatory: true,
+    priority: 74,
+    oncePerRun: true,
+    tags: ["anchor", "niche-hit", "chapter-end"],
+    visual: { background: "bg/ch1_dorm_niche_notebook", portrait: "portrait/hikakin_young", expression: "determined", eventCg: "cg/ch1_niche_crossroads", accent: "violet" }
+  }),
+
+  event({
+    id: "ch1_s11_flop_next_notebook",
+    chapter: 1,
+    slot: 11,
+    title: "奇跡が来ない世界の次の一行",
+    date: "2010年",
+    location: "スーパー社員寮・自室",
+    body: [
+      "受信箱にパートナーの招待は来なかった。翌朝も再生数はほとんど動かない。ヒカキンは制服を椅子へ掛け、八百四十二と書いた企画ノートを開く。",
+      "同じ技術を磨き直すか、YouTubeらしい別の動画へ進むか、画面の外で観客を探すか。ここから先は、最初の奇跡に選ばれなかった人間の物語になる。"
+    ],
+    choices: [
+      choice("ch1_s11_flop_remake", "同じ曲を、最初から作り直す", "再生数ではなく、自分が聞いて納得できなかった箇所を理由に撮り直した。時間はかかるが、遅れて評価される職人の道が残る。", { stats: { beatbox: 5, production: 3, energy: -7 }, hidden: { origin: 5, perfectionism: 4 }, routes: { craft: 6 }, addFlags: ["ch1_flop_remake_path", "ch1_late_bloomer_open", "ch1_chapter_complete"] }, { tone: "risky", subtext: "誰も待っていなくても、音を完成させる" }),
+      choice("ch1_s11_flop_product", "身近な商品を、自分の言葉で紹介する", "スーパーで客が迷う姿を思い出し、安い商品の違いを一人へ説明するように撮った。商品紹介から再出発する道が開く。", { stats: { expression: 4, production: 3, subscribers: 120 }, hidden: { ambition: 4 }, routes: { mainstream: 5, strategy: 2 }, addFlags: ["ch1_flop_product_path", "ch1_second_breakthrough_seed", "ch1_chapter_complete"] }, { tone: "steady", subtext: "売り場で覚えた客目線を、動画へ持ち込む" }),
+      choice("ch1_s11_flop_gaming", "好きなゲームを、そのまま実況してみる", "上手に説明するより先に、本気で楽しむ自分を撮った。ビートボックスとは違う表情が、後のゲーム実況で第二の突破口につながる。", { stats: { expression: 5, subscribers: 150, energy: 2 }, hidden: { ambition: 4 }, routes: { mainstream: 4, network: 1 }, addFlags: ["ch1_flop_gaming_path", "ch1_murai_breakthrough_seed", "ch1_chapter_complete"] }, { tone: "warm", subtext: "技術ではなく、本当に楽しむ顔を出す" }),
+      choice("ch1_s11_flop_street", "路上で、目の前の反応を確かめる", "画面の数字が動かないなら、人が通る場所で音を鳴らす。立ち止まる人は少ないが、スーパーと路上を往復する別の生活が始まる。", { stats: { beatbox: 3, money: -3_000, energy: -5 }, hidden: { origin: 4, fatigue: 2 }, routes: { stability: 3, craft: 2 }, addFlags: ["ch1_flop_street_path", "street_path_open", "ch1_chapter_complete"] }, { tone: "bold", subtext: "再生数ではなく、通行人の足で反応を見る" })
+    ],
+    when: when({ flagsAll: ["ch1_video_flop"] }),
+    mandatory: true,
+    priority: 73,
+    oncePerRun: true,
+    tags: ["anchor", "flop", "chapter-end"],
+    visual: { background: "bg/ch1_dorm_842_notebook", portrait: "portrait/hikakin_young", expression: "quiet_determined", eventCg: "cg/ch1_new_notebook", accent: "blue" }
+  }),
+
   event({
     id: "ch1_s11_partner_offer_fallback",
     chapter: 1,
@@ -2699,6 +2905,7 @@ export const chapter1Events: StoryEvent[] = [
         { tone: "warm", subtext: "今の生活へ筋を通して次へ進む" }
       )
     ],
+    when: when({ flagsAll: ["ch1_video_10m"] }),
     mandatory: true,
     priority: 50,
     oncePerRun: true,
@@ -2779,7 +2986,7 @@ export const chapter1Events: StoryEvent[] = [
         { tone: "bold", subtext: "見返す目標を終え、次の意味を探す" }
       )
     ],
-    when: when({ flagsAny: ["ch1_partner_must_invite_me", "ch1_rejection_on_wall", "ch1_rejection_complaint_video"] }),
+    when: when({ flagsAll: ["ch1_video_10m"], flagsAny: ["ch1_partner_must_invite_me", "ch1_rejection_on_wall", "ch1_rejection_complaint_video"] }),
     mandatory: true,
     priority: 68,
     oncePerRun: true,
@@ -2851,7 +3058,7 @@ export const chapter1Events: StoryEvent[] = [
         { tone: "warm", subtext: "収益より先に、技術への信頼を取り戻す" }
       )
     ],
-    when: when({ flagsAny: ["ch1_viral_technical", "ch1_argument_left_open", "ch1_one_take_proof", "ch1_process_transparent"] }),
+    when: when({ flagsAll: ["ch1_video_10m"], flagsAny: ["ch1_viral_technical", "ch1_argument_left_open", "ch1_one_take_proof", "ch1_process_transparent"] }),
     mandatory: true,
     priority: 70,
     oncePerRun: true,
@@ -2863,5 +3070,28 @@ export const chapter1Events: StoryEvent[] = [
       eventCg: "cg/ch1_offer_amid_comments",
       accent: "red"
     }
+  }),
+
+  event({
+    id: "ch1_s11_outcome_guard_fallback",
+    chapter: 1,
+    slot: 11,
+    title: "次の一本を決める夜",
+    date: "2010年",
+    location: "スーパー社員寮・自室",
+    body: [
+      "公開結果がどうであっても、翌朝にはスーパーの勤務があり、夜には次の動画を作れる。ヒカキンは数字を閉じ、企画ノートを開いた。",
+      "最初の一本を人生の答えにせず、次の行動を自分で決める。"
+    ],
+    choices: [
+      choice("ch1_s11_guard_craft", "ビートボックスを磨き続ける", "見られた数に関係なく、唯一の武器を次の一本へ持っていく。", { stats: { beatbox: 3 }, routes: { craft: 3 }, addFlags: ["ch1_guard_craft", "ch1_chapter_complete"] }, { tone: "steady" }),
+      choice("ch1_s11_guard_variety", "別の動画形式も試す", "音だけに答えを求めず、カメラの前の自分を育て始める。", { stats: { expression: 3 }, routes: { mainstream: 3 }, addFlags: ["ch1_guard_variety", "ch1_chapter_complete"] }, { tone: "bold" }),
+      choice("ch1_s11_guard_life", "仕事を守りながら、月一〜二本を続ける", "生活を壊さず、見られない月にも投稿を止めない道を選ぶ。", { stats: { energy: 4 }, routes: { stability: 3 }, addFlags: ["ch1_guard_stability", "ch1_chapter_complete"] }, { tone: "warm" })
+    ],
+    mandatory: true,
+    priority: 0,
+    oncePerRun: true,
+    tags: ["anchor", "chapter-end", "fallback"],
+    visual: { background: "bg/ch1_dorm_next_notebook", portrait: "portrait/hikakin_young", expression: "determined", eventCg: "cg/ch1_next_line", accent: "blue" }
   }),
 ];

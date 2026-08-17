@@ -13,7 +13,7 @@ describe("App", () => {
     const user = userEvent.setup();
     render(<App />);
 
-    expect(screen.getByText("ヒカキン育成ゲーム")).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: "ヒカキン育成物語" })).toBeInTheDocument();
     await user.click(screen.getByRole("button", { name: "物語を始める" }));
     expect(screen.getByRole("heading", { name: "絶対に、何者かになる。" })).toBeInTheDocument();
 
@@ -22,6 +22,8 @@ describe("App", () => {
 
     await user.click(screen.getByRole("button", { name: /第1章を始める/ }));
     expect(screen.getByText("STORY 01")).toBeInTheDocument();
+    expect(screen.getByText("DECISION")).toBeInTheDocument();
+    expect(screen.getByText(/ここで、ヒカキンはどう動く|限られた時間とお金/)).toBeInTheDocument();
     expect(screen.getAllByRole("button").filter((button) => /^\d/.test(button.textContent ?? "")).length).toBeGreaterThanOrEqual(2);
   });
 
@@ -35,7 +37,10 @@ describe("App", () => {
     const choices = screen.getAllByRole("button").filter((button) => /^\d/.test(button.textContent ?? ""));
     await user.click(choices[0]!);
 
-    expect(screen.getByText("DECISION")).toBeInTheDocument();
+    expect(screen.getByText("選択の結果")).toBeInTheDocument();
+    expect(screen.getByText("TIME")).toBeInTheDocument();
+    expect(screen.getByText("現在の登録者")).toBeInTheDocument();
+    expect(screen.getByText("現在の所持金")).toBeInTheDocument();
     expect(screen.getByRole("button", { name: /物語を進める/ })).toBeInTheDocument();
     expect(localStorage.getItem("beat-to-the-top:save")).not.toBeNull();
   });
@@ -98,7 +103,7 @@ describe("App", () => {
     localStorage.setItem("beat-to-the-top:meta", JSON.stringify(meta));
 
     render(<App />);
-    await user.click(screen.getByRole("button", { name: "記録" }));
+    await user.click(screen.getByRole("button", { name: "人生記録" }));
 
     expect(screen.getByRole("heading", { name: "日本一のYouTuber" })).toBeInTheDocument();
     expect(screen.getByText("スーパーマッチ棒ブラザーズ BGM Beatbox")).toBeInTheDocument();

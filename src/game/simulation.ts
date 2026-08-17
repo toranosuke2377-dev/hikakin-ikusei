@@ -48,6 +48,7 @@ const scoreChoice = (
   if (strategy === "numberOne") {
     return (
       (stats.subscribers ?? 0) / Math.max(1, 50_000 * state.chapter) +
+      (stats.money ?? 0) / 200_000 +
       (stats.trust ?? 0) * 2.2 +
       (stats.expression ?? 0) * 2 +
       (stats.production ?? 0) * 2 +

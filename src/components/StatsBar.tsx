@@ -8,9 +8,7 @@ interface StatsBarProps {
 export function StatsBar({ state }: StatsBarProps) {
   const quickStats = [
     { label: "登録者", value: formatSubscribers(state.stats.subscribers), detail: "人" },
-    { label: "所持金", value: formatMoney(state.stats.money), detail: "" },
-    { label: "体力", value: state.stats.energy, detail: "/100" },
-    { label: "信用", value: state.stats.trust, detail: "/100" }
+    { label: "所持金", value: formatMoney(state.stats.money), detail: "" }
   ];
 
   return (

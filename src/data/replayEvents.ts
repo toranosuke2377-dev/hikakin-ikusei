@@ -6,18 +6,13 @@ const rare = (
 ): StoryEvent =>
   event({
     ...definition,
-    when: {
-      minCompletedRuns: 1,
-      ...definition.when
-    },
     oncePerRun: true,
     weight: 1
   });
 
 /**
- * 周回用の希少場面。一周の主筋を奪わないようpriority 5〜8に抑え、
- * メタ進行側で未閲覧候補を優先する。全場面がヒカキン自身の生活・制作・
- * 視聴者との接点、または動画時代の変化を描く。
+ * 全プレイで出現し得る希少場面。一周の主筋を奪わないようpriority 5〜8に抑え、
+ * 未閲覧候補を優先する。プレイ回数による解禁条件は持たない。
  */
 export const replayEvents: StoryEvent[] = [
   // ───────────────────────── Chapter 1 ─────────────────────────
@@ -26,7 +21,7 @@ export const replayEvents: StoryEvent[] = [
     chapter: 1,
     slot: 1,
     title: "飛び台から持ってきた名前",
-    date: "上京前の冬",
+    date: "回想・上京前の冬",
     location: "新潟・スキージャンプ台",
     body: [
       "小学三年から高校まで続けたスキージャンプ。全国八位まで届いても、練習の一本は毎回ゼロから始まった。怖さを消すのではなく、同じ動作を繰り返して怖さの中でも飛ぶ競技だった。",
@@ -45,7 +40,7 @@ export const replayEvents: StoryEvent[] = [
     chapter: 1,
     slot: 5,
     title: "浴室の反響地図",
-    date: "2008年・春",
+    date: "回想・2008年春",
     location: "スーパー社員寮・浴室",
     body: [
       "浴室の立つ位置を十センチずつ変えると、低音の響きが違う。ヒカキンは床へ水で印をつけ、安いマイクでも最も太く録れる場所を探した。",
@@ -103,7 +98,7 @@ export const replayEvents: StoryEvent[] = [
     chapter: 1,
     slot: 8,
     title: "再生数ゼロの午前二時",
-    date: "2009年・冬",
+    date: "回想・2009年冬",
     location: "社員寮・自室",
     body: [
       "公開から六時間。再生数はゼロのままだった。自分で確認した一回を数えない表示が、世界に存在していない証明のように見える。",
@@ -320,7 +315,7 @@ export const replayEvents: StoryEvent[] = [
     chapter: 3,
     slot: 7,
     title: "読めない手紙のリズム",
-    date: "2015年",
+    date: "回想・2015年",
     location: "撮影部屋",
     body: [
       "読めない言語で書かれた手紙が届いた。翻訳すると、意味より先に発音の並びがビートのように聞こえる。",
@@ -421,7 +416,7 @@ export const replayEvents: StoryEvent[] = [
     chapter: 4,
     slot: 3,
     title: "消す人の夜",
-    date: "2018年",
+    date: "回想・2018年",
     location: "コメント管理室",
     body: [
       "深夜、コメント管理を担当するスタッフから『人の悪意を一日読むのがつらい』と連絡が来た。画面を健全に保つ裏で、誰かが汚れた言葉をすべて先に見ている。",
@@ -592,18 +587,19 @@ export const replayEvents: StoryEvent[] = [
   rare({
     id: "replay_ch5_twenty_year_jump",
     chapter: 5,
-    slot: 7,
+    slot: 11,
     title: "二十年ぶりの飛び台",
-    date: "成功後の冬",
+    date: "未来の断片・2023年冬",
     location: "新潟・スキー場",
     body: [
-      "ゼイキンと並んで雪の上に立つのは、およそ二十年ぶりだった。小学三年から高校まで毎冬通った場所だが、今の視聴者の多くは、ヒカキンが全国八位まで飛んだ少年だったことを知らない。",
+      "画面には、最終決戦より後の2023年に残された映像が差し込まれる。ゼイキンと並んで雪の上に立つのは、およそ二十年ぶりだった。小学三年から高校まで毎冬通った場所だが、今の視聴者の多くは、ヒカキンが全国八位まで飛んだ少年だったことを知らない。",
       "踏み切り台の上では、登録者も再生数も役に立たない。体が覚えている反復を信じるか、成功した今だからこそ安全を優先するか。兄は急かさず、下からカメラを構えている。"
     ],
     choices: [
       choice("replay_ch5_jump_again", "助走をつけ、もう一度飛ぶ", "着地は昔ほど美しくない。それでも飛び終えた瞬間、百回の撮り直しを恐れない自分がどこで作られたのか分かった。ゼイキンの歓声が雪山へ響く。", { stats: { beatbox: 2, expression: 4, energy: -5, trust: 3 }, hidden: { origin: 9, ambition: 2 }, relationships: { zeikin: 7 }, routes: { craft: 3 }, addFlags: ["replay_twenty_year_jump", "replay_ski_origin_reclaimed"] }, { tone: "bold" }),
       choice("replay_ch5_ski_story", "飛ばず、兄と昔の練習を語る", "危険を見せ場にせず、粉末ミルクを食べるほど疲れた練習や、先輩にもらった呼び名を笑って話した。飛ばない選択も含めて、原点を一本の動画へ残した。", { stats: { production: 4, expression: 5, trust: 5, subscribers: 40_000 }, hidden: { origin: 10, perfectionism: -2 }, relationships: { zeikin: 7 }, routes: { mainstream: 3, stability: 2 }, addFlags: ["replay_ski_story_shared", "replay_hikakin_name_origin"] }, { tone: "warm" })
     ],
+    when: { minRelationships: { zeikin: 20 }, maxHidden: { controversy: 55 } },
     priority: 6,
     tags: ["replay", "rare", "ski-jump", "zeikin", "origin"],
     visual: { background: "backgrounds/replay/ch5-ski-slope.webp", portrait: "portraits/hikakin/winter.webp", expression: "nostalgic", eventCg: "events/replay/twenty-year-ski.webp", accent: "blue" }

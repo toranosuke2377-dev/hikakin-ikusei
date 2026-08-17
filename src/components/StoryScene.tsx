@@ -3,6 +3,7 @@ import { getVisibleChoices, type ChoiceResolution } from "../game/engine";
 import type { EventChoice, GameState, MetaProgress, StoryEvent } from "../game/types";
 import { ResultPanel } from "./ResultPanel";
 import { VisualStage } from "./VisualStage";
+import { getBranchNotice, getDecisionPrompt } from "../game/storyPresentation";
 
 interface StorySceneProps {
   state: GameState;
@@ -26,8 +27,10 @@ export function StoryScene({
   onContinue
 }: StorySceneProps) {
   const choices = getVisibleChoices(event, state, meta);
-  const isReplay = event.tags?.includes("replay") ?? false;
-  const isNewReplay = isReplay && !meta.seenEvents.includes(event.id);
+  const isRare = event.tags?.includes("rare") ?? false;
+  const isNewRare = isRare && !meta.seenEvents.includes(event.id);
+  const branchNotice = getBranchNotice(event);
+  const decisionPrompt = getDecisionPrompt(event);
 
   useEffect(() => {
     if (selected || interactionsBlocked) return undefined;
@@ -55,13 +58,14 @@ export function StoryScene({
         <section className="story-panel">
           <header>
             <span className="eyebrow">
-              {isReplay
-                ? `${isNewReplay ? "NEW " : ""}MEMORY · 周回限定`
+              {isRare
+                ? `${isNewRare ? "NEW " : ""}MEMORY · 希少な記憶`
                 : `STORY ${String(state.slot + 1).padStart(2, "0")}`}
             </span>
             <h1>{event.title}</h1>
           </header>
           <div className="story-panel__body">
+            {branchNotice ? <p className="branch-notice"><span>分岐発生</span>{branchNotice}</p> : null}
             {event.body.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
             {event.quote ? (
               <blockquote>
@@ -69,6 +73,10 @@ export function StoryScene({
                 「{event.quote}」
               </blockquote>
             ) : null}
+          </div>
+          <div className="decision-prompt">
+            <span>DECISION</span>
+            <strong>{decisionPrompt}</strong>
           </div>
           <div className="choice-list" aria-label="選択肢">
             {choices.map((item, index) => (

@@ -33,22 +33,30 @@ const mergeNumbers = <T extends Record<string, number>>(
 
 const unique = <T,>(values: T[]): T[] => [...new Set(values)];
 
-const isReplayInterlude = (event: StoryEvent): boolean =>
-  event.tags?.includes("replay") ?? false;
+const destinyFlags = new Set([
+  "ch5_controversy_king",
+  "ch5_number_one_achieved",
+  "ch5_legendary_achieved",
+  "ch5_mastermind_achieved",
+  "ch5_street_fate"
+]);
 
-const shouldShowReplayInterlude = (
+const isRareInterlude = (event: StoryEvent): boolean =>
+  event.tags?.includes("rare") ?? false;
+
+const shouldShowRareInterlude = (
   state: GameState,
   meta: MetaProgress,
   candidates: StoryEvent[]
 ): boolean => {
   if (candidates.length === 0) return false;
   const hasUnseen = candidates.some((event) => !meta.seenEvents.includes(event.id));
-  // New scenes arrive over several runs instead of all thirty appearing at once.
-  // Already-viewed memories can return, but much more rarely.
+  // Every rare scene is eligible on the first run. Unseen scenes are merely
+  // favoured so replay freshness never depends on locked content.
   const chance = hasUnseen ? 0.42 : 0.08;
   return seededUnit(
     state.seed,
-    `replay:${meta.completedRuns}:${state.chapter}:${state.slot}`
+    `rare:${state.chapter}:${state.slot}`
   ) < chance;
 };
 
@@ -136,13 +144,13 @@ export const selectEvent = (
     throw new Error(`第${state.chapter}章 slot ${state.slot} に有効なイベントがありません。`);
   }
 
-  const replayInterludes = eligible.filter(isReplayInterlude);
-  if (shouldShowReplayInterlude(state, meta, replayInterludes)) {
-    const unseen = replayInterludes.filter((item) => !meta.seenEvents.includes(item.id));
-    return weightedPick(unseen.length > 0 ? unseen : replayInterludes, state, meta);
+  const rareInterludes = eligible.filter(isRareInterlude);
+  if (shouldShowRareInterlude(state, meta, rareInterludes)) {
+    const unseen = rareInterludes.filter((item) => !meta.seenEvents.includes(item.id));
+    return weightedPick(unseen.length > 0 ? unseen : rareInterludes, state, meta);
   }
 
-  const storyEvents = eligible.filter((item) => !isReplayInterlude(item));
+  const storyEvents = eligible.filter((item) => !isRareInterlude(item));
   if (storyEvents.length === 0) {
     throw new Error(
       `第${state.chapter}章 slot ${state.slot} に本編イベントがありません。`
@@ -153,19 +161,75 @@ export const selectEvent = (
 };
 
 const applyEffect = (state: GameState, effect: Effect): GameState => {
-  const nextStats = mergeNumbers(state.stats, effect.stats ?? {}, -10_000_000, 100_000_000);
+  const careerMoneyMultiplier: Record<ChapterNumber, number> = {
+    1: 1,
+    2: 3,
+    3: 25,
+    4: 120,
+    5: 1_000
+  };
+  const careerExpenseMultiplier: Record<ChapterNumber, number> = {
+    1: 1,
+    2: 3,
+    3: 10,
+    4: 30,
+    5: 100
+  };
+  const scaledStats = { ...(effect.stats ?? {}) };
+  if (typeof scaledStats.money === "number") {
+    // Small everyday sums (salary, meals, transport, personal purchases) keep
+    // their authored yen value. Only channel/business cash flows grow with the
+    // size of the career. This prevents a ¥100,000 salary from becoming a
+    // ¥100,000,000 windfall late in the story.
+    const isCareerScale =
+      effect.moneyScale !== "exact" &&
+      state.chapter >= 3 &&
+      Math.abs(scaledStats.money) >= 400_000;
+    const positiveIncomeFactor = scaledStats.money > 0 && isCareerScale
+      ? (0.25 + state.stats.trust * 0.0075) * (state.hidden.controversy >= 60 ? 0.35 : 1)
+      : 1;
+    scaledStats.money = Math.round(
+      scaledStats.money *
+        (isCareerScale
+          ? scaledStats.money > 0
+            ? careerMoneyMultiplier[state.chapter]
+            : careerExpenseMultiplier[state.chapter]
+          : 1) *
+        positiveIncomeFactor
+    );
+  }
+  const statsBeforeDelta = effect.moneyMultiplier === undefined
+    ? state.stats
+    : {
+        ...state.stats,
+        money: Math.round(state.stats.money * Math.max(0, effect.moneyMultiplier))
+      };
+  const nextStats = mergeNumbers(
+    statsBeforeDelta,
+    scaledStats,
+    0,
+    100_000_000_000
+  );
 
   if (effect.setStats) {
     Object.assign(nextStats, effect.setStats);
   }
 
   nextStats.subscribers = Math.max(0, nextStats.subscribers);
-  nextStats.money = Math.max(-10_000_000, nextStats.money);
+  nextStats.money = Math.max(0, nextStats.money);
   nextStats.energy = bounded(nextStats.energy, 0, 100);
   nextStats.expression = bounded(nextStats.expression, 0, 100);
   nextStats.production = bounded(nextStats.production, 0, 100);
   nextStats.beatbox = bounded(nextStats.beatbox, 0, 100);
   nextStats.trust = bounded(nextStats.trust, 0, 100);
+
+  const addedFlags = effect.addFlags ?? [];
+  const choosesFinalDestiny = addedFlags.some((flag) => destinyFlags.has(flag));
+  const retainedFlags = state.flags.filter(
+    (flag) =>
+      !(effect.removeFlags ?? []).includes(flag) &&
+      (!choosesFinalDestiny || !destinyFlags.has(flag))
+  );
 
   return {
     ...state,
@@ -173,10 +237,7 @@ const applyEffect = (state: GameState, effect: Effect): GameState => {
     hidden: mergeNumbers(state.hidden, effect.hidden ?? {}, 0, 100),
     routes: mergeNumbers(state.routes, effect.routes ?? {}, 0, 100),
     relationships: mergeNumbers(state.relationships, effect.relationships ?? {}, -100, 100),
-    flags: unique([
-      ...state.flags.filter((flag) => !(effect.removeFlags ?? []).includes(flag)),
-      ...(effect.addFlags ?? [])
-    ]),
+    flags: unique([...retainedFlags, ...addedFlags]),
     queuedEvent: effect.queueEvent,
     videos: effect.video ? [...state.videos, effect.video] : state.videos
   };
@@ -194,7 +255,7 @@ export const resolveChoice = (
 ): ChoiceResolution => {
   const before = structuredClone(state);
   const effected = applyEffect(state, selected.effect);
-  const isExtraEvent = state.queuedEvent === event.id || isReplayInterlude(event);
+  const isExtraEvent = state.queuedEvent === event.id || isRareInterlude(event);
   const nextSlot = isExtraEvent ? state.slot : state.slot + 1;
 
   return {

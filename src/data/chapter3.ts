@@ -185,7 +185,7 @@ export const chapter3Events: StoryEvent[] = [
     date: "2013年 夏",
     location: "編集机",
     body: [
-      "撮影を終え、字幕を入れ、音量を直したころには午前四時だった。画面には『書き出し残り八分』と出ているが、ヒカキンの指はマウスの上で止まっていた。",
+      "無名時代、空腹でも眠くても『無理をすれば一本作れる』と自分へ言い聞かせた。その成功体験を何年も繰り返し、撮影を終え、字幕を入れ、音量を直したころには午前四時だった。画面には『書き出し残り八分』と出ているが、ヒカキンの指はマウスの上で止まっていた。",
       "翌朝にも撮影がある。ここで眠れば公開が遅れ、続ければ身体が先に止まる。『全部できる』と『全部やるべきだ』は違うと、ようやく認める時が来た。"
     ],
     choices: [
@@ -218,7 +218,17 @@ export const chapter3Events: StoryEvent[] = [
         addFlags: ["ch3_production_solo", "ch3_overwork_normalized"]
       }, { tone: "risky", subtext: "今週は勝てるが、限界を先送りする" })
     ],
-    when: when({ minHidden: { fatigue: 35 } }),
+    when: when({
+      minHidden: { fatigue: 35 },
+      flagsAny: [
+        "ch1_hungry_recording",
+        "ch1_sleepless_retake",
+        "ch1_self_reliant_to_fault",
+        "ch2_solo_production_kept",
+        "ch2_daily_upload",
+        "ch3_overbooked"
+      ]
+    }),
     priority: 30,
     tags: ["production", "fatigue"],
     visual: {
@@ -338,7 +348,7 @@ export const chapter3Events: StoryEvent[] = [
     id: "ch3_02_hajime_close_friend",
     slot: 2,
     title: "親分の企画ノート",
-    date: "2014年 冬",
+    date: "2014年 春",
     location: "ファミリーレストラン",
     body: [
       "はじめ課長は使い込まれたノートをテーブルへ置いた。巨大化、百個比較、深夜の検証。まだ粗いが、どれも本人が本気で確かめたがっている企画だった。",
@@ -393,10 +403,10 @@ export const chapter3Events: StoryEvent[] = [
     id: "ch3_02_hajime_competitor",
     slot: 2,
     title: "一晩で抜かれた記録",
-    date: "2014年 冬",
+    date: "2014年 春",
     location: "撮影部屋",
     body: [
-      "ヒカキンが一週間かけた検証動画の再生記録を、はじめ課長の巨大実験が一晩で抜いた。画面越しの彼は、いつも通り『親分のおかげです』と笑っている。",
+      "ヒカキンが一週間かけた検証動画の再生記録を、はじめ課長の巨大実験が一晩で抜いた。画面越しの彼は『親分、今回は俺の勝ちです』と笑っている。成功を誰かの手柄にはせず、それでも先輩への敬意は失わない。",
       "祝う気持ちと、置いていかれたくない気持ちは同時に存在した。次の公開枠には、はじめ課長と似た企画がすでに準備されている。"
     ],
     choices: [
@@ -446,7 +456,7 @@ export const chapter3Events: StoryEvent[] = [
     id: "ch3_02_hajime_growth",
     slot: 2,
     title: "『親分』の後ろから",
-    date: "2014年 冬",
+    date: "2014年 春",
     location: "大型撮影スタジオ",
     body: [
       "後発だったはじめ課長の撮影には、もう大勢のスタッフが動いていた。百個の道具を本気で試し、失敗すれば本人が一番大きく笑う。その映像には、真似ではない勢いがある。",
@@ -455,14 +465,14 @@ export const chapter3Events: StoryEvent[] = [
     choices: [
       choice("ch3_02_hajime_share", "自分の失敗談まで全部話す", [
         "機材事故、赤字企画、公開を後悔した動画まで隠さず話した。はじめ課長は成功例より失敗例を熱心に書き留める。",
-        "後に彼は同じ落とし穴を避け、さらに速く成長する。ヒカキンには、真正面から競える親友ができた。"
+        "はじめ課長は話をそのまま答えにはせず、自分の大型企画へ作り変えた。ヒカキンには、本人の力で伸びる真正面から競える親友ができた。"
       ], {
         stats: { trust: 5, production: 3, subscribers: 190_000 },
         hidden: { origin: 3, ambition: 4 },
         routes: { network: 6 },
         relationships: { hajime: 13 },
         addFlags: ["ch3_hajime_taught", "hajime_fair_rival_seed"]
-      }, { tone: "warm", subtext: "未来の強敵を信頼で育てる" }),
+      }, { tone: "warm", subtext: "独立した強敵と、失敗まで共有して競う" }),
       choice("ch3_02_hajime_collab", "教える代わりに直接対決動画を提案する", [
         "二人が同じ条件で巨大商品を使い切る対決は大当たりした。勝敗より、互いの違いが見える構成が話題になる。",
         "『親分対課長』は恒例企画となり、友情と競争を同時に見せる舞台ができた。"
@@ -908,7 +918,7 @@ export const chapter3Events: StoryEvent[] = [
       }, { tone: "risky", subtext: "最大露出と引き換えに兄弟の権利問題を残す" })
     ],
     when: when({ flagsAny: ["yt_theme_credit_unclear", "yt_theme_remote"] }),
-    priority: 30,
+    priority: 40,
     tags: ["zeikin", "music", "credit"],
     visual: {
       background: "bg/ch3_office_meeting",
@@ -1489,7 +1499,7 @@ export const chapter3Events: StoryEvent[] = [
     date: "2016年 秋",
     location: "打ち上げ会場の廊下",
     body: [
-      "天才イケメンYouTuberとして急成長したマコトは、カメラの前では誰より気さくだった。だが打ち上げの廊下で、断っている女性スタッフへ執拗に連絡先を求め、進路を塞ぐ姿をヒカキンは目撃する。",
+      "天才イケメンYouTuberとして急成長したマコトとは、何度か食事やコラボを重ね、仕事仲間の中ではまあまあ親しい関係になっていた。だが打ち上げの廊下で、断っている女性スタッフへ執拗に連絡先を求め、進路を塞ぐ姿をヒカキンは目撃する。",
       "女性は笑って場を収めようとしているが、表情は明らかに固い。人気や酔いは同意の代わりにはならない。ヒカキンがここで何をするかは、動画には映らない。"
     ],
     choices: [
@@ -1524,7 +1534,7 @@ export const chapter3Events: StoryEvent[] = [
         addFlags: ["makoto_warning_seen", "makoto_enabled", "makoto_bystander_regret"]
       }, { tone: "risky", subtext: "その場は収まるが、問題を止めない" })
     ],
-    when: when({ minRelationships: { makoto: 8 } }),
+    when: when({ minRoutes: { network: 15 } }),
     mandatory: true,
     priority: 40,
     tags: ["makoto", "warning", "anchor"],

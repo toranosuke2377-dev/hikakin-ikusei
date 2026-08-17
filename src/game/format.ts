@@ -11,10 +11,16 @@ export const formatSubscribers = (value: number): string => {
 
 export const formatMoney = (value: number): string => {
   const sign = value < 0 ? "−" : "";
-  const absolute = Math.abs(value);
-  if (absolute >= 100_000_000) return `${sign}${(absolute / 100_000_000).toFixed(1)}億円`;
-  if (absolute >= 10_000) return `${sign}${(absolute / 10_000).toFixed(absolute >= 1_000_000 ? 0 : 1)}万円`;
-  return `${sign}${formatNumber(absolute)}円`;
+  const absolute = Math.round(Math.abs(value));
+  const oku = Math.floor(absolute / 100_000_000);
+  const man = Math.floor((absolute % 100_000_000) / 10_000);
+  const yen = absolute % 10_000;
+  const parts: string[] = [];
+
+  if (oku > 0) parts.push(`${formatNumber(oku)}億`);
+  if (man > 0) parts.push(`${formatNumber(man)}万`);
+  if (yen > 0 || parts.length === 0) parts.push(formatNumber(yen));
+  return `${sign}${parts.join("")}円`;
 };
 
 export const STAT_LABELS: Record<StatKey, string> = {

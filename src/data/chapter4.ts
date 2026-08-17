@@ -287,6 +287,61 @@ export const chapter4Events: StoryEvent[] = [
     }
   }),
   ch4({
+    id: "ch4_01_old_rules_return",
+    slot: 1,
+    title: "十年前に書いた三つの規則",
+    date: "2018年 春",
+    location: "制作オフィス・資料庫",
+    body: [
+      "無名時代の休憩室を映した十秒の映像が拡散された。ところが元データには制服、店名、客の顔を出さないと上司と決めた三つの規則が映り込み、問題の箇所も公開前に切られていた。",
+      "二〇〇八年、再生数がほとんどなかったころに守った線引きが、十年後の危機で初めて意味を持った。ただ『昔から正しかった』と誇れば、現在の撮影現場に残る別の問題から目をそらすことにもなる。"
+    ],
+    speaker: "ヒカキン",
+    quote: "あの時の自分に守られた。だから今の自分も、次の十年を守らないと。",
+    choices: [
+      choice("ch4_01_rules_full_audit", "当時の規則を公開し、現在の全映像も監査する", [
+        "古いメモを自慢の証拠ではなく、今の基準を調べ直す出発点として見せた。第三者と過去映像を確認し、問題のある箇所には説明と修正を加える。",
+        "監査費用と公開停止で所持金と登録者は減ったが、無名時代の慎重さが現在の責任へつながった。"
+      ], {
+        moneyScale: "exact",
+        stats: { subscribers: -40_000, money: -600_000, trust: 9, production: 3 },
+        hidden: { controversy: -5, origin: 8 },
+        routes: { stability: 5, strategy: 4 },
+        relationships: { supermarket: 6, manager: 4 },
+        addFlags: ["ch4_early_rules_paid_off", "ch4_external_audit", "ch4_recovery_ready"]
+      }, { tone: "steady", subtext: "過去の正しさを、現在の点検へ使う" }),
+      choice("ch4_01_rules_quiet_request", "元映像を示し、切り抜きの訂正だけを求める", [
+        "規則と編集履歴を拡散元へ送り、誤解されていた部分だけを訂正した。大きな会見にはせず、職場や当時の同僚を再び注目へ巻き込まない。",
+        "炎上は静かに収まったが、現在の制作ルールを見直す機会までは広げなかった。"
+      ], {
+        stats: { subscribers: -20_000, trust: 4, production: 2 },
+        hidden: { controversy: -2, origin: 5 },
+        routes: { strategy: 4, stability: 2 },
+        relationships: { supermarket: 5 },
+        addFlags: ["ch4_old_clip_corrected", "ch4_early_rules_paid_off"]
+      }, { tone: "warm", subtext: "関係者を守り、必要な訂正だけを行う" }),
+      choice("ch4_01_rules_victory_lap", "『昔から完璧だった』という反論動画を出す", [
+        "規則の紙を大きく映し、批判側を調査不足だと笑った。反論動画は伸びたが、当時の慎重さを現在の無謬性へすり替えたことで別の反発が生まれる。",
+        "再生と収益は増えた一方、過去に守れた一件を使って今の疑問まで封じる癖が残った。"
+      ], {
+        stats: { subscribers: 180_000, money: 500_000, trust: -7 },
+        hidden: { controversy: 8, origin: -3, ambition: 3 },
+        routes: { controversy: 5, mainstream: 3 },
+        addFlags: ["ch4_rules_used_as_shield", "ch4_partial_accountability"]
+      }, { tone: "risky", subtext: "勝てる反論だが、現在の責任は点検しない" })
+    ],
+    when: when({ flagsAny: ["ch1_work_privacy_learned", "ch1_work_permission_clear"] }),
+    priority: 32,
+    tags: ["crisis", "past-choice", "supermarket", "consequence"],
+    visual: {
+      background: "bg/ch4_archive_rules",
+      portrait: "portrait/hikakin",
+      expression: "serious",
+      eventCg: "cg/ch4_old_work_rules",
+      accent: "blue"
+    }
+  }),
+  ch4({
     id: "ch4_01_old_clip",
     slot: 1,
     title: "十秒だけの過去",
@@ -997,17 +1052,15 @@ export const chapter4Events: StoryEvent[] = [
     slot: 6,
     title: "『マコトを救いたい』",
     date: "2019年 冬",
-    location: "柴田の撮影場所",
+    location: "動画サイトの急上昇欄",
     body: [
-      "元祖炎上系YouTuberの柴田が、赤い拳をサムネイルにした『マコトを救いたい』を公開した。被害より加害者の復活を中心に置き、最後にヒカキンへ公開レスリング対決を呼びかける。",
-      "柴田の動画は不謹慎だと批判されながら、驚異的に伸びている。出演すれば自分の疑惑も説明できるという誘いは、再生数を必要とする今ほど魅力的に見えた。"
+      "元祖炎上系YouTuberの柴田が、赤い拳をサムネイルにした『マコトを救いたい』を公開した。ヒカキンへの連絡も取材もなく、被害より加害者の復活を中心に置いた動画だった。",
+      "柴田の動画は不謹慎だと批判されながら、驚異的に伸びている。ヒカキンと柴田は親しくもなく、コラボもしない。それでも、同じ題材を自分のチャンネルで扱えば再生数を得られる誘惑は残る。"
     ],
-    speaker: "柴田",
-    quote: "ヒカキン、お前も救ってやる。リングで全部話せ！",
     choices: [
-      choice("ch4_06_shibata_join", "出演し、炎上の注目を利用する", [
-        "派手な入場とレスリングの後、事件と自分の疑惑を短い言葉で語った。動画は記録的に伸びたが、被害は対決の前振りとして消費される。",
-        "柴田はヒカキンを『数字が分かる男』と認め、次の炎上にも誘うようになった。"
+      choice("ch4_06_shibata_join", "自分も刺激的な便乗動画を出す", [
+        "柴田とは接触せず、同じ事件を強い言葉と派手なサムネイルで扱った。動画は記録的に伸びたが、被害は再生数の材料として消費される。",
+        "別々のチャンネルで炎上動画が連鎖し、視聴者は事実より対立を待つようになった。"
       ], {
         stats: { subscribers: 900_000, money: 1_600_000, expression: 4, trust: -24 },
         hidden: { controversy: 28, ambition: 9, origin: -18 },
@@ -1016,9 +1069,9 @@ export const chapter4Events: StoryEvent[] = [
         addFlags: ["shibata_joined", "makoto_event_monetized", "controversy_king_path_open"],
         video: { title: "マコトを救いたい――公開レスリング", views: 38_000_000, subscribersGained: 900_000, kind: "炎上・レスリング", chapter: 4 }
       }, { tone: "risky", subtext: "最大の注目と引き換えに事件を見世物にする" }),
-      choice("ch4_06_shibata_debate", "被害を扱わない条件で公開討論する", [
-        "個人情報や事件の推測を禁じ、自分の動画制作と炎上手法だけを議題にした。柴田は何度も話を逸らしたが、ヒカキンは便乗で誰が傷つくかを具体的に問い返す。",
-        "大きな注目は集めた一方、柴田の舞台へ上がったことへの批判も残った。"
+      choice("ch4_06_shibata_debate", "個人名を出さず炎上の仕組みを解説する", [
+        "柴田へ連絡せず、個人情報や事件の推測も使わず、便乗で誰が傷つくかを自分の動画で説明した。",
+        "大きな注目は集めた一方、事件をもう一度話題にしたことへの批判も残った。"
       ], {
         stats: { subscribers: 420_000, expression: 6, trust: 1 },
         hidden: { controversy: 7, origin: 1 },
@@ -1060,7 +1113,7 @@ export const chapter4Events: StoryEvent[] = [
       "ヒカキンが守りたいのは自分の評判か、被害をこれ以上コンテンツにしないことか。正しい反論でも、炎上の続きを作れば柴田の狙い通りになる。"
     ],
     choices: [
-      choice("ch4_06_principled_no_reply", "柴田には返さず、支援情報だけ更新する", [
+      choice("ch4_06_principled_no_reply", "便乗動画には反応せず、支援情報だけ更新する", [
         "自分への批判に反応せず、相談窓口と制作現場の新しい安全規定を更新した。対立を待っていた視聴者は離れる。",
         "残った人には、言葉より行動で基準を示した。"
       ], {
@@ -1108,10 +1161,10 @@ export const chapter4Events: StoryEvent[] = [
     slot: 6,
     title: "炎上のリング",
     date: "2019年 冬",
-    location: "柴田からの動画メッセージ",
+    location: "動画サイトの急上昇欄",
     body: [
-      "世間の炎上へ『○○を救いたい』を次々と投稿する柴田が、マコト事件にも便乗した。今度はレスリング衣装で、ヒカキンへ直接対決を呼びかけている。",
-      "怒り、反論、失言。そのすべてを再生数へ変えるのが柴田の技術だ。乗れば多くの人へ届くが、リングへ上がった時点で事件も勝敗の材料になる。"
+      "世間の炎上へ『○○を救いたい』を次々と投稿する柴田が、マコト事件にも便乗した。レスリング衣装の動画は伸びているが、ヒカキンへ連絡はなく、二人に交流もない。",
+      "怒り、反論、失言。そのすべてを再生数へ変える手法だけが、動画サイト全体へ広がっていく。ヒカキンは別の投稿者として、自分のチャンネルで何をするかを決める。"
     ],
     choices: [
       choice("ch4_06_offer_refuse", "被害を題材にした企画には出ない", [
@@ -1124,9 +1177,9 @@ export const chapter4Events: StoryEvent[] = [
         relationships: { shibata: -10 },
         addFlags: ["shibata_rejected", "makoto_event_not_monetized"]
       }, { tone: "steady", subtext: "対決を成立させない" }),
-      choice("ch4_06_offer_other_topic", "事件を外し、レスリング企画だけ受ける", [
-        "被害やマコトへ触れない契約を結び、純粋な体力企画として対戦した。柴田はぎりぎりの煽りを続けたが、ヒカキンは話題を戻し続ける。",
-        "大きく伸びた一方、便乗相手と組むこと自体への批判は残った。"
+      choice("ch4_06_offer_other_topic", "無関係な体力企画を自分で出す", [
+        "柴田とは組まず、被害やマコトにも触れず、自分のチャンネルで純粋な体力企画を公開した。",
+        "一定の再生数は得たが、炎上動画ほどの急激な伸びはなかった。"
       ], {
         stats: { subscribers: 390_000, money: 650_000, expression: 5, trust: -2 },
         hidden: { controversy: 6, fatigue: 5 },
@@ -1134,8 +1187,8 @@ export const chapter4Events: StoryEvent[] = [
         relationships: { shibata: 4 },
         addFlags: ["shibata_wrestled_clean", "ch4_public_boundary_tested"]
       }, { tone: "bold", subtext: "題材を切り離して共演する" }),
-      choice("ch4_06_offer_join", "『救いたい』動画へ出演する", [
-        "ヒカキンは自分の立場を話すつもりだったが、サムネイルも編集も柴田の文法で作られた。被害は背景へ追いやられ、二人の対立だけが切り抜かれる。",
+      choice("ch4_06_offer_join", "同じ『救いたい』形式をまねる", [
+        "柴田とは一切接触せず、強いサムネイルと救済を名乗る形式だけを自分の動画へ持ち込んだ。被害は背景へ追いやられる。",
         "過去最大級の再生数と、戻しにくい炎上系の視聴者を得た。"
       ], {
         stats: { subscribers: 760_000, money: 1_300_000, trust: -20 },
@@ -1217,7 +1270,7 @@ export const chapter4Events: StoryEvent[] = [
     location: "空いた撮影スタジオ",
     body: [
       "説明を拒み続けた結果、複数のスポンサーが同日に契約終了を発表した。昨日まで壁に並んでいたロゴは外され、予定していた企画の予算も消える。",
-      "柴田は『企業に捨てられたヒカキンを救いたい』を即日公開し、残った知名度を炎上へ変えれば金は作れると誘ってくる。"
+      "柴田は連絡も取材もないまま『企業に捨てられたヒカキンを救いたい』を即日公開した。残った知名度を自分で炎上へ変えれば金は作れる、という誘惑だけが数字から伝わる。"
     ],
     choices: [
       choice("ch4_07_leave_rebuild", "遅くても事実説明と補償からやり直す", [
@@ -1239,9 +1292,9 @@ export const chapter4Events: StoryEvent[] = [
         routes: { craft: 7 },
         addFlags: ["ch4_independent_return", "legendary_video_seed"]
       }, { tone: "steady", subtext: "資金を失い、本人の表現へ戻る" }),
-      choice("ch4_07_leave_shibata", "柴田と組み、企業を暴露する", [
-        "契約交渉の裏側を刺激的に編集し、離れた企業を敵として名指しした。動画は急上昇し、投げ銭と新スポンサーで資金を取り戻す。",
-        "チャンネルは商品より対立を売る場所へ変わり、柴田の視聴者が中心になった。"
+      choice("ch4_07_leave_shibata", "独自に企業への暴露動画を出す", [
+        "柴田とは組まず、契約交渉の裏側を刺激的に編集し、離れた企業を敵として名指しした。動画は急上昇し、投げ銭と新スポンサーで資金を取り戻す。",
+        "チャンネルは商品より対立を売る場所へ変わり、炎上を求める視聴者が中心になった。"
       ], {
         stats: { subscribers: 760_000, money: 2_400_000, trust: -22 },
         hidden: { controversy: 25, origin: -14, ambition: 8 },
@@ -1533,7 +1586,7 @@ export const chapter4Events: StoryEvent[] = [
     date: "2020年 秋",
     location: "配信部屋",
     body: [
-      "柴田との動画以降、普通の商品紹介は以前ほど伸びなくなった。ところが誰かを名指しした瞬間だけ、通知も投げ銭も一気に増える。",
+      "炎上形式の動画を出して以降、普通の商品紹介は以前ほど伸びなくなった。ところが誰かを名指しした瞬間だけ、通知も投げ銭も一気に増える。",
       "ヒカキンは批判される苦しさと同時に、数字が爆発する快感を覚えていた。次の標的候補には、低迷した知人や契約を切った企業の名前まで並ぶ。"
     ],
     choices: [
@@ -1693,8 +1746,8 @@ export const chapter4Events: StoryEvent[] = [
     date: "2021年 春",
     location: "深夜の打ち合わせ",
     body: [
-      "柴田が、業界の不正を暴くという未確認資料を持ち込んだ。はじめ課長を直接攻撃する内容ではないが、公開すればYouTuber全体への不信が広がり、最も知名度の高いヒカキンへ視線が集まる。",
-      "真偽確認には数週間かかる。柴田は『確認したころには旬が終わる』と笑う。一位へ届く速度と、誰かの人生を壊す可能性が同じ封筒に入っていた。"
+      "匿名の送信者から、業界の不正を暴くという未確認資料が届いた。はじめ課長を直接攻撃する内容ではないが、公開すればYouTuber全体への不信が広がり、最も知名度の高いヒカキンへ視線が集まる。",
+      "真偽確認には数週間かかる。確認したころには旬が終わる。一位へ届く速度と、誰かの人生を壊す可能性が同じ封筒に入っていた。"
     ],
     choices: [
       choice("ch4_10_dirty_verify", "公開せず、資料を専門家へ渡す", [
@@ -1708,7 +1761,7 @@ export const chapter4Events: StoryEvent[] = [
         addFlags: ["ch4_dirty_offer_rejected", "ch5_clean_race"]
       }, { tone: "steady", subtext: "旬より検証を優先する" }),
       choice("ch4_10_dirty_expose_method", "資料は見せず、誘惑された事実を話す", [
-        "個人名や内容を伏せ、未確認情報が順位争いへ利用される仕組みだけを解説した。柴田との関係は完全に切れる。",
+        "個人名や内容を伏せ、未確認情報が順位争いへ利用される仕組みだけを解説した。匿名の送り主とは接触しない。",
         "再生数は伸びたが、暴露の中身を求める声も増え、完全に無害ではなかった。"
       ], {
         stats: { subscribers: 220_000, production: 5, trust: 7 },
@@ -1816,7 +1869,7 @@ export const chapter4Events: StoryEvent[] = [
       }, { tone: "warm", subtext: "親友の最高を越えて勝つ" }),
       choice("ch4_11_contender_four", "テツとシル子にも未来の企画を打診する", [
         "地元、遊び、大型挑戦、総合力を一つにする企画書を送った。全員が独自の活動を守りながら参加できる構成にする。",
-        "四人が互いを引き上げる『四皇時代』の条件が揃い始めた。"
+        "四人がそれぞれの力で頂点を競う『四皇時代』の条件が揃い始めた。"
       ], {
         stats: { production: 6, trust: 9, subscribers: 360_000 },
         hidden: { ambition: 10, origin: 7 },
@@ -1858,7 +1911,7 @@ export const chapter4Events: StoryEvent[] = [
     date: "2021年 夏",
     location: "炎上配信スタジオ",
     body: [
-      "スポンサーと古い視聴者が去った後も、チャンネルの知名度は過去最大だった。柴田との暴露、対立、謝罪予告は、普通の動画より何倍も再生される。",
+      "スポンサーと古い視聴者が去った後も、チャンネルの知名度は過去最大だった。独自に始めた暴露、対立、謝罪予告は、普通の動画より何倍も再生される。",
       "日本一へ届く可能性すら残っている。ただし今の視聴者が待つのはヒカキンの動画ではなく、次に誰が傷つくかだ。"
     ],
     choices: [
@@ -1873,9 +1926,9 @@ export const chapter4Events: StoryEvent[] = [
         addFlags: ["ch5_entry_recovery", "ch4_last_exit_taken"],
         removeFlags: ["controversy_king_path_open", "ch5_controversy_weapon"]
       }, { tone: "warm", subtext: "すべてを失ってでも炎上から降りる" }),
-      choice("ch4_11_fire_independent", "柴田とも決別し、一人の炎上系として進む", [
-        "柴田の台本を拒み、自分で標的と公開日を選ぶようになった。依存を断ったのではなく、手法を完全に自分のものにした。",
-        "チャンネルは『元祖の後継』ではなく、独立した炎上王候補になる。"
+      choice("ch4_11_fire_independent", "一人の炎上系として進む", [
+        "誰とも組まず、自分で標的と公開日を選ぶようになった。別の炎上系をまねる段階を越え、手法を完全に自分のものにした。",
+        "チャンネルは誰かの後継ではなく、独立した炎上王候補になる。"
       ], {
         stats: { subscribers: 780_000, money: 1_500_000, trust: -16 },
         hidden: { controversy: 22, ambition: 12, origin: -14 },
@@ -1883,7 +1936,7 @@ export const chapter4Events: StoryEvent[] = [
         relationships: { shibata: -5 },
         addFlags: ["ch5_entry_controversy", "controversy_king_path_open", "ch5_controversy_weapon"]
       }, { tone: "bold", subtext: "柴田を離れ、手法だけを継ぐ" }),
-      choice("ch4_11_fire_alliance", "柴田と日本最大の暴露配信を予告する", [
+      choice("ch4_11_fire_alliance", "日本最大の単独暴露配信を予告する", [
         "未確認資料、企業名、過去の仲間。すべてを一夜で公開する告知は、開始前から百万件の待機を集めた。",
         "ヒカキンは誰かを楽しませるためでなく、注目を支配するためにカメラの前へ座った。"
       ], {

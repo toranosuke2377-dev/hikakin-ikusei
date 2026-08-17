@@ -6,6 +6,7 @@ import { StatsBar } from "./components/StatsBar";
 import { StoryScene } from "./components/StoryScene";
 import { allEvents, endingDefinitions } from "./data";
 import { CHAPTERS, createInitialGameState } from "./game/constants";
+import { getChapterPresentation } from "./game/chapterPresentation";
 import {
   advanceChapter,
   initializeRun,
@@ -16,7 +17,8 @@ import {
   updateMetaAfterRun,
   type ChoiceResolution
 } from "./game/engine";
-import { formatSubscribers } from "./game/format";
+import { formatMoney, formatSubscribers } from "./game/format";
+import { getEndingPresentation } from "./game/endingPresentation";
 import { loadGame, loadMeta, saveGame, saveMeta } from "./game/storage";
 import type {
   EndingDefinition,
@@ -50,8 +52,11 @@ function App() {
       : null;
   });
 
-  const chapter = game
+  const chapterDefinition = game
     ? CHAPTERS.find((definition) => definition.number === game.chapter)
+    : undefined;
+  const chapter = game && chapterDefinition
+    ? getChapterPresentation(chapterDefinition, game)
     : undefined;
 
   const activeEvent = useMemo(() => {
@@ -171,8 +176,8 @@ function App() {
         <AssetImage assetKey="ui/title_hero" className="title-screen__hero" alt="" />
         <div className="title-screen__content">
           <div className="title-screen__kicker">A ONE-HOUR CREATOR LIFE</div>
-          <h1>BEAT TO <span>THE TOP</span></h1>
-          <h2>ヒカキン育成ゲーム</h2>
+          <h1>ヒカキン<span>育成物語</span></h1>
+          <h2>絶対に、何者かになる。</h2>
           <p className="title-screen__intro">
             所持金二万円、登録者ゼロ、武器はビートボックスだけ。
             選んだ動画、守った約束、利用した炎上。そのすべてが、最後の一本へつながる。
@@ -186,7 +191,7 @@ function App() {
             <button className={game ? "ghost-button" : "primary-button"} onClick={beginNewGame}>
               {game ? "最初から" : "物語を始める"}
             </button>
-            <button className="ghost-button" onClick={() => setScreen("archive")}>記録</button>
+            <button className="ghost-button" onClick={() => setScreen("archive")}>人生記録</button>
           </div>
         </div>
         <p className="legal-note">{legalText}</p>
@@ -198,7 +203,7 @@ function App() {
     return (
       <div className="archive-screen">
         <header className="archive-screen__header">
-          <div><span className="eyebrow">ARCHIVE</span><h1>周回記録</h1></div>
+          <div><span className="eyebrow">ARCHIVE</span><h1>人生記録</h1></div>
           <button className="ghost-button" onClick={() => setScreen("title")}>タイトルへ戻る</button>
         </header>
         <div className="archive-grid">
@@ -268,9 +273,12 @@ function App() {
 
   if (screen === "chapter" || screen === "chapterEnd") {
     const isEnd = screen === "chapterEnd";
-    const nextChapter = isEnd
+    const nextChapterDefinition = isEnd
       ? CHAPTERS.find((item) => item.number === game.chapter + 1)
       : chapter;
+    const nextChapter = nextChapterDefinition
+      ? getChapterPresentation(nextChapterDefinition, game)
+      : undefined;
     return (
       <div className="interstitial">
         <div className="interstitial__number">{nextChapter?.number}</div>
@@ -291,43 +299,48 @@ function App() {
   }
 
   if (screen === "ending" && ending) {
+    const endingPresentation = getEndingPresentation(ending, game);
     const fourEmperors = game.flags.includes("four_emperors_achieved");
     const darkMassuo =
       game.stats.subscribers >= 18_000_000 &&
       !game.flags.includes("ch5_dark_massuo_epilogue");
-    const endingPortrait = ending.visual.portrait
-      ? ending.visual.expression && !/\.[a-z0-9]+$/i.test(ending.visual.portrait)
-        ? `${ending.visual.portrait}_${ending.visual.expression}`
-        : ending.visual.portrait
+    const hundredBillion = game.flags.includes("ch5_hundred_billion_achieved");
+    const endingPortrait = endingPresentation.visual.portrait
+      ? endingPresentation.visual.expression && !/\.[a-z0-9]+$/i.test(endingPresentation.visual.portrait)
+        ? `${endingPresentation.visual.portrait}_${endingPresentation.visual.expression}`
+        : endingPresentation.visual.portrait
       : undefined;
     return (
       <div className="ending-screen">
-        <AssetImage assetKey={ending.visual.background} className="ending-screen__art" alt="" />
-        {ending.visual.eventCg ? <AssetImage assetKey={ending.visual.eventCg} className="ending-screen__art" alt="" /> : null}
-        {ending.visual.video ? <AssetVideo assetKey={ending.visual.video} className="ending-screen__art" /> : null}
+        <AssetImage assetKey={endingPresentation.visual.background} className="ending-screen__art" alt="" />
+        {endingPresentation.visual.eventCg ? <AssetImage assetKey={endingPresentation.visual.eventCg} className="ending-screen__art" alt="" /> : null}
+        {endingPresentation.visual.video ? <AssetVideo assetKey={endingPresentation.visual.video} className="ending-screen__art" /> : null}
         {endingPortrait ? <AssetImage assetKey={endingPortrait} className="ending-screen__portrait" alt="" /> : null}
         <div className="ending-screen__content">
-          <span className="ending-screen__category">{ending.category} END</span>
-          <h1>{fourEmperors ? `${ending.title}・四皇時代` : ending.title}</h1>
+          <span className="ending-screen__category">{endingPresentation.category} END</span>
+          <h1>{fourEmperors ? `${endingPresentation.title}・四皇時代` : endingPresentation.title}</h1>
           <div className="ending-screen__body">
-            {ending.body.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
+            {endingPresentation.body.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
             {fourEmperors ? (
-              <p>四人は同じ型の王にはならなかった。総合力、挑戦、地域、子供たちの遊び。それぞれの頂点を守りながら互いを引き上げる時代が、のちに「YouTuber四皇」の名で語られた。</p>
+              <p>四人は同じ型の王にはならなかった。総合力、挑戦、地域、子供たちの遊び。全員が自分のチャンネルこそ一番だと信じ、互いを尊敬しながら本気で競う時代が、のちに「YouTuber四皇」の名で語られた。</p>
+            ) : null}
+            {hundredBillion ? (
+              <p>貯金が実際に百億円を越えたため、「貯金100億円達成」動画も公開された。上京時の二万円から最終所持金までの差は、途中で選んだ収益、投資、制作費、失敗のすべてを積み上げた結果だった。</p>
             ) : null}
             {darkMassuo ? (
               <p>その頃、再生数五千回まで落ちていたまっすおが、笑顔を捨てた一本を公開する。「ダークまっすお」の名が、静かに急上昇欄へ戻ってきた。</p>
             ) : null}
           </div>
-          <blockquote>「{ending.finalQuote}」</blockquote>
+          <blockquote>「{endingPresentation.finalQuote}」</blockquote>
           <div className="ending-screen__stats">
             <span>登録者 {formatSubscribers(game.stats.subscribers)}人</span>
-            <span>信用 {game.stats.trust}</span>
-            <span>制作力 {game.stats.production}</span>
+            <span>最終所持金 {formatMoney(game.stats.money)}</span>
             <span>見たイベント {game.seenThisRun.length}件</span>
+            <span>代表動画 {game.videos.length}本</span>
           </div>
           <div className="title-actions">
             <button className="primary-button" onClick={beginNewGame}>別の人生を始める<span>→</span></button>
-            <button className="ghost-button" onClick={() => setScreen("archive")}>周回記録</button>
+            <button className="ghost-button" onClick={() => setScreen("archive")}>人生記録</button>
             <button className="ghost-button" onClick={() => setScreen("title")}>タイトルへ</button>
           </div>
         </div>
@@ -342,11 +355,11 @@ function App() {
   return (
     <div className="app-shell">
       <header className="game-header">
-        <div className="game-header__brand"><strong>BEAT TO THE TOP</strong><span>CH.{game.chapter}</span></div>
+        <div className="game-header__brand"><strong>ヒカキン育成物語</strong><span>CH.{game.chapter}</span></div>
         <StatsBar state={game} />
         <div className="game-header__actions">
           <button className="ghost-button ghost-button--desktop" onClick={() => setScreen("title")}>保存して終了</button>
-          <button className="ghost-button ghost-button--desktop" onClick={() => setProfileOpen(true)}>能力・人間関係</button>
+          <button className="ghost-button ghost-button--desktop" onClick={() => setProfileOpen(true)}>プロフィール・動画</button>
           <button
             className="icon-button"
             onClick={() => setProfileOpen(true)}

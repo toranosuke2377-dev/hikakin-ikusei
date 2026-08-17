@@ -30,7 +30,7 @@ export const chapter5Events: StoryEvent[] = [
       choice("ch5_front_runner_listen", "視聴者が今見たいものを調べる", ["数字ではなく、長く見続けた人の言葉から読み始めた。", "派手さの裏で求められていたのは、ヒカキン自身の実感だった。"], { stats: { production: 3, trust: 4, energy: -4 }, hidden: { origin: 3 }, routes: { strategy: 4 }, addFlags: ["ch5_audience_audit"] }, { tone: "steady" }),
       choice("ch5_front_runner_silence", "宣言せず、一本の試作を始める", ["誰にも見せないテスト撮影を重ねた。", "競争の音を消すと、口から出る一音だけが鮮明になった。"], { stats: { production: 4, beatbox: 3, energy: -8 }, hidden: { perfectionism: 3, origin: 4 }, routes: { craft: 5 }, addFlags: ["ch5_secret_prototype"] }, { tone: "steady" })
     ],
-    when: { minStats: { subscribers: 10_000_000, trust: 58 }, maxHidden: { controversy: 54 } },
+    when: { minStats: { subscribers: 8_000_000, trust: 58 }, maxHidden: { controversy: 54 } },
     priority: 80,
     oncePerRun: true,
     tags: ["opening", "title-race", "hikakin-focus"],
@@ -154,7 +154,7 @@ export const chapter5Events: StoryEvent[] = [
       choice("ch5_letter_video", "手紙を許可を得て動画で紹介する", "一人の記憶を、多くの視聴者と共有する動画に変えた。", { stats: { subscribers: 180_000, expression: 3, trust: 3 }, hidden: { origin: 5 }, routes: { mainstream: 3 }, addFlags: ["ch5_first_viewer_story"] }, { tone: "warm" }),
       choice("ch5_letter_keep", "初代マイクの箱へしまう", "言葉にせず、最後の一本で返すと決めた。", { stats: { production: 3, beatbox: 2 }, hidden: { origin: 6, perfectionism: 2 }, routes: { craft: 4 }, addFlags: ["ch5_silent_reply"] }, { tone: "steady" })
     ],
-    when: { minHidden: { origin: 58 }, flagsAny: ["ch1_first_foreign_comment", "ch1_first_comment_sound", "ch1_first_fan_remembered", "ch5_archive_review"] },
+    when: { minHidden: { origin: 58 }, flagsAny: ["ch1_first_foreign_comment", "ch1_first_comment_sound", "ch1_first_fan_remembered", "ch1_first_fan_thanked", "ch5_archive_review"] },
     priority: 75,
     oncePerRun: true,
     tags: ["viewer", "callback", "origin"],
@@ -172,8 +172,8 @@ export const chapter5Events: StoryEvent[] = [
       "担当者は『自由を奪うのではなく、失敗を減らす契約です』と言う。確かに合理的で、だからこそ迷う。"
     ],
     choices: [
-      choice("ch5_sponsor_accept", "条件を受け、規模を手に入れる", "自由の一部と引き換えに、今まで不可能だった撮影が可能になった。", { stats: { money: 12_000_000, subscribers: 220_000, production: 2 }, hidden: { origin: -5 }, routes: { mainstream: 5 }, relationships: { manager: 3 }, addFlags: ["ch5_sponsor_backed"] }, { tone: "bold" }),
-      choice("ch5_sponsor_negotiate", "企画への拒否権を交渉する", "予算は半分になったが、最後に公開ボタンを押す権利は守った。", { stats: { money: 5_000_000, trust: 3, production: 2 }, routes: { strategy: 5 }, relationships: { manager: 2 }, addFlags: ["ch5_sponsor_independent"] }, { tone: "steady" }),
+      choice("ch5_sponsor_accept", "条件を受け、規模を手に入れる", "自由の一部と引き換えに、今まで不可能だった撮影が可能になった。", { moneyScale: "exact", stats: { money: 12_000_000, subscribers: 220_000, production: 2 }, hidden: { origin: -5 }, routes: { mainstream: 5 }, relationships: { manager: 3 }, addFlags: ["ch5_sponsor_backed"] }, { tone: "bold" }),
+      choice("ch5_sponsor_negotiate", "企画への拒否権を交渉する", "予算は半分になったが、最後に公開ボタンを押す権利は守った。", { moneyScale: "exact", stats: { money: 5_000_000, trust: 3, production: 2 }, routes: { strategy: 5 }, relationships: { manager: 2 }, addFlags: ["ch5_sponsor_independent"] }, { tone: "steady" }),
       choice("ch5_sponsor_refuse", "自分の資金だけで作る", "規模の限界は受け入れた。代わりに、失敗も成功も自分の名前で背負える。", { stats: { trust: 3, money: -800_000 }, hidden: { origin: 5, ambition: 2 }, routes: { craft: 4 }, addFlags: ["ch5_self_funded_final"] }, { tone: "bold" })
     ],
     when: { minRoutes: { mainstream: 35 }, trendsAny: ["brandDeals"] },
@@ -194,9 +194,9 @@ export const chapter5Events: StoryEvent[] = [
       "スーパーの社員寮で、給料日まで小銭を数えた夜が戻ってくる。あのころと違うのは、自分以外の生活も背負っていることだった。"
     ],
     choices: [
-      choice("ch5_finance_downsize", "規模を落として雇用を守る", "派手なセットを捨て、少人数で成立する企画へ戻した。", { stats: { money: 1_200_000, trust: 5, subscribers: -90_000 }, hidden: { origin: 4 }, routes: { stability: 6 }, relationships: { manager: 6 }, addFlags: ["ch5_team_protected"] }, { tone: "warm" }),
+      choice("ch5_finance_downsize", "規模を落として雇用を守る", "大型セットの予約金を一部取り戻し、固定費を整理した。新しく大金を稼いだのではなく、使わずに済んだ百二十万円が手元へ戻る。", { moneyScale: "exact", stats: { money: 1_200_000, trust: 5, subscribers: -90_000 }, hidden: { origin: 4 }, routes: { stability: 6 }, relationships: { manager: 6 }, addFlags: ["ch5_team_protected"] }, { tone: "warm" }),
       choice("ch5_finance_personal_debt", "自分の資産を投入する", "猶予は得たが、最後の動画が失敗すれば戻る場所まで失う。", { stats: { money: -1_200_000, production: 4 }, hidden: { fatigue: 5, ambition: 5 }, routes: { craft: 3 }, addFlags: ["ch5_all_in_personally"] }, { tone: "risky" }),
-      choice("ch5_finance_return_shift", "一時的にスーパーの仕事へ戻る", "早朝の品出しを終えてから編集する生活が再び始まった。屈辱より、続けられる安心が勝った。", { stats: { money: 700_000, energy: -12, trust: 2 }, hidden: { fatigue: 6, origin: 6 }, relationships: { supermarket: 8 }, routes: { stability: 8 }, addFlags: ["ch5_supermarket_returned"] }, { tone: "steady" })
+      choice("ch5_finance_return_shift", "一時的にスーパーの仕事へ戻る", "早朝の品出しを終えてから編集する生活が再び始まった。屈辱より、続けられる安心が勝った。", { moneyScale: "exact", stats: { money: 700_000, energy: -12, trust: 2 }, hidden: { fatigue: 6, origin: 6 }, relationships: { supermarket: 8 }, routes: { stability: 8 }, addFlags: ["ch5_supermarket_returned"] }, { tone: "steady" })
     ],
     when: { maxStats: { money: 1_000_000 }, flagsAny: ["ch4_sponsor_distrust", "ch4_multiple_crisis_seed", "ch4_team_crisis_seed", "ch3_staff_overworked"] },
     priority: 85,
@@ -237,7 +237,7 @@ export const chapter5Events: StoryEvent[] = [
     location: "閉館後の遊園地",
     body: [
       "大型コラボの撮影後、はじめ課長はスタッフを先に帰した。二人だけになった観覧車の下で、彼はいつもの呼び方のまま宣戦布告する。",
-      "尊敬は遠慮ではない。助けてもらったからこそ、全力で追い抜く。それが、はじめ課長なりの恩返しだった。"
+      "尊敬は遠慮ではない。はじめ課長は自分の企画力と行動力でここまで来たうえで、憧れた先輩を全力で追い抜こうとしている。それが彼なりの敬意だった。"
     ],
     speaker: "はじめ課長",
     quote: "親分が落ちてくるのを待たない。俺が二千万まで上がって、そこで勝ちます。",
@@ -423,13 +423,13 @@ export const chapter5Events: StoryEvent[] = [
     location: "クリエイター合同会議",
     body: [
       "地方を背負う東大オンエアのテツ、子供たちの遊びを巨大企画へ育てた漁師たちのシル子、そして日本二位へ迫るはじめ課長。六人組の看板を背負う二人の後ろには、違う才能で支える仲間たちがいる。",
-      "業界紙は三人とヒカキンを『次代の四強』と呼び始めた。日本一を目指すヒカキンが四人の中心を奪うのか、それぞれの強みを一つの時代として見せるのか。最後の企画へ向かう姿勢が試される。"
+      "業界紙は三人とヒカキンを『次代の四強』と呼び始めた。全員が自分のチャンネルこそ一番だと思い、本気で日本一を狙っている。同時に、黎明期から走ったヒカキンへの敬意もある。上下ではなく、四者の競争として最後の企画が始まる。"
     ],
     speaker: "テツ",
     quote: "東京の真似で勝つより、地元ごと面白くして勝ちたいんです。",
     choices: [
-      choice("ch5_four_support_all", "四者合同企画で各自の強みを立てる", "ヒカキンは中央を独占せず、音で三者の企画をつないだ。四つの個性が競争ではなく時代として見えた。", { stats: { subscribers: 620_000, trust: 7, production: 5, money: -1_000_000 }, relationships: { hajime: 5, tetsu: 7, shiruko: 7 }, routes: { network: 8 }, addFlags: ["ch5_four_emperors_ready", "ch5_four_collab"] }, { tone: "warm" }),
-      choice("ch5_four_share_safety", "企画・地域・安全の知見を交換する", "表に出ない会議を重ね、テツの地域連携とシル子の安全管理を持続できる仕組みにした。", { stats: { production: 5, trust: 8, energy: -5 }, relationships: { tetsu: 9, shiruko: 9, hajime: 3 }, routes: { strategy: 5, network: 5 }, addFlags: ["ch5_four_emperors_ready", "ch5_creator_standards"] }, { tone: "steady" }),
+      choice("ch5_four_support_all", "四者合同企画で真っ向勝負する", "ヒカキンは総合力、はじめ課長は規模、テツは発想、シル子は身体能力。誰も誰かの補助には回らず、四つの勝ち方が同じ画面でぶつかった。", { stats: { subscribers: 620_000, trust: 7, production: 5, money: -1_000_000 }, relationships: { hajime: 5, tetsu: 7, shiruko: 7 }, routes: { network: 8 }, addFlags: ["ch5_four_emperors_ready", "ch5_four_collab"] }, { tone: "warm" }),
+      choice("ch5_four_share_safety", "共通ルールだけ決め、企画は各自で作る", "安全基準だけを共有し、勝つための作戦は最後まで秘密にした。協力ではなく、競争を成立させるための約束だった。", { stats: { production: 5, trust: 8, energy: -5 }, relationships: { tetsu: 9, shiruko: 9, hajime: 3 }, routes: { strategy: 5, network: 5 }, addFlags: ["ch5_four_emperors_ready", "ch5_creator_standards"] }, { tone: "steady" }),
       choice("ch5_four_compete", "四人で同じ題材の再生数を競う", "同条件で個性が比較され、ヒカキンの総合力が注目された。ただし仲間というより順位表の印象が残った。", { stats: { subscribers: 780_000, expression: 4, trust: -2 }, hidden: { ambition: 5 }, relationships: { hajime: 2, tetsu: -1, shiruko: -1 }, routes: { mainstream: 6 }, addFlags: ["ch5_four_competition"] }, { tone: "bold" })
     ],
     when: { minRelationships: { hajime: 45, tetsu: 40, shiruko: 40 }, minStats: { trust: 62 }, flagsAny: ["four_emperors_collective_seed", "four_emperors_collab_ready", "four_emperors_hajime_ready", "tets_tourism_seed", "four_emperors_shiruko_seed", "hajime_fair_race", "hajime_fair_rival_seed"] },
@@ -447,11 +447,11 @@ export const chapter5Events: StoryEvent[] = [
     location: "東大オンエアの地元",
     body: [
       "テツから、観光大使就任前の記念動画へ誘われた。テツと柴竜の飛躍した案を丸眼鏡が行政向けの企画書へ直し、yo!!が現場を回し、としみちが町の舞台を盛り上げ、ユメマールが住民の輪へ自然に入っていく。",
-      "六人が憧れの先輩だったヒカキンへ、最後の構成判断を託した。有名人として正解を決めれば早い。だがヒカキンが何を足し、何を譲るかで、この土地の主役が変わってしまう。"
+      "ヒカキンは先輩ゲストとして招かれただけで、六人の企画へ最終判断を下す立場ではない。東大オンエアは自分たちの力で観光大使へ進み、ヒカキンも自分の出演部分で負けない面白さを作る。"
     ],
     choices: [
-      choice("ch5_tetsu_follow_lead", "テツの判断を信じ、音で六人を支える", "ヒカキンは自分の出演を増やさず、六人と町の音をビートでつないだ。動画の主役を譲っても、一本を完成させるヒカキンの技術は全編に残った。", { stats: { trust: 5, production: 4 }, relationships: { tetsu: 10 }, routes: { network: 6 }, addFlags: ["ch5_tetsu_ambassador", "ch5_tetsu_rising"] }, { tone: "warm" }),
-      choice("ch5_tetsu_polish", "六人の尖りを全国へ届く構成にする", "ヒカキンは柴竜の予測不能な場面も切らず、としみちの華と丸眼鏡の説明を交互に置いた。六人らしさを翻訳した一本が、観光大使就任の決め手になる。", { stats: { production: 5, subscribers: 250_000, trust: 3 }, relationships: { tetsu: 6 }, routes: { strategy: 5 }, addFlags: ["ch5_tetsu_ambassador", "ch5_tetsu_rising"] }, { tone: "steady" }),
+      choice("ch5_tetsu_follow_lead", "ゲストとして六人の企画へ本気で乗る", "企画を決めるのはテツたち。ヒカキンは町の音を使った自分の見せ場を作り、先輩だから譲るのではなく同じ一本で競った。", { stats: { trust: 5, production: 4 }, relationships: { tetsu: 10 }, routes: { network: 6 }, addFlags: ["ch5_tetsu_ambassador", "ch5_tetsu_rising"] }, { tone: "warm" }),
+      choice("ch5_tetsu_polish", "自分の出演部分だけ徹底的に磨く", "柴竜の予測不能な笑い、としみちの華、丸眼鏡の構成に対し、ヒカキンはビートとリアクションで勝負した。六人は自分たちの動画で観光大使へ進む。", { stats: { production: 5, subscribers: 250_000, trust: 3 }, relationships: { tetsu: 6 }, routes: { strategy: 5 }, addFlags: ["ch5_tetsu_ambassador", "ch5_tetsu_rising"] }, { tone: "steady" }),
       choice("ch5_tetsu_take_center", "全国人気のため自分を前面に出す", "再生数は大きく伸びたが、地元企画なのにヒカキンしか残らない編集になった。", { stats: { subscribers: 430_000, expression: 3 }, relationships: { tetsu: -8 }, routes: { mainstream: 4 }, addFlags: ["ch5_tetsu_eclipsed"] }, { tone: "risky" })
     ],
     when: { minRelationships: { tetsu: 32 }, maxRelationships: { shiruko: 39 } },
@@ -468,13 +468,13 @@ export const chapter5Events: StoryEvent[] = [
     date: "最終決戦まで7か月",
     location: "漁師たち・アスレチック会場",
     body: [
-      "最大規模の鬼ごっこを前に、シル子は短い睡眠の合間も走り込み、ヒカキンは連日編集と構成を詰めていた。二人の努力で完成寸前まで来たコースを、ザ顔とmasaの最終検証が止める。子供が真似した場合だけ、危険になる箇所が見つかった。",
-      "ウダホ、ダーマン、もとけも撮り直す覚悟を決めているが、スポンサーは延期を嫌がり、視聴者は予告を待っている。積み上げた努力を惜しむのか、努力したからこそ作り直すのか。ヒカキンの判断も試される。"
+      "最大規模の鬼ごっこを前に、シル子は短い睡眠の合間も走り込み、漁師たちは自分たちでコースを完成させた。ザ顔とmasaの最終検証が、子供が真似した場合だけ危険になる箇所を見つける。",
+      "ウダホ、ダーマン、もとけも撮り直す覚悟を決める。ヒカキンはゲストとして意見を求められるが、最終判断と成功は漁師たち自身のものだ。"
     ],
     speaker: "シル子",
     quote: "面白いって、無事に帰ってから言えることでしょ。",
     choices: [
-      choice("ch5_shiruko_redesign", "六人の強みを使って安全なルールへ作り直す", "ヒカキンはダーマンの作戦ともとけの子供目線を軸に再構成し、シル子とウダホの迫力を安全な区画へ移した。努力を捨てずに形を変えた動画は、子供たちの新しい定番になった。", { stats: { production: 5, trust: 7, energy: -6 }, relationships: { shiruko: 10 }, routes: { network: 5 }, addFlags: ["ch5_shiruko_safe_leader", "ch5_shiruko_rising"] }, { tone: "warm" }),
+      choice("ch5_shiruko_redesign", "自分の危険箇所だけ伝え、判断を任せる", "漁師たちはダーマンの作戦ともとけの子供目線で自ら再構成した。ヒカキンは完成版へ全力で出演し、動画は子供たちの新しい定番になった。", { stats: { production: 5, trust: 7, energy: -6 }, relationships: { shiruko: 10 }, routes: { network: 5 }, addFlags: ["ch5_shiruko_safe_leader", "ch5_shiruko_rising"] }, { tone: "warm" }),
       choice("ch5_shiruko_cancel", "中止を共同で発表する", "再生数より判断理由を説明し、失敗を隠さない姿勢が支持された。", { stats: { trust: 8, subscribers: -70_000 }, hidden: { controversy: -3 }, relationships: { shiruko: 8 }, routes: { stability: 4 }, addFlags: ["ch5_shiruko_safe_leader", "ch5_shiruko_rising"] }, { tone: "steady" }),
       choice("ch5_shiruko_adult_only", "大人限定として予定どおり撮る", "事故なく終えたが、子供人気を築いた理由と企画の刺激が少しずれ始めた。", { stats: { subscribers: 360_000, money: 900_000, trust: -3 }, relationships: { shiruko: -3 }, routes: { mainstream: 4 }, addFlags: ["ch5_shiruko_risked_brand"] }, { tone: "risky" })
     ],
@@ -522,9 +522,9 @@ export const chapter5Events: StoryEvent[] = [
     choices: [
       choice("ch5_choose_nationwide_final", "日本中の『好きな音』をつなぐ生配信", "各地の視聴者から届く音を、ヒカキンが即興のビートで一つにする計画が始まった。", { stats: { production: 4, expression: 4, money: -3_000_000, energy: -8 }, hidden: { ambition: 6, origin: 3 }, routes: { mainstream: 6, network: 5 }, addFlags: ["ch5_final_nationwide"], removeFlags: ["ch5_final_lifework", "ch5_final_produce", "ch5_final_scandal"] }, { tone: "bold" }),
       choice("ch5_choose_all_genres", "全ジャンルを一日で完成させる超大型動画", "料理、ゲーム、商品、運動、音楽を一つの物語へ組む、過去最大の制作が動き出した。", { stats: { production: 5, money: -5_000_000, energy: -12 }, hidden: { fatigue: 5, ambition: 7 }, routes: { mainstream: 7 }, addFlags: ["ch5_final_all_genres"], removeFlags: ["ch5_final_lifework", "ch5_final_produce", "ch5_final_scandal"] }, { tone: "bold" }),
-      choice("ch5_choose_lifework_from_crown", "競争を離れ、音だけの人生作品を作る", "二千万人への最短距離を捨て、二十年後にも残る一本へ進路を変えた。", { stats: { beatbox: 4, production: 3 }, hidden: { origin: 8, ambition: -6 }, routes: { craft: 7 }, addFlags: ["ch5_final_lifework"], removeFlags: ["ch5_final_nationwide", "ch5_final_all_genres", "ch5_final_scandal"] }, { tone: "steady" })
+      choice("ch5_choose_lifework_from_crown", "競争を離れ、音だけの人生作品を作る", "二千万人への最短距離を捨て、二十年後にも残る一本へ進路を変えた。個人資産の大半を制作費、権利処理、記録保存へ投入した。", { moneyMultiplier: 0.005, stats: { beatbox: 4, production: 3 }, hidden: { origin: 8, ambition: -6 }, routes: { craft: 7 }, addFlags: ["ch5_final_lifework"], removeFlags: ["ch5_final_nationwide", "ch5_final_all_genres", "ch5_final_scandal"] }, { tone: "steady" })
     ],
-    when: { minStats: { subscribers: 10_000_000, expression: 52, production: 50 }, minHidden: { ambition: 60 }, maxHidden: { controversy: 60 } },
+    when: { minStats: { subscribers: 8_000_000, expression: 52, production: 50 }, minHidden: { ambition: 60 }, maxHidden: { controversy: 60 } },
     priority: 80,
     oncePerRun: true,
     tags: ["final-concept", "number-one", "major-choice"],
@@ -534,17 +534,17 @@ export const chapter5Events: StoryEvent[] = [
     id: "ch5_final_concept_lifework",
     chapter: 5,
     slot: 5,
-    title: "音が止まるまで",
+    title: "YouTubeテーマミュージック",
     date: "最終決戦まで6か月",
     location: "空のスタジオ",
     body: [
-      "企画書の仮題は『音が止まるまで』。十八歳から現在までを、言葉ではなく音と映像で一本につなぐ。",
-      "初代マイク、社員寮の浴室を再現した壁、ゲームの記憶、商品を開ける音、歓声、沈黙。豪華なゲストではなく、ヒカキン自身の変化が主役になる。"
+      "兄ゼイキンと作る曲の題名は『YouTubeテーマミュージック』。歌、旋律、作曲、編曲は音楽的センスに勝るゼイキンが主導し、ヒカキンはビートボックスと映像を担う。",
+      "初代マイク、社員寮の浴室、スキージャンプ台の風、スーパーのレジ、通勤電車、ゲーム、商品を開ける音。十八歳から現在までを、一曲の中へつなぐ。"
     ],
     choices: [
-      choice("ch5_choose_lifework_one_take", "一度きりの長回しで撮る", "編集で失敗を隠さず、今の呼吸をそのまま作品に残すことにした。", { stats: { beatbox: 6, production: 4, energy: -9 }, hidden: { origin: 9, perfectionism: -3 }, routes: { craft: 8 }, addFlags: ["ch5_final_lifework", "ch5_lifework_one_take"], removeFlags: ["ch5_final_nationwide", "ch5_final_all_genres", "ch5_final_produce", "ch5_final_scandal"] }, { tone: "bold" }),
-      choice("ch5_choose_lifework_layers", "各時代の音を精密に重ねる", "一秒ごとに過去の技術と現在の技術が対話する、編集芸術として設計した。", { stats: { production: 7, beatbox: 4, energy: -11 }, hidden: { origin: 7, perfectionism: 5 }, routes: { craft: 8 }, addFlags: ["ch5_final_lifework", "ch5_lifework_layers"], removeFlags: ["ch5_final_nationwide", "ch5_final_all_genres", "ch5_final_produce", "ch5_final_scandal"] }, { tone: "steady" }),
-      choice("ch5_choose_lifework_audience", "視聴者の記憶の音も織り込む", "ヒカキンの人生と、それを見た人々の人生が交互に響く構成になった。", { stats: { trust: 5, expression: 4, production: 4 }, hidden: { origin: 7 }, routes: { network: 5, craft: 4 }, addFlags: ["ch5_final_lifework", "ch5_lifework_shared_memory"], removeFlags: ["ch5_final_nationwide", "ch5_final_all_genres", "ch5_final_produce", "ch5_final_scandal"] }, { tone: "warm" })
+      choice("ch5_choose_lifework_one_take", "一度きりの長回しで撮る", "編集で失敗を隠さず、今の呼吸をそのまま作品に残すことにした。残高の大半を世界同時収録と権利処理へ使った。", { moneyMultiplier: 0.005, stats: { beatbox: 6, production: 4, energy: -9 }, hidden: { origin: 9, perfectionism: -3 }, routes: { craft: 8 }, addFlags: ["ch5_final_lifework", "ch5_lifework_one_take"], removeFlags: ["ch5_final_nationwide", "ch5_final_all_genres", "ch5_final_produce", "ch5_final_scandal"] }, { tone: "bold" }),
+      choice("ch5_choose_lifework_layers", "各時代の音を精密に重ねる", "一秒ごとに過去と現在の技術が対話する編集芸術として設計し、私財の大半を長期制作と素材修復へ投入した。", { moneyMultiplier: 0.005, stats: { production: 7, beatbox: 4, energy: -11 }, hidden: { origin: 7, perfectionism: 5 }, routes: { craft: 8 }, addFlags: ["ch5_final_lifework", "ch5_lifework_layers"], removeFlags: ["ch5_final_nationwide", "ch5_final_all_genres", "ch5_final_produce", "ch5_final_scandal"] }, { tone: "steady" }),
+      choice("ch5_choose_lifework_audience", "視聴者の記憶の音も織り込む", "ヒカキンと視聴者の人生が交互に響く構成になった。全国の音を集めるため、個人資産の大半を取材と権利処理へ回した。", { moneyMultiplier: 0.005, stats: { trust: 5, expression: 4, production: 4 }, hidden: { origin: 7 }, routes: { network: 5, craft: 4 }, addFlags: ["ch5_final_lifework", "ch5_lifework_shared_memory"], removeFlags: ["ch5_final_nationwide", "ch5_final_all_genres", "ch5_final_produce", "ch5_final_scandal"] }, { tone: "warm" })
     ],
     when: { minStats: { beatbox: 60, production: 55 }, minHidden: { origin: 62 }, minRoutes: { craft: 42 }, flagsAny: ["ch5_legendary_project", "legendary_video_seed", "ch5_entry_craft", "ch5_lifework_intent"] },
     priority: 90,
@@ -564,9 +564,9 @@ export const chapter5Events: StoryEvent[] = [
       "最後の時間を自分の登録者へ使うか、一本の動画を生まれ変わらせるために使うか。"
     ],
     choices: [
-      choice("ch5_choose_produce_full", "名前を出さず全面的にプロデュースする", "ヒカキンは企画、撮影、編集、音響を組み直し、主役だけは若者のままにした。", { stats: { production: 8, energy: -10, money: -800_000, trust: 3 }, routes: { strategy: 8, network: 4 }, addFlags: ["ch5_final_produce", "ch5_produced_anonymously"], removeFlags: ["ch5_final_nationwide", "ch5_final_all_genres", "ch5_final_lifework", "ch5_final_scandal"] }, { tone: "warm" }),
-      choice("ch5_choose_produce_school", "制作過程そのものを公開講座にする", "正解だけでなく失敗の理由も見せ、一本の裏側から何百人もの制作者が学べる企画にした。", { stats: { production: 7, expression: 3, trust: 5, energy: -8 }, routes: { strategy: 7, network: 5 }, addFlags: ["ch5_final_produce", "ch5_open_production_method"], removeFlags: ["ch5_final_nationwide", "ch5_final_all_genres", "ch5_final_lifework", "ch5_final_scandal"] }, { tone: "steady" }),
-      choice("ch5_choose_produce_co_star", "自分も出演して両方を伸ばす", "橋渡し役として出演し、若い主役へ視聴者を渡す設計にした。", { stats: { production: 5, expression: 4, subscribers: 180_000 }, routes: { strategy: 5, mainstream: 3 }, addFlags: ["ch5_final_produce", "ch5_produced_with_cameo"], removeFlags: ["ch5_final_nationwide", "ch5_final_all_genres", "ch5_final_lifework", "ch5_final_scandal"] }, { tone: "bold" })
+      choice("ch5_choose_produce_full", "名前を出さず全面的にプロデュースする", "個人資産と制作会社の会計を分け、残高の一部を出資した。企画、撮影、編集、音響を組み直し、主役だけは若者のままにした。", { moneyMultiplier: 0.001, moneyScale: "exact", stats: { production: 8, energy: -10, money: -8_000_000, trust: 3 }, routes: { strategy: 8, network: 4 }, addFlags: ["ch5_final_produce", "ch5_produced_anonymously"], removeFlags: ["ch5_final_nationwide", "ch5_final_all_genres", "ch5_final_lifework", "ch5_final_scandal"] }, { tone: "warm" }),
+      choice("ch5_choose_produce_school", "制作過程そのものを公開講座にする", "個人資産の大半を制作会社へ出資し、正解だけでなく失敗の理由も見せる公開講座を作った。", { moneyMultiplier: 0.001, stats: { production: 7, expression: 3, trust: 5, energy: -8 }, routes: { strategy: 7, network: 5 }, addFlags: ["ch5_final_produce", "ch5_open_production_method"], removeFlags: ["ch5_final_nationwide", "ch5_final_all_genres", "ch5_final_lifework", "ch5_final_scandal"] }, { tone: "steady" }),
+      choice("ch5_choose_produce_co_star", "自分も出演して両方を伸ばす", "個人資産と会社資金を分離して出資し、橋渡し役として若い主役へ視聴者を渡す設計にした。", { moneyMultiplier: 0.001, stats: { production: 5, expression: 4, subscribers: 180_000 }, routes: { strategy: 5, mainstream: 3 }, addFlags: ["ch5_final_produce", "ch5_produced_with_cameo"], removeFlags: ["ch5_final_nationwide", "ch5_final_all_genres", "ch5_final_lifework", "ch5_final_scandal"] }, { tone: "bold" })
     ],
     when: { minStats: { production: 66 }, minRoutes: { strategy: 46 }, maxStats: { expression: 62 }, maxRoutes: { craft: 99 }, flagsAny: ["mastermind_path_open", "mastermind_seed", "ch5_entry_mastermind", "ch5_producer_path"] },
     priority: 95,
@@ -580,23 +580,22 @@ export const chapter5Events: StoryEvent[] = [
     slot: 5,
     title: "最も再生される嘘",
     date: "最終決戦まで6か月",
-    location: "柴田のスタジオ",
+    location: "ヒカキンの編集室",
     body: [
-      "柴田は、業界全体を揺らす『証拠』を机へ置いた。断片的な事実に、証明できない物語を足せば、今年最大の動画になる。",
+      "匿名の送信者から、業界全体を揺らすという『証拠』が届いた。断片的な事実に、証明できない物語を足せば、今年最大の動画になる。",
       "信用を取り戻すより、信用という競技から降りるほうが速い。ヒカキンは、その誘惑を理解できる場所まで来てしまった。"
     ],
-    speaker: "柴田",
-    quote: "真実が弱いなら、見たい真実にしてやればいい。お前なら王になれる。",
+    quote: "真実が弱いなら、見たい物語を足せば伸びる。そんな考えが、もう他人の声には聞こえなかった。",
     choices: [
-      choice("ch5_choose_scandal", "暴露動画を共同制作する", "事実と推測の境界を消し、最も怒りが広がる順番へ編集した。", { stats: { subscribers: 1_100_000, money: 5_000_000, trust: -16, production: 3 }, hidden: { controversy: 18, origin: -9 }, relationships: { shibata: 10 }, routes: { controversy: 10 }, addFlags: ["ch5_final_scandal", "ch5_fabrication_started"], removeFlags: ["ch5_final_nationwide", "ch5_final_all_genres", "ch5_final_lifework", "ch5_final_produce"] }, { tone: "risky" }),
+      choice("ch5_choose_scandal", "匿名資料を暴露動画にする", "事実と推測の境界を消し、最も怒りが広がる順番へ編集した。", { stats: { subscribers: 1_100_000, money: 5_000_000, trust: -16, production: 3 }, hidden: { controversy: 18, origin: -9 }, routes: { controversy: 10 }, addFlags: ["ch5_final_scandal", "ch5_fabrication_started"], removeFlags: ["ch5_final_nationwide", "ch5_final_all_genres", "ch5_final_lifework", "ch5_final_produce"] }, { tone: "risky" }),
       choice("ch5_choose_self_scandal", "自分の過去を刺激的に暴露する", "他人を傷つけない代わりに、自分の記憶を商品へ変えた。真実にも演出が足された。", { stats: { subscribers: 720_000, money: 2_500_000, trust: -9, expression: 4 }, hidden: { controversy: 10, origin: -4 }, routes: { controversy: 7 }, addFlags: ["ch5_final_scandal", "ch5_self_exploitation"] }, { tone: "risky" }),
-      choice("ch5_reject_scandal", "証拠を置いて退出する", "柴田の企画から離れた。失った信用は戻らなくても、これ以上売らないものを決めた。", { stats: { trust: 5, subscribers: -140_000 }, hidden: { controversy: -8, origin: 5 }, relationships: { shibata: -12 }, routes: { stability: 5 }, addFlags: ["ch5_scandal_refused", "ch5_final_accountability"] }, { tone: "steady" })
+      choice("ch5_reject_scandal", "資料を閉じ、検証できないものは出さない", "失った信用はすぐ戻らなくても、これ以上売らないものを決めた。", { stats: { trust: 5, subscribers: -140_000 }, hidden: { controversy: -8, origin: 5 }, routes: { stability: 5 }, addFlags: ["ch5_scandal_refused", "ch5_final_accountability"] }, { tone: "steady" })
     ],
-    when: { minHidden: { controversy: 56 }, maxStats: { trust: 48 }, minRelationships: { shibata: 20 }, flagsAny: ["controversy_king_path_open", "ch5_controversy_weapon", "ch5_mega_expose_promised", "ch5_entry_controversy"] },
+    when: { minHidden: { controversy: 56 }, maxStats: { trust: 48 }, flagsAny: ["controversy_king_path_open", "ch5_controversy_weapon", "ch5_mega_expose_promised", "ch5_entry_controversy"] },
     priority: 95,
     oncePerRun: true,
     tags: ["final-concept", "controversy", "major-choice"],
-    visual: { background: "backgrounds/ch5/shibata-studio.webp", portrait: "portraits/shibata/grin.webp", expression: "grin", eventCg: "events/ch5/evidence-envelope.webp", accent: "red" }
+    visual: { background: "backgrounds/ch5/edit-room-dark.webp", portrait: "portraits/hikakin/tempted.webp", expression: "tempted", eventCg: "events/ch5/evidence-envelope.webp", accent: "red" }
   }),
   event({
     id: "ch5_final_concept_fallback",
@@ -611,8 +610,8 @@ export const chapter5Events: StoryEvent[] = [
     ],
     choices: [
       choice("ch5_fallback_final_challenge", "今の全力で大型挑戦を作る", "届く範囲の規模へ削り、最後まで完成できる企画にした。", { stats: { production: 4, expression: 3, money: -1_200_000, energy: -7 }, hidden: { ambition: 5 }, routes: { mainstream: 5 }, addFlags: ["ch5_final_all_genres"], removeFlags: ["ch5_final_lifework", "ch5_final_produce", "ch5_final_scandal"] }, { tone: "bold" }),
-      choice("ch5_fallback_final_sound", "ビートボックスで人生を一本にする", "派手な舞台を捨て、古いマイクから始まる個人的な作品を設計した。", { stats: { beatbox: 5, production: 3, energy: -6 }, hidden: { origin: 7 }, routes: { craft: 6 }, addFlags: ["ch5_final_lifework"], removeFlags: ["ch5_final_nationwide", "ch5_final_all_genres", "ch5_final_produce", "ch5_final_scandal"] }, { tone: "steady" }),
-      choice("ch5_fallback_final_produce", "自分より伸びる一本を裏から作る", "自分の登録者には直結しない仕事へ、蓄積した制作技術をすべて注いだ。", { stats: { production: 6, trust: 3, energy: -6 }, routes: { strategy: 6 }, addFlags: ["ch5_final_produce"], removeFlags: ["ch5_final_nationwide", "ch5_final_all_genres", "ch5_final_lifework", "ch5_final_scandal"] }, { tone: "warm" })
+      choice("ch5_fallback_final_sound", "ビートボックスで人生を一本にする", "派手な舞台を捨て、個人資産の大半を制作と権利処理へ投入し、古いマイクから始まる作品を設計した。", { moneyMultiplier: 0.005, stats: { beatbox: 5, production: 3, energy: -6 }, hidden: { origin: 7 }, routes: { craft: 6 }, addFlags: ["ch5_final_lifework"], removeFlags: ["ch5_final_nationwide", "ch5_final_all_genres", "ch5_final_produce", "ch5_final_scandal"] }, { tone: "steady" }),
+      choice("ch5_fallback_final_produce", "自分より伸びる一本を裏から作る", "個人資産と会社資金を分けて小さく出資し、自分の登録者には直結しない仕事へ蓄積した制作技術を注いだ。", { moneyMultiplier: 0.001, stats: { production: 6, trust: 3, energy: -6 }, routes: { strategy: 6 }, addFlags: ["ch5_final_produce"], removeFlags: ["ch5_final_nationwide", "ch5_final_all_genres", "ch5_final_lifework", "ch5_final_scandal"] }, { tone: "warm" })
     ],
     mandatory: true,
     priority: 0,
@@ -828,12 +827,12 @@ export const chapter5Events: StoryEvent[] = [
     id: "ch5_release_lifework",
     chapter: 5,
     slot: 8,
-    title: "『音が止まるまで』",
+    title: "『YouTubeテーマミュージック』",
     date: "公開当日・23時58分",
     location: "再現された社員寮の浴室",
     body: [
-      "サムネイルは、安いマイク一本。タイトルは『音が止まるまで』。説明欄には、撮影した年月だけを書いた。",
-      "公開前の画面に映るヒカキンは、日本一を狙うスターではない。十八歳から何度も撮り直し、まだ納得していない一人の制作者だった。"
+      "サムネイルには、安い初代マイクとゼイキンの譜面。タイトルは『YouTubeテーマミュージック』。説明欄の二人の名前は、同じ大きさで並んでいる。",
+      "ゼイキンの歌と旋律へ、ヒカキンが人生の音と映像を重ねる。公開前の二人は、スターではなく、最後の一音まで直し続ける兄弟だった。"
     ],
     choices: [
       choice("ch5_release_life_no_preview", "予告なしで静かに公開する", "通知だけが届き、最初の視聴者たちは意味を探しながら最後まで見た。", { stats: { trust: 5, production: 3 }, hidden: { origin: 6 }, routes: { craft: 5 }, addFlags: ["ch5_lifework_released", "ch5_release_clean"] }, { tone: "steady" }),
@@ -904,9 +903,9 @@ export const chapter5Events: StoryEvent[] = [
       "切り抜きではなく本編が広がり、登録者の増加速度は過去最高を更新した。日本一の線が、初めて今日の延長に見える。"
     ],
     choices: [
-      choice("ch5_result_nationwide_credit", "参加者全員の記録を公開する", "主役を分けたことで動画の寿命は伸び、各地から続編が生まれた。", { stats: { subscribers: 10_200_000, trust: 8, production: 4, money: 3_000_000 }, hidden: { origin: 4 }, routes: { network: 6 }, addFlags: ["ch5_final_massive_success", "ch5_nationwide_legacy"] }, { tone: "warm" }),
-      choice("ch5_result_nationwide_push", "勢いのまま次の投稿を出す", "注目を逃さず、日本一までの距離を一気に縮めた。体は休めていない。", { stats: { subscribers: 10_800_000, money: 4_000_000, energy: -14 }, hidden: { fatigue: 9, ambition: 5 }, routes: { mainstream: 6 }, addFlags: ["ch5_final_massive_success", "ch5_title_surge"] }, { tone: "bold" }),
-      choice("ch5_result_nationwide_pause", "一度休み、成功の理由を記録する", "熱狂から離れて構造を残し、次の世代にも再現できる知見にした。", { stats: { subscribers: 9_600_000, production: 7, energy: 12, trust: 5 }, hidden: { fatigue: -8 }, routes: { strategy: 5 }, addFlags: ["ch5_final_massive_success", "ch5_method_documented"] }, { tone: "steady" })
+      choice("ch5_result_nationwide_credit", "参加者全員の記録を公開する", "主役を分けたことで動画の寿命が伸び、各地の続編、広告収益、長期契約が積み上がった。", { stats: { subscribers: 10_200_000, trust: 8, production: 4, money: 10_300_000 }, hidden: { origin: 4 }, routes: { network: 6 }, addFlags: ["ch5_final_massive_success", "ch5_nationwide_legacy"] }, { tone: "warm" }),
+      choice("ch5_result_nationwide_push", "勢いのまま次の投稿を出す", "注目を逃さず、連続投稿の広告と大型案件で収益も跳ねた。日本一までの距離は縮んだが、体は休めていない。", { stats: { subscribers: 10_800_000, money: 11_800_000, energy: -14 }, hidden: { fatigue: 9, ambition: 5 }, routes: { mainstream: 6 }, addFlags: ["ch5_final_massive_success", "ch5_title_surge"] }, { tone: "bold" }),
+      choice("ch5_result_nationwide_pause", "一度休み、成功の理由を記録する", "投稿本数を抑えたため短期収益は減ったが、映像の利用許諾と記録販売が継続収益になった。", { stats: { subscribers: 9_600_000, production: 7, energy: 12, trust: 5, money: 8_200_000 }, hidden: { fatigue: -8 }, routes: { strategy: 5 }, addFlags: ["ch5_final_massive_success", "ch5_method_documented"] }, { tone: "steady" })
     ],
     when: { flagsAll: ["ch5_final_nationwide", "ch5_final_coherent"], minStats: { expression: 58, production: 58, trust: 55 } },
     priority: 95,
@@ -926,9 +925,9 @@ export const chapter5Events: StoryEvent[] = [
       "視聴者は懐かしいジャンルを探して何度も見返し、新しい視聴者は一本の中でヒカキンの全時代を知った。動画は国内の記録を一日ごとに塗り替える。"
     ],
     choices: [
-      choice("ch5_all_genres_credit", "全時代の協力者を最後に紹介する", "成功を一人の才能にせず、各時代の出会いまで一本の物語にした。", { stats: { subscribers: 9_900_000, trust: 8, production: 5, money: 3_500_000 }, relationships: { hajime: 3, zeikin: 3, manager: 4 }, routes: { network: 5 }, addFlags: ["ch5_final_massive_success", "ch5_all_eras_credited"] }, { tone: "warm" }),
-      choice("ch5_all_genres_series", "未公開部分を連続企画にする", "一本の熱を一週間の連続投稿へ広げ、日本一までの最後の差を詰めた。", { stats: { subscribers: 10_600_000, money: 4_500_000, energy: -15 }, hidden: { fatigue: 10, ambition: 6 }, routes: { mainstream: 6 }, addFlags: ["ch5_final_massive_success", "ch5_title_surge"] }, { tone: "bold" }),
-      choice("ch5_all_genres_explain", "なぜ全部を続けたか語る", "ビートボックスだけに閉じず、原点も捨てなかった理由が、動画の余韻を強くした。", { stats: { subscribers: 9_500_000, trust: 7, expression: 5 }, hidden: { origin: 5 }, routes: { craft: 3, mainstream: 3 }, addFlags: ["ch5_final_massive_success", "ch5_all_genres_meaning"] }, { tone: "steady" })
+      choice("ch5_all_genres_credit", "全時代の協力者を最後に紹介する", "成功を一人の才能にせず、各時代の出会いまで一本の物語にした。映像の長期視聴と商品収益も残った。", { stats: { subscribers: 9_900_000, trust: 8, production: 5, money: 10_800_000 }, relationships: { hajime: 3, zeikin: 3, manager: 4 }, routes: { network: 5 }, addFlags: ["ch5_final_massive_success", "ch5_all_eras_credited"] }, { tone: "warm" }),
+      choice("ch5_all_genres_series", "未公開部分を連続企画にする", "一本の熱を一週間の連続投稿へ広げた。広告、案件、商品販売が同時に伸び、収益は最大になったが睡眠を削った。", { stats: { subscribers: 10_600_000, money: 12_500_000, energy: -15 }, hidden: { fatigue: 10, ambition: 6 }, routes: { mainstream: 6 }, addFlags: ["ch5_final_massive_success", "ch5_title_surge"] }, { tone: "bold" }),
+      choice("ch5_all_genres_explain", "なぜ全部を続けたか語る", "ビートボックスだけに閉じず、原点も捨てなかった理由が余韻を強くした。派手な販売をしない分、収益は視聴広告が中心になった。", { stats: { subscribers: 9_500_000, trust: 7, expression: 5, money: 8_500_000 }, hidden: { origin: 5 }, routes: { craft: 3, mainstream: 3 }, addFlags: ["ch5_final_massive_success", "ch5_all_genres_meaning"] }, { tone: "steady" })
     ],
     when: { flagsAll: ["ch5_final_all_genres", "ch5_final_coherent"], minStats: { expression: 56, production: 58, trust: 52 } },
     priority: 92,
@@ -944,13 +943,13 @@ export const chapter5Events: StoryEvent[] = [
     date: "公開から一週間",
     location: "ヒカキンの撮影部屋",
     body: [
-      "『音が止まるまで』は、公開直後の記録を塗り替えなかった。代わりに平均視聴時間が異常だった。多くの人が、無音の場面を飛ばさず最後まで見ている。",
-      "音響家、映像作家、若い投稿者が構造を分析し始め、動画は再生数とは別の速度で文化へ沈んでいった。"
+      "『YouTubeテーマミュージック』は国境を越えて広がり、一億再生へ届いた。浴室、雪山、レジ、電車の音がゼイキンの旋律へ重なる箇所を、多くの人が繰り返し見ている。",
+      "音響家、映像作家、若い投稿者が構造を分析し始めた。ヒカキンは、自分より音楽的センスのある兄へ正面から任せた判断が、この一本を完成させたと知る。"
     ],
     choices: [
-      choice("ch5_result_life_leave", "解説せず、作品だけを残す", "作者の答えを足さなかったことで、見る人ごとの記憶が作品の一部になった。", { stats: { subscribers: 1_100_000, trust: 7, production: 6 }, hidden: { origin: 8 }, routes: { craft: 7 }, addFlags: ["ch5_legendary_candidate", "ch5_lifework_unexplained"] }, { tone: "steady" }),
-      choice("ch5_result_life_making", "失敗を含む制作記録を公開する", "完成品の神秘は少し薄れたが、挑戦を再現できる知識が広く渡った。", { stats: { subscribers: 1_350_000, production: 7, trust: 5 }, routes: { strategy: 5 }, addFlags: ["ch5_legendary_candidate", "ch5_lifework_making"] }, { tone: "warm" }),
-      choice("ch5_result_life_compete", "反響を日本一争いへつなげる", "作品の余韻へ登録を呼びかけ、数字は伸びた。ただし一部の視聴者は、最後の一言を不要だと感じた。", { stats: { subscribers: 1_800_000, trust: -2 }, hidden: { ambition: 5, origin: -3 }, routes: { mainstream: 5 }, addFlags: ["ch5_legendary_candidate", "ch5_lifework_monetized"] }, { tone: "bold" })
+      choice("ch5_result_life_leave", "解説せず、作品だけを残す", "作者の答えを足さず、配信印税と長期広告だけを受け取った。見る人ごとの記憶が作品の一部になった。", { moneyScale: "exact", stats: { subscribers: 1_100_000, trust: 7, production: 6, money: 32_400_000 }, hidden: { origin: 8 }, routes: { craft: 7 }, addFlags: ["ch5_legendary_candidate", "ch5_lifework_unexplained"] }, { tone: "steady" }),
+      choice("ch5_result_life_making", "失敗を含む制作記録を公開する", "完成品の神秘は少し薄れたが、制作記録の収益とともに挑戦を再現できる知識が広く渡った。", { moneyScale: "exact", stats: { subscribers: 1_350_000, production: 7, trust: 5, money: 41_800_000 }, routes: { strategy: 5 }, addFlags: ["ch5_legendary_candidate", "ch5_lifework_making"] }, { tone: "warm" }),
+      choice("ch5_result_life_compete", "反響を日本一争いへつなげる", "関連企画と商品で収益は最も伸びた。ただし一部の視聴者は、作品の最後に数字を持ち込んだことを惜しんだ。", { moneyScale: "exact", stats: { subscribers: 1_800_000, trust: -2, money: 50_600_000 }, hidden: { ambition: 5, origin: -3 }, routes: { mainstream: 5 }, addFlags: ["ch5_legendary_candidate", "ch5_lifework_monetized"] }, { tone: "bold" })
     ],
     when: { flagsAll: ["ch5_lifework_released"], minStats: { production: 62, beatbox: 62 }, minHidden: { origin: 62 } },
     priority: 100,
@@ -970,9 +969,9 @@ export const chapter5Events: StoryEvent[] = [
       "自分が映っていない成功を見て、悔しさより先に次の改善点が浮かんだ。それが答えなのかもしれない。"
     ],
     choices: [
-      choice("ch5_result_produced_credit_creator", "成功をすべて本人へ返す", "取材でも自分の仕事を語らず、次の企画書だけを渡した。", { stats: { production: 8, trust: 7, subscribers: -80_000 }, hidden: { ambition: -5 }, routes: { strategy: 8 }, addFlags: ["ch5_mastermind_candidate", "ch5_creator_owns_success"] }, { tone: "warm" }),
-      choice("ch5_result_produced_studio", "制作者を育てる小さなスタジオを作る", "出演者を囲うのではなく、自立できる制作環境へ資金を使った。", { stats: { production: 7, money: -2_000_000, trust: 5 }, relationships: { manager: 8 }, routes: { network: 6, strategy: 6 }, addFlags: ["ch5_mastermind_candidate", "ch5_creator_studio"] }, { tone: "warm" }),
-      choice("ch5_result_produced_take_brand", "ヒカキン制作としてシリーズ化する", "次の仕事は急増した。若い主役より、制作ブランドの名前が先に売れ始めた。", { stats: { production: 6, money: 3_000_000, subscribers: 350_000 }, hidden: { ambition: 4 }, routes: { strategy: 5 }, addFlags: ["ch5_mastermind_candidate", "ch5_production_brand"] }, { tone: "bold" })
+      choice("ch5_result_produced_credit_creator", "成功をすべて本人へ返す", "表の功績は本人へ返し、契約どおりの制作報酬だけを受け取って次の企画書を渡した。", { moneyScale: "exact", stats: { production: 8, trust: 7, subscribers: -80_000, money: 28_600_000 }, hidden: { ambition: -5 }, routes: { strategy: 8 }, addFlags: ["ch5_mastermind_candidate", "ch5_creator_owns_success"] }, { tone: "warm" }),
+      choice("ch5_result_produced_studio", "制作者を育てる小さなスタジオを作る", "ヒットの制作報酬を設備へ回し、出演者を囲わず自立できる環境を作った。収益を再投資した後にも運転資金が残った。", { moneyScale: "exact", stats: { production: 7, money: 18_500_000, trust: 5 }, relationships: { manager: 8 }, routes: { network: 6, strategy: 6 }, addFlags: ["ch5_mastermind_candidate", "ch5_creator_studio"] }, { tone: "warm" }),
+      choice("ch5_result_produced_take_brand", "ヒカキン制作としてシリーズ化する", "次の仕事は急増し、制作ブランドの契約料が入った。若い主役よりブランド名が先に売れる危うさも残った。", { moneyScale: "exact", stats: { production: 6, money: 48_000_000, subscribers: 350_000 }, hidden: { ambition: 4 }, routes: { strategy: 5 }, addFlags: ["ch5_mastermind_candidate", "ch5_production_brand"] }, { tone: "bold" })
     ],
     when: { flagsAll: ["ch5_final_produce"], minStats: { production: 68 } },
     priority: 90,
@@ -1005,6 +1004,30 @@ export const chapter5Events: StoryEvent[] = [
 
   // ───────────────────────── slot 10: 最後の判定前夜 ─────────────────────────
   event({
+    id: "ch5_four_emperors_national_tag",
+    chapter: 5,
+    slot: 10,
+    title: "日本全国・四皇大鬼ごっこ",
+    date: "最終決戦・冬",
+    location: "新潟・スキージャンプ台周辺",
+    body: [
+      "ヒカキン、はじめ課長、東大オンエア、漁師たち。四組が日本各地を巡って競う大鬼ごっこの最終地点は、ヒカキンが少年時代に飛んだ雪山だった。各組は自分たちの企画と勝利を最優先に、本気で頂点を取りに来ている。",
+      "決戦直前、ジャンプ台を横切る風の音が変わった。ヒカキンが危険を察したのと同時に、テツは仲間を止め、シル子はコースを外し、はじめ課長は中継班へ中断を伝える。誰かに従ったのではない。全員が自分のチャンネルを守る責任で、同じ結論へ動いた。",
+      "安全な低地コースへ変更して競技は再開される。派手さは少し落ちたが、四組の判断と本気の勝負が、日本中の視聴者を最後まで画面へ引きつけた。"
+    ],
+    choices: [
+      choice("ch5_tag_hikakin_wins", "ビートで偽の足音を作り、最後の勝負へ出る", "ヒカキンの音に相手チームが一瞬振り向き、彼自身が鬼ごっこを制した。登録者は二千万人へ到達し、その後もシリーズ、広告、商品を長く育てた利益が残高へ積み上がった。", { setStats: { subscribers: 20_000_000 }, stats: { trust: 6, beatbox: 4, money: 5_200_000 }, hidden: { origin: 7 }, relationships: { hajime: 3, tetsu: 3, shiruko: 3 }, addFlags: ["ch5_number_one_achieved", "ch5_twenty_million", "ch5_four_emperors_ready", "ch5_tag_winner_hikakin"] }, { tone: "bold" }),
+      choice("ch5_tag_tets_wins", "テツの突飛な作戦を読み切ろうとする", "最後に上を行ったのはテツだった。ヒカキンは競技に負けても二千万人へ届き、その後は四組の映像権と長期企画を堅実に運用した利益を積み上げた。", { setStats: { subscribers: 20_000_000 }, stats: { trust: 7, production: 3, money: 4_800_000 }, relationships: { tetsu: 5, hajime: 2, shiruko: 2 }, addFlags: ["ch5_number_one_achieved", "ch5_twenty_million", "ch5_four_emperors_ready", "ch5_tag_winner_tets"] }, { tone: "warm" }),
+      choice("ch5_tag_shiruko_wins", "シル子と真正面から体力勝負する", "漁師たちの現場力とシル子の執念が雪上で勝った。ヒカキンはその全力の映像で二千万人へ届き、後年の配信、広告、商品収益を積み上げた。", { setStats: { subscribers: 20_000_000 }, stats: { trust: 7, expression: 3, money: 5_000_000 }, relationships: { shiruko: 5, hajime: 2, tetsu: 2 }, addFlags: ["ch5_number_one_achieved", "ch5_twenty_million", "ch5_four_emperors_ready", "ch5_tag_winner_shiruko"] }, { tone: "bold" }),
+      choice("ch5_tag_hajime_wins", "はじめ課長の大型仕掛けへ最後まで挑む", "はじめ課長が『親分、今日は僕の勝ちです』と笑う。ヒカキンは動画で二千万人へ届き、その後の大型企画と商品事業で得た利益を何年も積み上げた。", { setStats: { subscribers: 20_000_000 }, stats: { trust: 7, expression: 4, money: 5_400_000 }, relationships: { hajime: 6, tetsu: 2, shiruko: 2 }, addFlags: ["ch5_number_one_achieved", "ch5_twenty_million", "ch5_four_emperors_ready", "ch5_tag_winner_hajime"] }, { tone: "warm" })
+    ],
+    when: { minStats: { subscribers: 14_000_000, trust: 58, expression: 54, production: 54 }, flagsAll: ["ch5_final_massive_success", "ch5_four_emperors_ready"], maxHidden: { controversy: 50 } },
+    priority: 125,
+    oncePerRun: true,
+    tags: ["number-one", "four-emperors", "nationwide", "safety", "climax"],
+    visual: { background: "backgrounds/ch5/snow-tag-course.webp", portrait: "portraits/hikakin/determined.webp", expression: "determined", eventCg: "events/ch5/four-emperors-tag.webp", accent: "gold" }
+  }),
+  event({
     id: "ch5_twenty_million_countdown",
     chapter: 5,
     slot: 10,
@@ -1016,15 +1039,39 @@ export const chapter5Events: StoryEvent[] = [
       "はじめ課長の数字もすぐ下にある。勝敗を決める一人は、記号ではない。十八歳のヒカキンが会いたかった、画面の向こうの誰かだ。"
     ],
     choices: [
-      choice("ch5_countdown_beatbox", "最初の動画と同じビートを刻む", "初代マイクへ一音を入れた瞬間、数字が二千万へ変わった。", { setStats: { subscribers: 20_000_000 }, stats: { trust: 5, beatbox: 3 }, hidden: { origin: 7 }, relationships: { hajime: 3 }, routes: { craft: 3 }, addFlags: ["ch5_number_one_achieved", "ch5_twenty_million"] }, { tone: "warm" }),
-      choice("ch5_countdown_thank", "支えた全員の名前を読み上げる", "最後の一人を待つ時間が、これまでの人々へ返す時間になった。数字は二千万を越えた。", { setStats: { subscribers: 20_120_000 }, stats: { trust: 7, expression: 3 }, relationships: { hajime: 4, zeikin: 3, tetsu: 2, shiruko: 2 }, routes: { network: 4 }, addFlags: ["ch5_number_one_achieved", "ch5_twenty_million", "ch5_credits_spoken"] }, { tone: "warm" }),
-      choice("ch5_countdown_next", "達成前に次の企画を発表する", "祝うより先に進む姿勢が熱狂を生み、カウンターは二千万を一気に通過した。", { setStats: { subscribers: 20_300_000 }, stats: { expression: 4, energy: -4 }, hidden: { ambition: 5 }, routes: { mainstream: 4 }, addFlags: ["ch5_number_one_achieved", "ch5_twenty_million", "ch5_never_stopped"] }, { tone: "bold" })
+      choice("ch5_countdown_beatbox", "最初の動画と同じビートを刻む", "初代マイクへ一音を入れた瞬間、数字が二千万へ変わった。その後も原点を守った長期広告と音楽収益を何年も積み上げた。", { setStats: { subscribers: 20_000_000 }, stats: { trust: 5, beatbox: 3, money: 4_800_000 }, hidden: { origin: 7 }, relationships: { hajime: 3 }, routes: { craft: 3 }, addFlags: ["ch5_number_one_achieved", "ch5_twenty_million"] }, { tone: "warm" }),
+      choice("ch5_countdown_thank", "支えた全員の名前を読み上げる", "数字は二千万を越えた。その後も信用を守り、広告、商品、音楽、事業から得た利益を何年も残高へ積み上げた。", { setStats: { subscribers: 20_120_000 }, stats: { trust: 7, expression: 3, money: 5_100_000 }, relationships: { hajime: 4, zeikin: 3, tetsu: 2, shiruko: 2 }, routes: { network: 4 }, addFlags: ["ch5_number_one_achieved", "ch5_twenty_million", "ch5_credits_spoken"] }, { tone: "warm" }),
+      choice("ch5_countdown_next", "達成前に次の企画を発表する", "カウンターは二千万を通過した。その後も大型企画と商品事業を止めず、最大の利益と引き換えに休めない年月を重ねた。", { setStats: { subscribers: 20_300_000 }, stats: { expression: 4, energy: -4, money: 5_800_000 }, hidden: { ambition: 5 }, routes: { mainstream: 4 }, addFlags: ["ch5_number_one_achieved", "ch5_twenty_million", "ch5_never_stopped"] }, { tone: "bold" })
     ],
     when: { minStats: { subscribers: 14_000_000, trust: 56, expression: 52, production: 52 }, flagsAll: ["ch5_final_massive_success"], maxHidden: { controversy: 54 } },
     priority: 110,
     oncePerRun: true,
     tags: ["number-one", "twenty-million", "climax"],
     visual: { background: "backgrounds/ch5/countdown-live.webp", portrait: "portraits/hikakin/tearful.webp", expression: "tearful", eventCg: "events/ch5/twenty-million.webp", accent: "gold" }
+  }),
+  event({
+    id: "ch5_hundred_billion_video",
+    chapter: 5,
+    slot: 12,
+    title: "貯金百億円達成",
+    date: "二千万人達成から数年後",
+    location: "ヒカキンの撮影部屋",
+    body: [
+      "二千万人を越えたあと、税金、スタッフの報酬、制作費、会社の資金をすべて分けて確認すると、ヒカキン個人の貯金が百億円を越えていた。残高は、それまで選んだ投資、失敗、広告、商品、音楽、事業によって変わる。一本の臨時収入ではない。",
+      "上京時の全財産は二万円。値引き食パンへ実家のココアをかけ、二百円の定食を選び続けた青年が、通帳の数字を前にしてもカメラの外ではしばらく何も話せない。やがて初代マイクを机へ置き、一本の達成動画を撮り始めた。"
+    ],
+    speaker: "ヒカキン",
+    quote: "百億円より、二万円を使うのが怖かった日のほうを、今もはっきり覚えてる。",
+    choices: [
+      choice("ch5_hundred_billion_full_story", "二万円から百億円までを正直に話す", "食パンとココア、二百円定食、安いマイク、初収益、失敗した事業までを順番に語った。動画の収益も残高へ加わったが、金額はそれまでの選択で作った数字のままだった。", { stats: { money: 340_000, subscribers: 200_000, trust: 7, expression: 3 }, hidden: { origin: 9 }, addFlags: ["ch5_hundred_billion_achieved", "ch5_hundred_billion_story"], video: { title: "貯金100億円達成しました", views: 48_000_000, subscribersGained: 200_000, kind: "人生・貯金達成", chapter: 5 } }, { tone: "warm" }),
+      choice("ch5_hundred_billion_frugal_day", "昔の節約生活を一日だけ再現する", "肉まん一個、二百円定食、業務用そば。ただ貧しかった頃を笑いものにはせず、当時の一円と現在の一円を同じように説明した。制作費を使った分だけ、残高は実際に減った。", { stats: { money: -180_000, subscribers: 240_000, trust: 6, expression: 5 }, hidden: { origin: 8 }, addFlags: ["ch5_hundred_billion_achieved", "ch5_hundred_billion_frugal"], video: { title: "貯金100億円達成しました｜上京初日の生活を再現", views: 52_000_000, subscribersGained: 240_000, kind: "人生・節約再現", chapter: 5 } }, { tone: "bold" }),
+      choice("ch5_hundred_billion_future_fund", "金額と一緒に、次の制作費の使い道を発表する", "百億円を終点にせず、自分の企画、スタッフの環境、まだ無名の制作者へ資金を出した。貯めたことと使う責任を同じ動画で語り、残高は投資額だけ下がった。", { stats: { money: -2_000_000, subscribers: 180_000, trust: 8, production: 3 }, hidden: { ambition: 5, origin: 6 }, routes: { strategy: 4 }, addFlags: ["ch5_hundred_billion_achieved", "ch5_hundred_billion_future"], video: { title: "貯金100億円達成。そして次に作るもの", views: 43_000_000, subscribersGained: 180_000, kind: "人生・未来計画", chapter: 5 } }, { tone: "steady" })
+    ],
+    when: { flagsAll: ["ch5_number_one_achieved", "ch5_ending_ready"], minStats: { money: 10_000_000_000 } },
+    priority: 200,
+    oncePerRun: true,
+    tags: ["number-one", "money", "origin", "queued-epilogue"],
+    visual: { background: "backgrounds/ch5/hundred-billion-studio.webp", portrait: "portraits/hikakin/stunned-quiet.webp", expression: "stunned-quiet", eventCg: "events/ch5/hundred-billion-passbook.webp", accent: "gold" }
   }),
   event({
     id: "ch5_lifework_enters_history",
@@ -1034,15 +1081,15 @@ export const chapter5Events: StoryEvent[] = [
     date: "公開から三か月",
     location: "映像制作の講義室",
     body: [
-      "『音が止まるまで』を一時停止しながら、学生たちが音と沈黙の配置を分析していた。再生数ランキングでは一位ではない。だが作り手が学ぶ一本になっている。",
+      "一億再生を越えた『YouTubeテーマミュージック』を一時停止しながら、学生たちが旋律、口音、生活音、映像の配置を分析していた。登録者ランキングでは一位ではない。だが作り手が学ぶ一本になっている。",
       "ヒカキンのもとには賞よりも、『これを見て初めて動画を撮った』という短い報告が届き続けた。"
     ],
     choices: [
       choice("ch5_history_no_answer", "作品の答えを語らない", "意味を固定せず、動画が見る人の経験とともに育つことを選んだ。", { stats: { trust: 5, production: 5 }, hidden: { origin: 7 }, routes: { craft: 6 }, addFlags: ["ch5_legendary_achieved", "ch5_legend_open_ended"] }, { tone: "steady" }),
       choice("ch5_history_masterclass", "制作ノートを無償公開する", "技法は秘密ではなくなった。模倣を越える作品が生まれる可能性を選んだ。", { stats: { production: 7, trust: 7 }, routes: { strategy: 5, network: 4 }, addFlags: ["ch5_legendary_achieved", "ch5_legend_methods_shared"] }, { tone: "warm" }),
-      choice("ch5_history_restore_set", "再現浴室を若い制作者へ開放する", "原点の場所は展示物ではなく、次の誰かが失敗できる小さなスタジオになった。", { stats: { trust: 7, money: -700_000 }, hidden: { origin: 8 }, routes: { network: 5 }, addFlags: ["ch5_legendary_achieved", "ch5_origin_studio_open"] }, { tone: "warm" })
+      choice("ch5_history_restore_set", "再現浴室を若い制作者へ開放する", "原点の場所は展示物ではなく、次の誰かが失敗できる小さなスタジオになった。", { moneyScale: "exact", stats: { trust: 7, money: -7_000_000 }, hidden: { origin: 8 }, routes: { network: 5 }, addFlags: ["ch5_legendary_achieved", "ch5_origin_studio_open"] }, { tone: "warm" })
     ],
-    when: { flagsAll: ["ch5_legendary_candidate"], minStats: { production: 66, beatbox: 76 }, minHidden: { origin: 68 }, minRoutes: { craft: 68 }, maxHidden: { controversy: 46 } },
+    when: { flagsAll: ["ch5_legendary_candidate"], minStats: { production: 68, beatbox: 82 }, minHidden: { origin: 72 }, minRoutes: { craft: 84 }, maxHidden: { controversy: 42 } },
     priority: 105,
     oncePerRun: true,
     tags: ["legendary-video", "legacy", "climax"],
@@ -1060,9 +1107,9 @@ export const chapter5Events: StoryEvent[] = [
       "カメラの前で日本一になる夢は届かなかった。だが動画を作る力には、別の頂上がある。"
     ],
     choices: [
-      choice("ch5_mastermind_build_studio", "独立した制作スタジオを始める", "売れる型を押しつけず、一人ずつ違う強みを見つける場所を作った。", { stats: { production: 8, money: -1_500_000, trust: 5 }, relationships: { manager: 8 }, routes: { strategy: 7, network: 5 }, addFlags: ["ch5_mastermind_achieved", "ch5_independent_studio"] }, { tone: "warm" }),
-      choice("ch5_mastermind_freelance", "名前を出さず作品ごとに支える", "ヒカキンが関わったと知られないヒットが、業界のあちこちに増えていった。", { stats: { production: 9, trust: 3 }, hidden: { ambition: -4 }, routes: { strategy: 8 }, addFlags: ["ch5_mastermind_achieved", "ch5_invisible_hits"] }, { tone: "steady" }),
-      choice("ch5_mastermind_train", "後進育成へ軸足を移す", "一本の正解ではなく、試行錯誤を続ける方法を教える仕事を選んだ。", { stats: { production: 7, trust: 7 }, routes: { network: 7, strategy: 5 }, addFlags: ["ch5_mastermind_achieved", "ch5_successors_network"] }, { tone: "warm" })
+      choice("ch5_mastermind_build_studio", "独立した制作スタジオを始める", "売れる型を押しつけず、一人ずつ違う強みを見つける場所を作った。", { moneyScale: "exact", stats: { production: 8, money: -15_000_000, trust: 5 }, relationships: { manager: 8 }, routes: { strategy: 7, network: 5 }, addFlags: ["ch5_mastermind_achieved", "ch5_independent_studio"] }, { tone: "warm" }),
+      choice("ch5_mastermind_freelance", "名前を出さず作品ごとに支える", "作品ごとの制作報酬を受け取りながら、ヒカキンが関わったと知られないヒットを業界のあちこちに増やした。", { moneyScale: "exact", stats: { production: 9, trust: 3, money: 22_600_000 }, hidden: { ambition: -4 }, routes: { strategy: 8 }, addFlags: ["ch5_mastermind_achieved", "ch5_invisible_hits"] }, { tone: "steady" }),
+      choice("ch5_mastermind_train", "後進育成へ軸足を移す", "講座と制作監修の収入を得ながら、一本の正解ではなく試行錯誤を続ける方法を教えた。", { moneyScale: "exact", stats: { production: 7, trust: 7, money: 12_400_000 }, routes: { network: 7, strategy: 5 }, addFlags: ["ch5_mastermind_achieved", "ch5_successors_network"] }, { tone: "warm" })
     ],
     when: { flagsAll: ["ch5_mastermind_candidate"], minStats: { production: 72 }, minRoutes: { strategy: 87 } },
     priority: 100,
@@ -1075,7 +1122,7 @@ export const chapter5Events: StoryEvent[] = [
     chapter: 5,
     slot: 10,
     title: "嘘より速い訂正はない",
-    date: "公開から48時間",
+    date: "公開から十日",
     location: "封鎖された事務所",
     body: [
       "元データが公開され、動画の筋書きが成立しないことが証明された。スポンサーは撤退し、出演者は声明を出し、柴田は自分もだまされたと次の動画を上げる。",
@@ -1083,8 +1130,8 @@ export const chapter5Events: StoryEvent[] = [
     ],
     choices: [
       choice("ch5_collapse_confess", "捏造を認め、全動画を停止する", "遅すぎる告白だった。それでも最後に、再生数を言い訳にはしなかった。", { stats: { subscribers: -2_000_000, money: -7_000_000, trust: 4 }, hidden: { controversy: -7 }, relationships: { shibata: -15 }, routes: { stability: 3 }, addFlags: ["ch5_late_confession"] }, { tone: "steady" }),
-      choice("ch5_collapse_attack", "反証した人々を攻撃する", "味方と敵を作るたび再生数は増え、事実を確かめる視聴者は減っていった。", { stats: { subscribers: 900_000, money: 4_000_000, trust: -15 }, hidden: { controversy: 18, origin: -8 }, relationships: { shibata: 5 }, routes: { controversy: 10 }, addFlags: ["ch5_controversy_king", "ch5_truth_abandoned"] }, { tone: "risky" }),
-      choice("ch5_collapse_final_truth", "『すべての真相』という再反論を出す", "謝罪に見えるサムネイルで反論し、注目をさらに収益へ変えた。", { stats: { subscribers: 600_000, money: 3_000_000, trust: -12 }, hidden: { controversy: 15 }, routes: { controversy: 9 }, addFlags: ["ch5_controversy_king", "ch5_endless_truth_videos"] }, { tone: "risky" })
+      choice("ch5_collapse_attack", "反証した人々を攻撃する", "違約金と契約解除で資産の大半を失ったあとも、敵を作るたび再生数だけは増えた。事実を確かめる視聴者は減っていった。", { moneyMultiplier: 0.02, moneyScale: "exact", stats: { subscribers: 900_000, money: 40_000_000, trust: -15 }, hidden: { controversy: 18, origin: -8 }, relationships: { shibata: 5 }, routes: { controversy: 10 }, addFlags: ["ch5_controversy_king", "ch5_truth_abandoned"] }, { tone: "risky" }),
+      choice("ch5_collapse_final_truth", "『すべての真相』という再反論を出す", "違約金と契約解除の精算後、謝罪に見えるサムネイルで反論し、残った注目を収益へ変えた。", { moneyMultiplier: 0.02, moneyScale: "exact", stats: { subscribers: 600_000, money: 30_000_000, trust: -12 }, hidden: { controversy: 15 }, routes: { controversy: 9 }, addFlags: ["ch5_controversy_king", "ch5_endless_truth_videos"] }, { tone: "risky" })
     ],
     when: { flagsAll: ["ch5_fabrication_published"], maxStats: { trust: 39 } },
     priority: 120,
@@ -1104,9 +1151,9 @@ export const chapter5Events: StoryEvent[] = [
       "もう一度自分を撮るか、誰かの作品を作るか、生活を立て直すか。何者かになるという言葉を、現実に合わせて選び直す夜が来た。"
     ],
     choices: [
-      choice("ch5_crossroad_producer", "企画と編集の仕事を引き受ける", "出演の悔しさを抱えたまま、他人の魅力を見つける机へ向かった。", { stats: { production: 7, money: 800_000 }, routes: { strategy: 6 }, addFlags: ["ch5_mastermind_achieved", "ch5_mastermind_bittersweet"] }, { tone: "steady", when: { minStats: { production: 76 }, minRoutes: { strategy: 90 } } }),
-      choice("ch5_crossroad_supermarket", "スーパーへ戻り、生活を立て直す", "かつての職場は華やかな経歴ではなく、働けるかどうかだけを見た。社員寮の鍵が再び手に乗った。", { stats: { money: 300_000, energy: -4 }, hidden: { origin: 3, ambition: -8 }, relationships: { supermarket: 10 }, routes: { stability: 8 }, addFlags: ["ch5_street_fate", "ch5_supermarket_dorm_again"] }, { tone: "steady" }),
-      choice("ch5_crossroad_provoke", "失敗を炎上ネタにして続ける", "成功者への不満と暴露を話すたび、再生数だけは戻ってきた。", { stats: { subscribers: 450_000, trust: -10, money: 900_000 }, hidden: { controversy: 12 }, routes: { controversy: 8 }, addFlags: ["ch5_controversy_king"] }, { tone: "risky", when: { minHidden: { controversy: 8 } } })
+      choice("ch5_crossroad_producer", "企画と編集の仕事を引き受ける", "個人資産の大半を整理して小さな制作事業へ出資し、出演の悔しさを抱えたまま他人の魅力を見つける机へ向かった。", { moneyMultiplier: 0.001, moneyScale: "exact", stats: { production: 7, money: 8_000_000 }, routes: { strategy: 6 }, addFlags: ["ch5_mastermind_achieved", "ch5_mastermind_bittersweet"] }, { tone: "steady", when: { minStats: { production: 76 }, minRoutes: { strategy: 90 } } }),
+      choice("ch5_crossroad_supermarket", "事業を清算し、スーパーへ戻る", "事務所の解約、スタッフへの精算、税金、機材売却を終えると、それまでの残高の0.5％と最初の給料だけが手元に残った。金額は、ここまで何を稼ぎ何へ使ったかで変わる。かつての職場は経歴ではなく、働けるかどうかだけを見て社員寮の鍵を渡した。", { moneyMultiplier: 0.005, stats: { money: 300_000, energy: -4 }, hidden: { origin: 3, ambition: -8 }, relationships: { supermarket: 10 }, routes: { stability: 8 }, addFlags: ["ch5_street_fate", "ch5_supermarket_dorm_again"] }, { tone: "steady", when: { maxHidden: { controversy: 60 } } }),
+      choice("ch5_crossroad_provoke", "失敗を炎上ネタにして続ける", "契約解除と違約金を精算すると資産の大半が消えた。それでも成功者への不満と暴露を話すたび、再生数だけは戻ってきた。", { moneyMultiplier: 0.02, moneyScale: "exact", stats: { subscribers: 450_000, trust: -10, money: 9_000_000 }, hidden: { controversy: 12 }, routes: { controversy: 8 }, addFlags: ["ch5_controversy_king"] }, { tone: "risky", when: { minHidden: { controversy: 8 } } })
     ],
     mandatory: true,
     priority: 0,
@@ -1131,9 +1178,9 @@ export const chapter5Events: StoryEvent[] = [
     speaker: "はじめ課長",
     quote: "親分、日本一おめでとうございます。次は二千万人の上で勝ちます。",
     choices: [
-      choice("ch5_four_crown_share", "四人で次の巨大コラボを発表する", "頂点は終点ではなく、違う強みが交わる新しいスタートになった。", { stats: { trust: 7, subscribers: 300_000 }, relationships: { hajime: 6, tetsu: 6, shiruko: 6, massuo: 1 }, routes: { network: 6 }, addFlags: ["ch5_four_emperors_achieved", "four_emperors_achieved", "ch5_dark_massuo_epilogue", "ch5_ending_ready"] }, { tone: "warm" }),
-      choice("ch5_four_crown_each", "四人が別々であることを語る", "同じ型の王を四人作るのではない。それぞれの場所を守る言葉が、四皇という呼び名の意味になった。", { stats: { trust: 8, expression: 3 }, relationships: { hajime: 4, tetsu: 5, shiruko: 5 }, routes: { stability: 4 }, addFlags: ["ch5_four_emperors_achieved", "four_emperors_achieved", "ch5_dark_massuo_epilogue", "ch5_ending_ready"] }, { tone: "steady" }),
-      choice("ch5_four_crown_beat", "四人の持ち味を即興ビートにする", "挑戦、地元、遊び、総合力。四つのリズムが重なり、記念番組のオープニングになった。", { stats: { beatbox: 4, expression: 4, subscribers: 220_000 }, hidden: { origin: 4 }, addFlags: ["ch5_four_emperors_achieved", "four_emperors_achieved", "ch5_dark_massuo_epilogue", "ch5_ending_ready"] }, { tone: "bold" })
+      choice("ch5_four_crown_share", "四人で次の巨大コラボを発表する", "頂点は終点ではなく、違う強みが交わる新しいスタートになった。", { stats: { trust: 7, subscribers: 300_000 }, relationships: { hajime: 6, tetsu: 6, shiruko: 6, massuo: 1 }, routes: { network: 6 }, addFlags: ["ch5_four_emperors_achieved", "four_emperors_achieved", "ch5_dark_massuo_epilogue", "ch5_ending_ready"], queueEvent: "ch5_hundred_billion_video" }, { tone: "warm" }),
+      choice("ch5_four_crown_each", "四人が別々であることを語る", "同じ型の王を四人作るのではない。それぞれの場所を守る言葉が、四皇という呼び名の意味になった。", { stats: { trust: 8, expression: 3 }, relationships: { hajime: 4, tetsu: 5, shiruko: 5 }, routes: { stability: 4 }, addFlags: ["ch5_four_emperors_achieved", "four_emperors_achieved", "ch5_dark_massuo_epilogue", "ch5_ending_ready"], queueEvent: "ch5_hundred_billion_video" }, { tone: "steady" }),
+      choice("ch5_four_crown_beat", "四人の持ち味を即興ビートにする", "挑戦、地元、遊び、総合力。四つのリズムが重なり、記念番組のオープニングになった。", { stats: { beatbox: 4, expression: 4, subscribers: 220_000 }, hidden: { origin: 4 }, addFlags: ["ch5_four_emperors_achieved", "four_emperors_achieved", "ch5_dark_massuo_epilogue", "ch5_ending_ready"], queueEvent: "ch5_hundred_billion_video" }, { tone: "bold" })
     ],
     when: { flagsAll: ["ch5_number_one_achieved", "ch5_four_emperors_ready"], minRelationships: { hajime: 55, tetsu: 45, shiruko: 45, massuo: 30 }, minStats: { trust: 68 } },
     priority: 130,
@@ -1155,9 +1202,9 @@ export const chapter5Events: StoryEvent[] = [
     speaker: "はじめ課長",
     quote: "親分、日本一おめでとうございます。次は二千万人の上で勝ちます。",
     choices: [
-      choice("ch5_four_plain_collab", "四人で次の巨大コラボを発表する", "頂点は終点ではなく、違う強みが交わる新しいスタートになった。", { stats: { trust: 7, subscribers: 300_000 }, relationships: { hajime: 6, tetsu: 6, shiruko: 6 }, routes: { network: 6 }, addFlags: ["ch5_four_emperors_achieved", "four_emperors_achieved", "ch5_ending_ready"] }, { tone: "warm" }),
-      choice("ch5_four_plain_respect", "四人が別々であることを語る", "それぞれの場所を守る言葉が、四皇という呼び名の意味になった。", { stats: { trust: 8, expression: 3 }, relationships: { hajime: 4, tetsu: 5, shiruko: 5 }, routes: { stability: 4 }, addFlags: ["ch5_four_emperors_achieved", "four_emperors_achieved", "ch5_ending_ready"] }, { tone: "steady" }),
-      choice("ch5_four_plain_beat", "四人の持ち味を即興ビートにする", "挑戦、地元、遊び、総合力。四つのリズムが重なった。", { stats: { beatbox: 4, expression: 4, subscribers: 220_000 }, hidden: { origin: 4 }, addFlags: ["ch5_four_emperors_achieved", "four_emperors_achieved", "ch5_ending_ready"] }, { tone: "bold" })
+      choice("ch5_four_plain_collab", "四人で次の巨大コラボを発表する", "頂点は終点ではなく、違う強みが交わる新しいスタートになった。", { stats: { trust: 7, subscribers: 300_000 }, relationships: { hajime: 6, tetsu: 6, shiruko: 6 }, routes: { network: 6 }, addFlags: ["ch5_four_emperors_achieved", "four_emperors_achieved", "ch5_ending_ready"], queueEvent: "ch5_hundred_billion_video" }, { tone: "warm" }),
+      choice("ch5_four_plain_respect", "四人が別々であることを語る", "それぞれの場所を守る言葉が、四皇という呼び名の意味になった。", { stats: { trust: 8, expression: 3 }, relationships: { hajime: 4, tetsu: 5, shiruko: 5 }, routes: { stability: 4 }, addFlags: ["ch5_four_emperors_achieved", "four_emperors_achieved", "ch5_ending_ready"], queueEvent: "ch5_hundred_billion_video" }, { tone: "steady" }),
+      choice("ch5_four_plain_beat", "四人の持ち味を即興ビートにする", "挑戦、地元、遊び、総合力。四つのリズムが重なった。", { stats: { beatbox: 4, expression: 4, subscribers: 220_000 }, hidden: { origin: 4 }, addFlags: ["ch5_four_emperors_achieved", "four_emperors_achieved", "ch5_ending_ready"], queueEvent: "ch5_hundred_billion_video" }, { tone: "bold" })
     ],
     when: { flagsAll: ["ch5_number_one_achieved", "ch5_four_emperors_ready"], minRelationships: { hajime: 55, tetsu: 45, shiruko: 45 }, minStats: { trust: 68 } },
     priority: 125,
@@ -1177,9 +1224,9 @@ export const chapter5Events: StoryEvent[] = [
       "静かな声で『……何者かには、なれたのかな』とこぼす。廊下の向こうからゼイキンや仲間たちの笑い声が聞こえた。ヒカキンは少し笑い、はじめ課長の『次は勝ちます、親分』へ次の企画書の写真を返す。二千万人は結末ではない。"
     ],
     choices: [
-      choice("ch5_number_one_record", "もう一度、録画ボタンを押す", "初代マイクへ最初と同じビートを入れる。今度は何百万人もの人が、その一音を待っていた。", { stats: { beatbox: 3, trust: 5 }, hidden: { origin: 6 }, relationships: { hajime: 3 }, addFlags: ["ch5_number_one_origin_kept", "ch5_ending_ready"] }, { tone: "warm" }),
-      choice("ch5_number_one_plan", "すぐ次の企画書を開く", "日本一を守るためではなく、まだ見たことのない動画を作るために働き始めた。", { stats: { production: 4, expression: 2 }, hidden: { ambition: 4 }, addFlags: ["ch5_number_one_keeps_building", "ch5_ending_ready"] }, { tone: "bold" }),
-      choice("ch5_number_one_call_family", "ゼイキンと家族へ電話する", "上京の日に二万円を渡された青年の声で、ようやく『日本一になった』と言えた。", { stats: { trust: 4, energy: 5 }, relationships: { zeikin: 5 }, addFlags: ["ch5_number_one_family", "ch5_ending_ready"] }, { tone: "warm" })
+      choice("ch5_number_one_record", "もう一度、録画ボタンを押す", "初代マイクへ最初と同じビートを入れる。今度は何百万人もの人が、その一音を待っていた。", { stats: { beatbox: 3, trust: 5 }, hidden: { origin: 6 }, relationships: { hajime: 3 }, addFlags: ["ch5_number_one_origin_kept", "ch5_ending_ready"], queueEvent: "ch5_hundred_billion_video" }, { tone: "warm" }),
+      choice("ch5_number_one_plan", "すぐ次の企画書を開く", "日本一を守るためではなく、まだ見たことのない動画を作るために働き始めた。", { stats: { production: 4, expression: 2 }, hidden: { ambition: 4 }, addFlags: ["ch5_number_one_keeps_building", "ch5_ending_ready"], queueEvent: "ch5_hundred_billion_video" }, { tone: "bold" }),
+      choice("ch5_number_one_call_family", "ゼイキンと家族へ電話する", "上京の日に二万円を渡された青年の声で、ようやく『日本一になった』と言えた。", { stats: { trust: 4, energy: 5 }, relationships: { zeikin: 5 }, addFlags: ["ch5_number_one_family", "ch5_ending_ready"], queueEvent: "ch5_hundred_billion_video" }, { tone: "warm" })
     ],
     when: { flagsAll: ["ch5_number_one_achieved"] },
     priority: 115,
@@ -1193,17 +1240,17 @@ export const chapter5Events: StoryEvent[] = [
     slot: 11,
     title: "伝説になった一音",
     date: "数年後",
-    location: "再現浴室スタジオ",
+    location: "兄弟の音楽スタジオ",
     body: [
-      "『音が止まるまで』は、年間最多再生の動画ではなかった。それでも作り手が節目に見返す一本になり、模倣ではない新しい作品をいくつも生んだ。",
-      "最後のフレームには、十八歳のころと同じ安いマイクが一本だけ映る。そこへ至るまでの音を知る人には、それがどんな豪華なセットより大きく見えた。"
+      "『YouTubeテーマミュージック』は一億再生を越えた。ゼイキンの歌と旋律、ヒカキンのビートボックスと映像は、作り手が節目に見返す一本になった。",
+      "最後のフレームには、十八歳のころと同じ安いマイクと、ゼイキンの最初の譜面が並ぶ。二人の得意を正しく重ねたからこそ生まれた伝説だった。"
     ],
     speaker: "ヒカキン",
     quote: "何者になれたかは分からない。でも、僕にしか作れない一本は作れた。",
     choices: [
       choice("ch5_legend_archive", "作品と全素材を永久保存する", "成功テイクだけでなく、迷いと失敗も次の時代へ残した。", { stats: { production: 4, trust: 5 }, hidden: { origin: 5 }, addFlags: ["ch5_legend_archive_complete", "ch5_ending_ready"] }, { tone: "steady" }),
       choice("ch5_legend_return_regular", "翌日から普通の商品紹介を撮る", "伝説を演じ続けず、一本を作った生活者として日常の動画へ戻った。", { stats: { expression: 3, trust: 4 }, routes: { mainstream: 3 }, addFlags: ["ch5_legend_stayed_human", "ch5_ending_ready"] }, { tone: "warm" }),
-      choice("ch5_legend_leave_mic", "初代マイクをスタジオへ置いて帰る", "次にそこで撮る誰かのため、原点を自分だけの記念品にしなかった。", { stats: { trust: 5 }, hidden: { origin: 6 }, routes: { network: 3 }, addFlags: ["ch5_legend_mic_passed", "ch5_ending_ready"] }, { tone: "warm" })
+      choice("ch5_legend_leave_mic", "初代マイクと譜面を並べて残す", "どちらか一人の記念品にせず、二人で作った証拠を次の制作者へ残した。", { stats: { trust: 5 }, hidden: { origin: 6 }, routes: { network: 3 }, addFlags: ["ch5_legend_mic_passed", "ch5_ending_ready"] }, { tone: "warm" })
     ],
     when: { flagsAll: ["ch5_legendary_achieved"] },
     priority: 110,
@@ -1251,7 +1298,7 @@ export const chapter5Events: StoryEvent[] = [
     speaker: "ヒカキン",
     quote: "今日も見てる。嫌いなのに、みんな僕を見てる。",
     choices: [
-      choice("ch5_controversy_continue", "次の『真相』を公開する", "登録解除と新規登録が同時に動き、炎だけがチャンネルを動かし続けた。登録者は四百万人前後で下げ止まらない。", { stats: { subscribers: 300_000, trust: -6, money: 900_000 }, setStats: { subscribers: 4_000_000 }, hidden: { controversy: 8, origin: -5 }, addFlags: ["ch5_controversy_king", "ch5_ending_ready", "ch5_fire_never_ends"] }, { tone: "risky" }),
+      choice("ch5_controversy_continue", "次の『真相』を公開する", "登録解除と新規登録が同時に動き、炎だけがチャンネルを動かし続けた。登録者は四百万人前後で下げ止まらない。", { moneyScale: "exact", stats: { subscribers: 300_000, trust: -6, money: 9_000_000 }, setStats: { subscribers: 4_000_000 }, hidden: { controversy: 8, origin: -5 }, addFlags: ["ch5_controversy_king", "ch5_ending_ready", "ch5_fire_never_ends"] }, { tone: "risky" }),
       choice("ch5_controversy_livestream", "批判コメントを読む生配信を始める", "怒りを読み上げる声に、昔のビートボックスの面影はなかった。登録者は約四百万人、残った多くも批判を見るために通知を付けている。", { stats: { subscribers: 180_000, trust: -5 }, setStats: { subscribers: 4_000_000 }, hidden: { controversy: 7 }, routes: { controversy: 5 }, addFlags: ["ch5_controversy_king", "ch5_ending_ready", "ch5_comments_as_fuel"] }, { tone: "risky" }),
       choice("ch5_controversy_silence", "カメラの前で何も言えなくなる", "配信待機人数だけが増え続け、沈黙さえ切り抜きの材料になった。炎上のたび離れた登録者は、約四百万人しか残っていない。", { stats: { energy: -8, trust: -3 }, setStats: { subscribers: 4_000_000 }, hidden: { fatigue: 8 }, addFlags: ["ch5_controversy_king", "ch5_ending_ready", "ch5_hollow_silence"] }, { tone: "steady" })
     ],
@@ -1271,14 +1318,14 @@ export const chapter5Events: StoryEvent[] = [
     body: [
       "昼はスーパーで品出しをし、給料から社員寮の家賃が引かれる。夜になると、ヒカキンは駅前へ古いマイクを持っていく。",
       "かつて何百万人が見た名前を覚えている人は、ほとんど通らない。動画の収益も、華やかな撮影部屋もない。",
-      "それでも口から出る音だけは、十八歳のころより上手い。上手いことを証明する相手がいないまま、ビートは冷たい歩道へ消えていく。"
+      "それでも口から出る音だけは、十八歳のころより上手い。だが誰の足も止まらず、ビートは冷たい歩道へ消えていく。帰り道で開いた最新動画は、5,023再生のまま動かなかった。"
     ],
-    speaker: "通りがかった子供",
-    quote: "おじさん、YouTuberなの？",
+    speaker: "ヒカキン",
+    quote: "……帰るか。",
     choices: [
-      choice("ch5_street_say_past", "『昔ね』と答える", "子供が去ったあとも、過去形にできない音だけを続けた。", { stats: { energy: -3 }, hidden: { origin: 4, ambition: -8 }, relationships: { supermarket: 2 }, addFlags: ["ch5_street_fate", "ch5_ending_ready", "ch5_street_said_past"] }, { tone: "steady" }),
-      choice("ch5_street_say_not_yet", "『これからなる』と答える", "何者かになるという言葉だけが、負けを認めないまま残っていた。", { stats: { beatbox: 2 }, hidden: { ambition: 5, origin: 3 }, addFlags: ["ch5_street_fate", "ch5_ending_ready", "ch5_street_still_dreams"] }, { tone: "bold" }),
-      choice("ch5_street_answer_with_beat", "答えず、一番得意な音を鳴らす", "子供は少しだけ立ち止まり、やがて家族を追って走った。投げ銭箱は空のままだった。", { stats: { beatbox: 3 }, hidden: { origin: 5 }, addFlags: ["ch5_street_fate", "ch5_ending_ready", "ch5_street_wordless"] }, { tone: "steady" })
+      choice("ch5_street_pack_mic", "マイクを鞄へしまう", "投げ銭箱は空のまま。明日の早番に遅れないよう、始発時刻だけを確認した。", { stats: { energy: -3 }, hidden: { ambition: -8 }, relationships: { supermarket: 2 }, addFlags: ["ch5_street_fate", "ch5_ending_ready", "ch5_street_packed_mic"] }, { tone: "steady" }),
+      choice("ch5_street_refresh_views", "再生数をもう一度更新する", "5,023という数字は変わらない。画面を閉じると、自分の靴音だけが残った。", { stats: { energy: -2 }, hidden: { ambition: -6 }, addFlags: ["ch5_street_fate", "ch5_ending_ready", "ch5_street_frozen_views"] }, { tone: "steady" }),
+      choice("ch5_street_check_shift", "明日のスーパーのシフトを確認する", "動画の予定ではなく、品出しの担当表が次の日を決めた。", { stats: { money: 100_000 }, hidden: { ambition: -9 }, relationships: { supermarket: 3 }, addFlags: ["ch5_street_fate", "ch5_ending_ready", "ch5_street_next_shift"] }, { tone: "steady" })
     ],
     when: { flagsAny: ["ch5_street_fate", "ch5_supermarket_dorm_again"], maxStats: { subscribers: 7_000_000, money: 1_500_000 } },
     priority: 100,
@@ -1298,9 +1345,9 @@ export const chapter5Events: StoryEvent[] = [
       "残ったのは、動画を作る技術と、まだ捨てられないビートボックス。どちらを生活へ持っていくかで、次の名前が決まる。"
     ],
     choices: [
-      choice("ch5_epilogue_edit_others", "他人の動画を編集する仕事を始める", "最初の依頼動画で、出演者本人も知らなかった魅力を一つ見つけた。", { stats: { production: 5, money: 500_000 }, routes: { strategy: 5 }, addFlags: ["ch5_mastermind_achieved", "ch5_mastermind_bittersweet", "ch5_ending_ready"] }, { tone: "steady", when: { minStats: { production: 76 }, minRoutes: { strategy: 85 } } }),
-      choice("ch5_epilogue_return_store", "スーパーの社員寮へ戻る", "昼の仕事と夜の路上演奏だけが、もう一度一週間の形を作った。", { stats: { money: 250_000 }, hidden: { ambition: -6 }, relationships: { supermarket: 8 }, routes: { stability: 6 }, addFlags: ["ch5_street_fate", "ch5_supermarket_dorm_again", "ch5_ending_ready"] }, { tone: "steady" }),
-      choice("ch5_epilogue_burn", "失敗を暴露話へ変える", "誰かの名前を出すたび再生数は戻ったが、登録解除は止まらない。約四百万人の登録者と引き換えに、信用より注目を選ぶ生活が始まった。", { stats: { subscribers: 350_000, trust: -9, money: 600_000 }, setStats: { subscribers: 4_000_000 }, hidden: { controversy: 10 }, routes: { controversy: 7 }, addFlags: ["ch5_controversy_king", "ch5_ending_ready"] }, { tone: "risky", when: { minHidden: { controversy: 8 } } })
+      choice("ch5_epilogue_edit_others", "他人の動画を編集する仕事を始める", "個人資産と事業資金を分けて小さく再出発し、最初の依頼動画で出演者本人も知らなかった魅力を見つけた。", { moneyMultiplier: 0.001, moneyScale: "exact", stats: { production: 5, money: 5_000_000 }, routes: { strategy: 5 }, addFlags: ["ch5_mastermind_achieved", "ch5_mastermind_bittersweet", "ch5_ending_ready"] }, { tone: "steady", when: { minStats: { production: 76 }, minRoutes: { strategy: 85 } } }),
+      choice("ch5_epilogue_return_store", "スーパーの社員寮へ戻る", "事業を清算すると過去の残高の0.5％だけが残った。昼の仕事と夜の路上演奏が、もう一度一週間の形を作った。", { moneyMultiplier: 0.005, stats: { money: 250_000 }, hidden: { ambition: -6 }, relationships: { supermarket: 8 }, routes: { stability: 6 }, addFlags: ["ch5_street_fate", "ch5_supermarket_dorm_again", "ch5_ending_ready"] }, { tone: "steady" }),
+      choice("ch5_epilogue_burn", "失敗を暴露話へ変える", "違約金と契約解除で資産の大半を失った。誰かの名前を出すたび再生数は戻ったが、登録解除は止まらず、約四百万人と引き換えに信用より注目を選んだ。", { moneyMultiplier: 0.02, moneyScale: "exact", stats: { subscribers: 350_000, trust: -9, money: 6_000_000 }, setStats: { subscribers: 4_000_000 }, hidden: { controversy: 10 }, routes: { controversy: 7 }, addFlags: ["ch5_controversy_king", "ch5_ending_ready"] }, { tone: "risky", when: { minHidden: { controversy: 8 } } })
     ],
     mandatory: true,
     priority: 0,
