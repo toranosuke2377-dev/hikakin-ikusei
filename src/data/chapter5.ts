@@ -568,7 +568,7 @@ export const chapter5Events: StoryEvent[] = [
       choice("ch5_choose_produce_school", "制作過程そのものを公開講座にする", "正解だけでなく失敗の理由も見せ、一本の裏側から何百人もの制作者が学べる企画にした。", { stats: { production: 7, expression: 3, trust: 5, energy: -8 }, routes: { strategy: 7, network: 5 }, addFlags: ["ch5_final_produce", "ch5_open_production_method"], removeFlags: ["ch5_final_nationwide", "ch5_final_all_genres", "ch5_final_lifework", "ch5_final_scandal"] }, { tone: "steady" }),
       choice("ch5_choose_produce_co_star", "自分も出演して両方を伸ばす", "橋渡し役として出演し、若い主役へ視聴者を渡す設計にした。", { stats: { production: 5, expression: 4, subscribers: 180_000 }, routes: { strategy: 5, mainstream: 3 }, addFlags: ["ch5_final_produce", "ch5_produced_with_cameo"], removeFlags: ["ch5_final_nationwide", "ch5_final_all_genres", "ch5_final_lifework", "ch5_final_scandal"] }, { tone: "bold" })
     ],
-    when: { minStats: { production: 68 }, minRoutes: { strategy: 48 }, maxStats: { expression: 56 }, flagsAny: ["mastermind_path_open", "mastermind_seed", "ch5_entry_mastermind", "ch5_producer_path"] },
+    when: { minStats: { production: 66 }, minRoutes: { strategy: 46 }, maxStats: { expression: 62 }, maxRoutes: { craft: 99 }, flagsAny: ["mastermind_path_open", "mastermind_seed", "ch5_entry_mastermind", "ch5_producer_path"] },
     priority: 95,
     oncePerRun: true,
     tags: ["final-concept", "mastermind", "major-choice"],
@@ -1020,7 +1020,7 @@ export const chapter5Events: StoryEvent[] = [
       choice("ch5_countdown_thank", "支えた全員の名前を読み上げる", "最後の一人を待つ時間が、これまでの人々へ返す時間になった。数字は二千万を越えた。", { setStats: { subscribers: 20_120_000 }, stats: { trust: 7, expression: 3 }, relationships: { hajime: 4, zeikin: 3, tetsu: 2, shiruko: 2 }, routes: { network: 4 }, addFlags: ["ch5_number_one_achieved", "ch5_twenty_million", "ch5_credits_spoken"] }, { tone: "warm" }),
       choice("ch5_countdown_next", "達成前に次の企画を発表する", "祝うより先に進む姿勢が熱狂を生み、カウンターは二千万を一気に通過した。", { setStats: { subscribers: 20_300_000 }, stats: { expression: 4, energy: -4 }, hidden: { ambition: 5 }, routes: { mainstream: 4 }, addFlags: ["ch5_number_one_achieved", "ch5_twenty_million", "ch5_never_stopped"] }, { tone: "bold" })
     ],
-    when: { minStats: { subscribers: 15_000_000, trust: 60, expression: 55, production: 55 }, flagsAll: ["ch5_final_massive_success"], maxHidden: { controversy: 59 } },
+    when: { minStats: { subscribers: 14_000_000, trust: 56, expression: 52, production: 52 }, flagsAll: ["ch5_final_massive_success"], maxHidden: { controversy: 54 } },
     priority: 110,
     oncePerRun: true,
     tags: ["number-one", "twenty-million", "climax"],
@@ -1042,7 +1042,7 @@ export const chapter5Events: StoryEvent[] = [
       choice("ch5_history_masterclass", "制作ノートを無償公開する", "技法は秘密ではなくなった。模倣を越える作品が生まれる可能性を選んだ。", { stats: { production: 7, trust: 7 }, routes: { strategy: 5, network: 4 }, addFlags: ["ch5_legendary_achieved", "ch5_legend_methods_shared"] }, { tone: "warm" }),
       choice("ch5_history_restore_set", "再現浴室を若い制作者へ開放する", "原点の場所は展示物ではなく、次の誰かが失敗できる小さなスタジオになった。", { stats: { trust: 7, money: -700_000 }, hidden: { origin: 8 }, routes: { network: 5 }, addFlags: ["ch5_legendary_achieved", "ch5_origin_studio_open"] }, { tone: "warm" })
     ],
-    when: { flagsAll: ["ch5_legendary_candidate"], minStats: { production: 66, beatbox: 64 }, minHidden: { origin: 68 }, maxHidden: { controversy: 52 } },
+    when: { flagsAll: ["ch5_legendary_candidate"], minStats: { production: 66, beatbox: 76 }, minHidden: { origin: 68 }, minRoutes: { craft: 68 }, maxHidden: { controversy: 46 } },
     priority: 105,
     oncePerRun: true,
     tags: ["legendary-video", "legacy", "climax"],
@@ -1064,7 +1064,7 @@ export const chapter5Events: StoryEvent[] = [
       choice("ch5_mastermind_freelance", "名前を出さず作品ごとに支える", "ヒカキンが関わったと知られないヒットが、業界のあちこちに増えていった。", { stats: { production: 9, trust: 3 }, hidden: { ambition: -4 }, routes: { strategy: 8 }, addFlags: ["ch5_mastermind_achieved", "ch5_invisible_hits"] }, { tone: "steady" }),
       choice("ch5_mastermind_train", "後進育成へ軸足を移す", "一本の正解ではなく、試行錯誤を続ける方法を教える仕事を選んだ。", { stats: { production: 7, trust: 7 }, routes: { network: 7, strategy: 5 }, addFlags: ["ch5_mastermind_achieved", "ch5_successors_network"] }, { tone: "warm" })
     ],
-    when: { flagsAll: ["ch5_mastermind_candidate"], minStats: { production: 72 }, minRoutes: { strategy: 52 } },
+    when: { flagsAll: ["ch5_mastermind_candidate"], minStats: { production: 72 }, minRoutes: { strategy: 87 } },
     priority: 100,
     oncePerRun: true,
     tags: ["mastermind", "producer", "climax"],
@@ -1104,9 +1104,9 @@ export const chapter5Events: StoryEvent[] = [
       "もう一度自分を撮るか、誰かの作品を作るか、生活を立て直すか。何者かになるという言葉を、現実に合わせて選び直す夜が来た。"
     ],
     choices: [
-      choice("ch5_crossroad_producer", "企画と編集の仕事を引き受ける", "出演の悔しさを抱えたまま、他人の魅力を見つける机へ向かった。", { stats: { production: 7, money: 800_000 }, routes: { strategy: 6 }, addFlags: ["ch5_mastermind_achieved", "ch5_mastermind_bittersweet"] }, { tone: "steady", when: { minStats: { production: 58 } } }),
+      choice("ch5_crossroad_producer", "企画と編集の仕事を引き受ける", "出演の悔しさを抱えたまま、他人の魅力を見つける机へ向かった。", { stats: { production: 7, money: 800_000 }, routes: { strategy: 6 }, addFlags: ["ch5_mastermind_achieved", "ch5_mastermind_bittersweet"] }, { tone: "steady", when: { minStats: { production: 76 }, minRoutes: { strategy: 90 } } }),
       choice("ch5_crossroad_supermarket", "スーパーへ戻り、生活を立て直す", "かつての職場は華やかな経歴ではなく、働けるかどうかだけを見た。社員寮の鍵が再び手に乗った。", { stats: { money: 300_000, energy: -4 }, hidden: { origin: 3, ambition: -8 }, relationships: { supermarket: 10 }, routes: { stability: 8 }, addFlags: ["ch5_street_fate", "ch5_supermarket_dorm_again"] }, { tone: "steady" }),
-      choice("ch5_crossroad_provoke", "失敗を炎上ネタにして続ける", "成功者への不満と暴露を話すたび、再生数だけは戻ってきた。", { stats: { subscribers: 450_000, trust: -10, money: 900_000 }, hidden: { controversy: 12 }, routes: { controversy: 8 }, addFlags: ["ch5_controversy_king"] }, { tone: "risky" })
+      choice("ch5_crossroad_provoke", "失敗を炎上ネタにして続ける", "成功者への不満と暴露を話すたび、再生数だけは戻ってきた。", { stats: { subscribers: 450_000, trust: -10, money: 900_000 }, hidden: { controversy: 12 }, routes: { controversy: 8 }, addFlags: ["ch5_controversy_king"] }, { tone: "risky", when: { minHidden: { controversy: 8 } } })
     ],
     mandatory: true,
     priority: 0,
@@ -1244,15 +1244,16 @@ export const chapter5Events: StoryEvent[] = [
     location: "暗い配信室",
     body: [
       "スポンサーも友人も去った。代わりに通知は止まらない。何を話しても怒る人と擁護する人が集まり、動画は毎回ニュースになる。",
+      "炎上するたびにおよそ五十万人が登録を解除し、かつて一千万人を超えた登録者は約四百万人まで減っていた。それでも炎上動画の瞬間的な再生だけは、普通の動画より大きい。",
       "机の上には『すべての真相を話します』の次の台本。謝罪、反論、暴露。見出しは違っても、目的は同じだった。",
       "何者かにはなった。誰もが名前を知る、最も信用されない投稿者に。"
     ],
     speaker: "ヒカキン",
     quote: "今日も見てる。嫌いなのに、みんな僕を見てる。",
     choices: [
-      choice("ch5_controversy_continue", "次の『真相』を公開する", "登録解除と新規登録が同時に増え、炎だけがチャンネルを動かし続けた。", { stats: { subscribers: 300_000, trust: -6, money: 900_000 }, hidden: { controversy: 8, origin: -5 }, addFlags: ["ch5_controversy_king", "ch5_ending_ready", "ch5_fire_never_ends"] }, { tone: "risky" }),
-      choice("ch5_controversy_livestream", "批判コメントを読む生配信を始める", "怒りを読み上げる声に、昔のビートボックスの面影はなかった。", { stats: { subscribers: 180_000, trust: -5 }, hidden: { controversy: 7 }, routes: { controversy: 5 }, addFlags: ["ch5_controversy_king", "ch5_ending_ready", "ch5_comments_as_fuel"] }, { tone: "risky" }),
-      choice("ch5_controversy_silence", "カメラの前で何も言えなくなる", "配信待機人数だけが増え続け、沈黙さえ切り抜きの材料になった。", { stats: { energy: -8, trust: -3 }, hidden: { fatigue: 8 }, addFlags: ["ch5_controversy_king", "ch5_ending_ready", "ch5_hollow_silence"] }, { tone: "steady" })
+      choice("ch5_controversy_continue", "次の『真相』を公開する", "登録解除と新規登録が同時に動き、炎だけがチャンネルを動かし続けた。登録者は四百万人前後で下げ止まらない。", { stats: { subscribers: 300_000, trust: -6, money: 900_000 }, setStats: { subscribers: 4_000_000 }, hidden: { controversy: 8, origin: -5 }, addFlags: ["ch5_controversy_king", "ch5_ending_ready", "ch5_fire_never_ends"] }, { tone: "risky" }),
+      choice("ch5_controversy_livestream", "批判コメントを読む生配信を始める", "怒りを読み上げる声に、昔のビートボックスの面影はなかった。登録者は約四百万人、残った多くも批判を見るために通知を付けている。", { stats: { subscribers: 180_000, trust: -5 }, setStats: { subscribers: 4_000_000 }, hidden: { controversy: 7 }, routes: { controversy: 5 }, addFlags: ["ch5_controversy_king", "ch5_ending_ready", "ch5_comments_as_fuel"] }, { tone: "risky" }),
+      choice("ch5_controversy_silence", "カメラの前で何も言えなくなる", "配信待機人数だけが増え続け、沈黙さえ切り抜きの材料になった。炎上のたび離れた登録者は、約四百万人しか残っていない。", { stats: { energy: -8, trust: -3 }, setStats: { subscribers: 4_000_000 }, hidden: { fatigue: 8 }, addFlags: ["ch5_controversy_king", "ch5_ending_ready", "ch5_hollow_silence"] }, { tone: "steady" })
     ],
     when: { flagsAll: ["ch5_controversy_king"] },
     priority: 120,
@@ -1297,9 +1298,9 @@ export const chapter5Events: StoryEvent[] = [
       "残ったのは、動画を作る技術と、まだ捨てられないビートボックス。どちらを生活へ持っていくかで、次の名前が決まる。"
     ],
     choices: [
-      choice("ch5_epilogue_edit_others", "他人の動画を編集する仕事を始める", "最初の依頼動画で、出演者本人も知らなかった魅力を一つ見つけた。", { stats: { production: 5, money: 500_000 }, routes: { strategy: 5 }, addFlags: ["ch5_mastermind_achieved", "ch5_mastermind_bittersweet", "ch5_ending_ready"] }, { tone: "steady", when: { minStats: { production: 52 } } }),
+      choice("ch5_epilogue_edit_others", "他人の動画を編集する仕事を始める", "最初の依頼動画で、出演者本人も知らなかった魅力を一つ見つけた。", { stats: { production: 5, money: 500_000 }, routes: { strategy: 5 }, addFlags: ["ch5_mastermind_achieved", "ch5_mastermind_bittersweet", "ch5_ending_ready"] }, { tone: "steady", when: { minStats: { production: 76 }, minRoutes: { strategy: 85 } } }),
       choice("ch5_epilogue_return_store", "スーパーの社員寮へ戻る", "昼の仕事と夜の路上演奏だけが、もう一度一週間の形を作った。", { stats: { money: 250_000 }, hidden: { ambition: -6 }, relationships: { supermarket: 8 }, routes: { stability: 6 }, addFlags: ["ch5_street_fate", "ch5_supermarket_dorm_again", "ch5_ending_ready"] }, { tone: "steady" }),
-      choice("ch5_epilogue_burn", "失敗を暴露話へ変える", "誰かの名前を出すたび視聴者が戻り、信用より注目を選ぶ生活が始まった。", { stats: { subscribers: 350_000, trust: -9, money: 600_000 }, hidden: { controversy: 10 }, routes: { controversy: 7 }, addFlags: ["ch5_controversy_king", "ch5_ending_ready"] }, { tone: "risky" })
+      choice("ch5_epilogue_burn", "失敗を暴露話へ変える", "誰かの名前を出すたび再生数は戻ったが、登録解除は止まらない。約四百万人の登録者と引き換えに、信用より注目を選ぶ生活が始まった。", { stats: { subscribers: 350_000, trust: -9, money: 600_000 }, setStats: { subscribers: 4_000_000 }, hidden: { controversy: 10 }, routes: { controversy: 7 }, addFlags: ["ch5_controversy_king", "ch5_ending_ready"] }, { tone: "risky", when: { minHidden: { controversy: 8 } } })
     ],
     mandatory: true,
     priority: 0,

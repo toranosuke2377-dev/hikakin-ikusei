@@ -34,7 +34,10 @@ export function ResultPanel({ event, choice, resolution, onContinue }: ResultPan
           <strong>{choice.effect.video.title}</strong>
           <div>
             <b>{new Intl.NumberFormat("ja-JP").format(choice.effect.video.views)} 回再生</b>
-            <small>登録者 +{new Intl.NumberFormat("ja-JP").format(choice.effect.video.subscribersGained)}</small>
+            <small>
+              登録者 {choice.effect.video.subscribersGained > 0 ? "+" : ""}
+              {new Intl.NumberFormat("ja-JP").format(choice.effect.video.subscribersGained)}
+            </small>
           </div>
         </div>
       ) : null}

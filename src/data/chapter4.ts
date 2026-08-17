@@ -51,7 +51,7 @@ export const chapter4Events: StoryEvent[] = [
         addFlags: ["ch4_people_first", "ch4_crisis_owned", "ch4_recovery_ready"]
       }, { tone: "warm", subtext: "人への影響が大きい順に直す" }),
       choice("ch4_00_multiple_campaign", "大型企画で話題を上書きする", [
-        "制作費を倍にし、ニュース欄を新記録で埋めた。数週間は疑問の声が押し流され、登録者も過去最大に増える。",
+        "制作費を倍にし、ニュース欄を新記録で埋めた。数週間は疑問の声が押し流され、再生数だけは過去最大に増える。",
         "問題は解決されず、関係者には『数字で黙らせた』という記憶が残った。"
       ], {
         stats: { subscribers: 1_100_000, money: -1_300_000, trust: -15, energy: -12 },

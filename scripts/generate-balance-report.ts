@@ -25,7 +25,7 @@ const report: string[] = [
   "",
   `生成日時: ${generatedAt}（Asia/Tokyo）`,
   "",
-  "各方針を100seedずつ、合計600周自動プレイした結果。",
+  "ランダム選択を5,000seed、各方針を100seedずつ、合計5,500周自動プレイした結果。",
   "",
   "| 方針 | 平均場面 | 推定時間 | 平均登録者 | 最小 | 最大 | 主な結末 |",
   "|---|---:|---:|---:|---:|---:|---|"
@@ -35,8 +35,9 @@ const globallySeen = new Set<string>();
 
 for (const strategy of strategies) {
   const results = [];
+  const runs = strategy.key === "random" ? 5_000 : 100;
   let strategyMeta = createInitialMeta();
-  for (let index = 0; index < 100; index += 1) {
+  for (let index = 0; index < runs; index += 1) {
     const result = simulateRun(
       allEvents,
       endingDefinitions,
@@ -78,7 +79,7 @@ for (const strategy of strategies) {
   const upperMinutes = readingMinutes + averageScenes * 0.45 + 7;
   const endings = [...endingCounts.entries()]
     .sort((left, right) => right[1] - left[1])
-    .map(([name, count]) => `${name} ${count}%`)
+    .map(([name, count]) => `${name} ${((count / results.length) * 100).toFixed(1)}%`)
     .join(" / ");
 
   report.push(
@@ -91,7 +92,7 @@ report.push(
   "## イベント網羅",
   "",
   `- 全イベント: ${allEvents.length}件`,
-  `- 600周で到達: ${globallySeen.size}件`,
+  `- 5,500周で到達: ${globallySeen.size}件`,
   `- 到達率: ${((globallySeen.size / allEvents.length) * 100).toFixed(1)}%`,
   "",
   "周回イベントは初回には出現せず、二周目以降に本編slotを消費しない追加場面として低確率で挿入される。到達しない通常イベントは条件の希少性を個別確認する。",

@@ -58,6 +58,8 @@ queueされたイベントがあれば優先
 
 イベントは `src/data/chapter1.ts` から `chapter5.ts` に章別で定義する。周回向けの希少イベントは `src/data/replayEvents.ts`、エンディングは `src/data/endings.ts` に分離する。
 
+炎上度を大きく上げる選択は `src/data/helpers.ts` で共通判定し、登録者を約50万人減らす。個々のイベントへ同じ処理を重複させないため、後から炎上場面を追加しても離脱コストと結果説明が自動で付く。炎上王の最終登録者は第5章の確定場面で約400万人へ収束する。
+
 型定義は `src/game/types.ts`、条件判定は `src/game/condition.ts`、抽選・効果適用・章移行は `src/game/engine.ts` が担当する。
 
 ## 周回

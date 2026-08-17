@@ -6,6 +6,7 @@ import {
   validateContent,
   validateNarrativeContinuity
 } from "../game/validation";
+import { isInflammatoryEffect } from "./helpers";
 
 describe("scenario content", () => {
   it("全章・全slot・5エンディングの構造が有効", () => {
@@ -172,5 +173,58 @@ describe("scenario content", () => {
         }
       }
     }
+  });
+
+  it("炎上する選択は一回につき登録者約50万人を失う", () => {
+    const inflammatoryChoices = allEvents.flatMap((event) =>
+      event.choices.filter((choice) => isInflammatoryEffect(choice.effect))
+    );
+
+    expect(inflammatoryChoices.length).toBeGreaterThanOrEqual(30);
+    for (const choice of inflammatoryChoices) {
+      expect(choice.effect.stats?.subscribers, choice.id).toBe(-500_000);
+      if (choice.effect.video) {
+        expect(choice.effect.video.subscribersGained, choice.id).toBe(-500_000);
+      }
+    }
+  });
+
+  it("炎上王は登録者約400万人で終わる", () => {
+    for (let seed = 1; seed <= 80; seed += 1) {
+      const result = simulateRun(
+        allEvents,
+        endingDefinitions,
+        "controversy",
+        seed * 83_449
+      );
+      expect(result.ending.id).toBe("controversy_king");
+      expect(result.state.stats.subscribers).toBe(4_000_000);
+    }
+  });
+
+  it("初見相当のランダム選択で5結末が狙った範囲に分布する", () => {
+    const counts = new Map<string, number>();
+    const runs = 500;
+    for (let seed = 1; seed <= runs; seed += 1) {
+      const endingId = simulateRun(
+        allEvents,
+        endingDefinitions,
+        "random",
+        seed * 104_729
+      ).ending.id;
+      counts.set(endingId, (counts.get(endingId) ?? 0) + 1);
+    }
+
+    const rate = (endingId: string) => (counts.get(endingId) ?? 0) / runs;
+    expect(rate("number_one")).toBeGreaterThanOrEqual(0.04);
+    expect(rate("number_one")).toBeLessThanOrEqual(0.09);
+    expect(rate("legendary_video")).toBeGreaterThanOrEqual(0.21);
+    expect(rate("legendary_video")).toBeLessThanOrEqual(0.3);
+    expect(rate("mastermind")).toBeGreaterThanOrEqual(0.18);
+    expect(rate("mastermind")).toBeLessThanOrEqual(0.26);
+    expect(rate("controversy_king")).toBeGreaterThanOrEqual(0.25);
+    expect(rate("controversy_king")).toBeLessThanOrEqual(0.34);
+    expect(rate("street_beatboxer")).toBeGreaterThanOrEqual(0.13);
+    expect(rate("street_beatboxer")).toBeLessThanOrEqual(0.22);
   });
 });
