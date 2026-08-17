@@ -22,23 +22,23 @@ const rare = (
 export const replayEvents: StoryEvent[] = [
   // ───────────────────────── Chapter 1 ─────────────────────────
   rare({
-    id: "replay_ch1_train_notebook",
+    id: "replay_ch1_ski_jump_name",
     chapter: 1,
     slot: 1,
-    title: "列車に残したノート",
-    date: "2008年3月",
-    location: "東京駅・忘れ物窓口",
+    title: "飛び台から持ってきた名前",
+    date: "上京前の冬",
+    location: "新潟・スキージャンプ台",
     body: [
-      "上京の列車で、ビートボックスの練習ノートを座席へ置き忘れた。音を文字で表した記号と、海外動画から写した研究だけが詰まっている。",
-      "忘れ物窓口の締切は、社員寮の入居説明と同じ時刻だった。東京最初の日から、生活と音のどちらを先にするかを迫られる。"
+      "小学三年から高校まで続けたスキージャンプ。全国八位まで届いても、練習の一本は毎回ゼロから始まった。怖さを消すのではなく、同じ動作を繰り返して怖さの中でも飛ぶ競技だった。",
+      "『ヒカキン』は、スキーの先輩が本名をもじって付けた呼び名だ。特技で大学へ進む道と東京就職を選ぶ直前、最後の飛び台で、その名を動画の世界へ持っていくか考えた。"
     ],
     choices: [
-      choice("replay_ch1_train_retrieve", "入居説明へ遅れても取りに戻る", "ノートは見つかった。寮では注意されたが、東京へ持ってきた理由を失わずに済んだ。", { stats: { beatbox: 3, energy: -5 }, hidden: { origin: 5 }, relationships: { supermarket: -2 }, routes: { craft: 3 }, addFlags: ["replay_notebook_recovered"] }, { tone: "bold" }),
-      choice("replay_ch1_train_rewrite", "記憶だけで一から書き直す", "失った技術を思い出すうち、ただの写しではない自分の練習法が生まれた。", { stats: { production: 2, beatbox: 2, energy: -4 }, hidden: { perfectionism: -2 }, routes: { strategy: 3 }, addFlags: ["replay_notebook_rewritten"] }, { tone: "steady" })
+      choice("replay_ch1_ski_last_jump", "最後の一本を飛び、東京へ向かう", "踏み切る瞬間だけは迷わなかった。何百回も反復した体の記憶が、後に百回撮り直す夜を支える。", { stats: { beatbox: 2, energy: 3 }, hidden: { origin: 6, perfectionism: 2 }, routes: { craft: 4 }, addFlags: ["replay_ski_discipline_owned", "ch1_ski_discipline"] }, { tone: "bold" }),
+      choice("replay_ch1_ski_keep_name", "先輩の呼び名を投稿者名に残す", "競技を離れても、雪山で呼ばれた名は消えない。過去を捨てず、新しい場所で意味を作り直した。", { stats: { expression: 2, trust: 2 }, hidden: { origin: 8, ambition: 3 }, routes: { mainstream: 2, craft: 2 }, addFlags: ["replay_hikakin_name_origin", "ch1_ski_discipline"] }, { tone: "warm" })
     ],
     priority: 6,
-    tags: ["replay", "rare", "origin", "daily-life"],
-    visual: { background: "backgrounds/replay/tokyo-lost-found.webp", portrait: "portraits/hikakin/young-worried.webp", expression: "worried", eventCg: "events/replay/lost-notebook.webp", accent: "blue" }
+    tags: ["replay", "rare", "origin", "ski-jump"],
+    visual: { background: "backgrounds/replay/niigata-ski-jump.webp", portrait: "portraits/hikakin/high-school.webp", expression: "determined", eventCg: "events/replay/last-ski-jump.webp", accent: "blue" }
   }),
   rare({
     id: "replay_ch1_bathroom_echo_map",
@@ -61,38 +61,38 @@ export const replayEvents: StoryEvent[] = [
     visual: { background: "backgrounds/replay/dorm-bathroom.webp", portrait: "portraits/hikakin/young-focused.webp", expression: "focused", eventCg: "events/replay/echo-map.webp", accent: "violet" }
   }),
   rare({
-    id: "replay_ch1_bent_price_tag",
+    id: "replay_ch1_two_powders",
     chapter: 1,
     slot: 4,
-    title: "曲がった値札",
-    date: "2008年・夏",
-    location: "スーパー・閉店後",
+    title: "二種類の粉",
+    date: "2008年・初任給前",
+    location: "スーパー社員寮・自室",
     body: [
-      "閉店後の売り場で、貼り替えた値札が一枚だけ曲がっていることに気づいた。勤務はもう終わり、寮では撮影時間が待っている。",
-      "動画の一音を何度も直す自分と、誰も気づかない値札を直す自分は、同じなのかもしれない。"
+      "スキージャンプの練習で立てないほど疲れた少年時代、帰宅するとキッチンへ直行し、コーヒー用の粉末ミルクをそのまま口へ入れた。空腹を埋める方法は、昔から少し変だった。",
+      "上京後の初任給前。値引き食パンへ実家から持ってきたココアの粉をかけ、むせながら水で流し込む。封筒の二万円はまだ減らしたくないが、明日は早朝勤務だ。"
     ],
     choices: [
-      choice("replay_ch1_tag_fix", "戻って貼り直す", "数十秒の仕事を終えると、誰にも見られていない努力へ少し自信が持てた。", { stats: { trust: 2, energy: -2 }, hidden: { perfectionism: 2 }, relationships: { supermarket: 4 }, routes: { stability: 2 }, addFlags: ["replay_small_work_finished"] }, { tone: "steady" }),
-      choice("replay_ch1_tag_leave", "今夜の撮影を優先する", "値札を背に寮へ走った。限られた時間では、全部を完璧にはできない。", { stats: { beatbox: 2, energy: 1 }, hidden: { perfectionism: -2, ambition: 2 }, relationships: { supermarket: -1 }, routes: { craft: 2 }, addFlags: ["replay_time_chosen"] }, { tone: "bold" })
+      choice("replay_ch1_powder_endure", "今夜は食パンとココアで耐える", "苦しくても明日の分を残す。競技で覚えた我慢が、東京で続けるための節約へ姿を変えた。", { stats: { money: 1_000, energy: -4 }, hidden: { origin: 5, ambition: 2 }, routes: { stability: 3 }, addFlags: ["replay_cocoa_bread_endured", "ch1_frugal_survival"] }, { tone: "steady" }),
+      choice("replay_ch1_powder_eat_meal", "二万円を使い、温かい定食を食べる", "封筒から一枚使った罪悪感は残ったが、翌朝は倒れず働けた。続けるために食べることも投資だと覚えた。", { stats: { money: -1_000, energy: 8 }, hidden: { fatigue: -3, perfectionism: -2 }, routes: { stability: 2, strategy: 2 }, addFlags: ["replay_first_warm_meal", "ch1_survival_over_punishment"] }, { tone: "warm" })
     ],
     priority: 5,
-    tags: ["replay", "rare", "supermarket", "perfectionism"],
-    visual: { background: "backgrounds/replay/supermarket-closing.webp", portrait: "portraits/hikakin/young-tired.webp", expression: "tired", accent: "green" }
+    tags: ["replay", "rare", "food", "origin"],
+    visual: { background: "backgrounds/replay/dorm-cocoa-bread.webp", portrait: "portraits/hikakin/young-tired.webp", expression: "tired", eventCg: "events/replay/cocoa-bread.webp", accent: "green" }
   }),
   rare({
     id: "replay_ch1_one_earbud",
     chapter: 1,
     slot: 6,
-    title: "片耳だけのイヤホン",
+    title: "再生できない音",
     date: "2009年",
     location: "社員寮・自室",
     body: [
-      "愛用のイヤホンが片方だけ聞こえなくなった。買い替える金はあるが、次の給料日までは食費を削ることになる。",
-      "片耳で海外のビートを研究すると、低音と高音の位置関係がいつもと違って聞こえた。故障にも、学べることはある。"
+      "中学時代、海外のビートボックス音源をネット掲示板で見つけても、実家の古いパソコンは音声ファイルをうまく再生できなかった。数秒聞いて止まり、また最初から待つ。それでも一音ずつ真似した。",
+      "高校ではアカペラの投稿サイトへ音を載せ、後に音楽家となる同世代の仲間とも知り合った。東京の社員寮で片耳のイヤホンが壊れた夜、あの不便な研究の日々を思い出す。"
     ],
     choices: [
-      choice("replay_ch1_earbud_replace", "中古のイヤホンを買う", "正確に聞ける環境を取り戻し、細かな音の違いを研究した。", { stats: { money: -4_000, beatbox: 3, production: 1 }, routes: { craft: 2 }, addFlags: ["replay_earbuds_replaced"] }, { tone: "steady" }),
-      choice("replay_ch1_earbud_mono", "給料日まで片耳で研究する", "不便を逆手に取り、音を一つずつ分解して聞く癖がついた。", { stats: { beatbox: 2, production: 2 }, hidden: { ambition: 2 }, routes: { strategy: 3 }, addFlags: ["replay_mono_study"] }, { tone: "bold" })
+      choice("replay_ch1_earbud_replace", "中古のイヤホンを買う", "正確に聞ける環境を取り戻し、細かな音の違いを研究した。独学でも、道具へ払う金の意味を知った。", { stats: { money: -4_000, beatbox: 3, production: 1 }, routes: { craft: 2 }, addFlags: ["replay_earbuds_replaced", "ch1_self_taught_beatbox"] }, { tone: "steady" }),
+      choice("replay_ch1_earbud_mono", "給料日まで片耳で研究する", "不便を逆手に取り、音を一つずつ分解して聞く。昔のネット仲間へ短い近況も送り、一人だけの研究ではないと確かめた。", { stats: { beatbox: 2, production: 2, trust: 1 }, hidden: { ambition: 2 }, routes: { strategy: 2, network: 2 }, addFlags: ["replay_mono_study", "replay_early_music_friend"] }, { tone: "warm" })
     ],
     priority: 6,
     tags: ["replay", "rare", "money", "research"],
@@ -569,23 +569,23 @@ export const replayEvents: StoryEvent[] = [
     visual: { background: "backgrounds/replay/ch5-archive-screen.webp", portrait: "portraits/hikakin/moved.webp", expression: "moved", eventCg: "events/replay/unlisted-draft.webp", accent: "violet" }
   }),
   rare({
-    id: "replay_ch5_comment_from_future",
+    id: "replay_ch5_twenty_year_jump",
     chapter: 5,
     slot: 7,
-    title: "十年後に見る人へ",
-    date: "最終決戦の年",
-    location: "編集室",
+    title: "二十年ぶりの飛び台",
+    date: "成功後の冬",
+    location: "新潟・スキー場",
     body: [
-      "最終動画の字幕を確認中、ヒカキンは『公開日の視聴者』ばかり想像していることに気づく。十年後、当時を知らない人が偶然開く可能性もある。",
-      "流行の説明を足せば長く伝わるが、今の速度は落ちる。"
+      "ゼイキンと並んで雪の上に立つのは、およそ二十年ぶりだった。小学三年から高校まで毎冬通った場所だが、今の視聴者の多くは、ヒカキンが全国八位まで飛んだ少年だったことを知らない。",
+      "踏み切り台の上では、登録者も再生数も役に立たない。体が覚えている反復を信じるか、成功した今だからこそ安全を優先するか。兄は急かさず、下からカメラを構えている。"
     ],
     choices: [
-      choice("replay_ch5_future_context", "時代背景を映像の中へ自然に残す", "現在の熱と未来の理解を両立する小さな場面を加えた。", { stats: { production: 5, energy: -3 }, hidden: { origin: 3 }, routes: { craft: 3 }, addFlags: ["replay_future_viewer_context"] }, { tone: "steady" }),
-      choice("replay_ch5_future_now", "今の視聴者に全力で届ける", "説明で勢いを止めず、この時代の空気ごと保存することにした。", { stats: { expression: 3, subscribers: 40_000 }, hidden: { ambition: 2 }, routes: { mainstream: 3 }, addFlags: ["replay_present_tense_final"] }, { tone: "bold" })
+      choice("replay_ch5_jump_again", "助走をつけ、もう一度飛ぶ", "着地は昔ほど美しくない。それでも飛び終えた瞬間、百回の撮り直しを恐れない自分がどこで作られたのか分かった。ゼイキンの歓声が雪山へ響く。", { stats: { beatbox: 2, expression: 4, energy: -5, trust: 3 }, hidden: { origin: 9, ambition: 2 }, relationships: { zeikin: 7 }, routes: { craft: 3 }, addFlags: ["replay_twenty_year_jump", "replay_ski_origin_reclaimed"] }, { tone: "bold" }),
+      choice("replay_ch5_ski_story", "飛ばず、兄と昔の練習を語る", "危険を見せ場にせず、粉末ミルクを食べるほど疲れた練習や、先輩にもらった呼び名を笑って話した。飛ばない選択も含めて、原点を一本の動画へ残した。", { stats: { production: 4, expression: 5, trust: 5, subscribers: 40_000 }, hidden: { origin: 10, perfectionism: -2 }, relationships: { zeikin: 7 }, routes: { mainstream: 3, stability: 2 }, addFlags: ["replay_ski_story_shared", "replay_hikakin_name_origin"] }, { tone: "warm" })
     ],
     priority: 6,
-    tags: ["replay", "rare", "legacy", "production"],
-    visual: { background: "backgrounds/replay/ch5-edit-timeline.webp", portrait: "portraits/hikakin/thoughtful.webp", expression: "thoughtful", eventCg: "events/replay/future-viewer.webp", accent: "blue" }
+    tags: ["replay", "rare", "ski-jump", "zeikin", "origin"],
+    visual: { background: "backgrounds/replay/ch5-ski-slope.webp", portrait: "portraits/hikakin/winter.webp", expression: "nostalgic", eventCg: "events/replay/twenty-year-ski.webp", accent: "blue" }
   }),
   rare({
     id: "replay_ch5_counter_unplugged",

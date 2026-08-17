@@ -532,7 +532,8 @@ export const chapter2Events: StoryEvent[] = [
     location: "スーパー・従業員休憩室",
     body: [
       "パートナーとして初めての広告収益が振り込まれた。まだ毎月の生活をすべて賄える額ではないが、安いマイク代を超えている。",
-      "同じ日にスーパーの給与明細も受け取った。決まった勤務への確かな給料と、再生数で大きく揺れる収益。どちらもヒカキンの働いた時間から生まれた金だった。"
+      "同じ日にスーパーの給与明細も受け取った。決まった勤務への確かな給料と、再生数で大きく揺れる収益。どちらもヒカキンの働いた時間から生まれた金だった。",
+      "少し前、好きな美容を発信し、それ自体を仕事にした海外クリエイターの特集を見た。『好きなことを仕事にする』という生き方が現実にあるなら、自分も動画で食べていく道を数字から考えられるかもしれない。"
     ],
     choices: [
       choice(
@@ -679,7 +680,7 @@ export const chapter2Events: StoryEvent[] = [
     location: "スーパーマーケット・売り場",
     body: [
       "勤務中、客がヒカキンに携帯電話を向け、『あのゲーム動画の人だ』と声を上げた。ほかの客まで集まり、売り場の通路が塞がる。",
-      "上司は、動画活動そのものではなく仕事への影響を問題にした。過去の急な欠勤や注意もあり、このまま両立するなら明確な対策を求められる。"
+      "上司は、動画活動そのものではなく仕事への影響を問題にした。過去の急な欠勤や注意もあり、このまま両立するなら明確な対策を求められる。叱られる言葉を聞きながら、胸の奥では『自分にはYouTubeがある』という小さな支えが消えなかった。"
     ],
     choices: [
       choice(
@@ -1973,8 +1974,8 @@ export const chapter2Events: StoryEvent[] = [
     date: "2012年",
     location: "スーパー社員寮・自室",
     body: [
-      "動画収益がスーパーの給料を上回る月が出てきた。一方、翌月も同じ額になる保証はなく、退職すれば社員寮も出なければならない。",
-      "勤務を続ければ生活は守れるが、投稿の速度と規模には限界がある。辞めることは夢への勇気にも、成功に浮かれた賭けにもなり得た。"
+      "動画収益が、手取り十三〜十五万円ほどのスーパーの給料を上回る月が出てきた。それでもヒット直後には辞めず、社員として働き続けてきた。翌月も同じ額になる保証はなく、退職すれば家賃二万円を天引きされていた社員寮も出なければならない。",
+      "『YouTubeで給料以上を安定して稼げるようになったら辞める』。臆病だからこそ決めた線が、いま目の前にある。勤務を続ければ生活は守れるが、投稿の速度と規模には限界がある。"
     ],
     choices: [
       choice(
@@ -1989,7 +1990,7 @@ export const chapter2Events: StoryEvent[] = [
           hidden: { ambition: 8, fatigue: -4 },
           routes: { mainstream: 3, craft: 2 },
           relationships: { supermarket: -2 },
-          addFlags: ["ch2_left_supermarket_early", "ch2_moved_from_dorm", "ch2_fulltime_creator", "ch2_housing_paid"]
+          addFlags: ["ch2_left_supermarket_early", "ch2_moved_from_dorm", "ch2_fulltime_creator", "ch2_housing_paid", "ch2_income_surpassed_salary"]
         },
         { tone: "risky", subtext: "一日のすべてを得る代わりに給料と寮を失う" }
       ),
@@ -2005,7 +2006,7 @@ export const chapter2Events: StoryEvent[] = [
           hidden: { fatigue: 5, ambition: -1 },
           routes: { stability: 7 },
           relationships: { supermarket: 5 },
-          addFlags: ["ch2_kept_supermarket", "ch2_dual_life_continues", "ch2_income_patience"]
+          addFlags: ["ch2_kept_supermarket", "ch2_dual_life_continues", "ch2_income_patience", "ch2_cautious_exit_rule"]
         },
         { tone: "steady", subtext: "成長速度を譲り、選べる生活を残す" }
       ),
@@ -2021,7 +2022,7 @@ export const chapter2Events: StoryEvent[] = [
           hidden: { fatigue: -2 },
           routes: { stability: 5, strategy: 3 },
           relationships: { supermarket: 4 },
-          addFlags: ["ch2_parttime_supermarket", "ch2_gradual_fulltime"]
+          addFlags: ["ch2_parttime_supermarket", "ch2_gradual_fulltime", "ch2_cautious_exit_rule"]
         },
         { tone: "warm", subtext: "給料を一部残し、制作日を増やす" }
       )
@@ -2047,7 +2048,7 @@ export const chapter2Events: StoryEvent[] = [
     date: "2012年",
     location: "スーパーマーケット",
     body: [
-      "半年前に上司と決めた条件をすべて満たした。動画収益は連続して給料を上回り、貯金も引っ越し費用もあり、担当売り場の引き継ぎも終わっている。",
+      "上京から四年。朝の肉まん、昼と夜の二百円定食、休日の業務用そばを重ねながら、半年前に上司と決めた条件をすべて満たした。動画収益は連続して給料を上回り、貯金も引っ越し費用もあり、担当売り場の引き継ぎも終わっている。",
       "最後の勤務日、同僚たちは小さな寄せ書きを渡してくれた。浴室の騒音を注意されたころから知る人もいる。制服を脱ぐことは、過去を捨てることではなかった。"
     ],
     speaker: "スーパーの上司",

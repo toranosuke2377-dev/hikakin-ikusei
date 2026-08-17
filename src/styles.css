@@ -693,6 +693,16 @@ blockquote span {
   font-size: 0.65rem;
 }
 
+.profile-origin-list li {
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.profile-origin-list strong {
+  max-width: 68%;
+  text-align: right;
+}
+
 .video-list span {
   max-width: 65%;
 }

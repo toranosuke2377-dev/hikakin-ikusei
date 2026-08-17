@@ -20,9 +20,9 @@ export const chapter1Events: StoryEvent[] = [
     date: "2008年3月",
     location: "新潟発・東京行きの列車",
     body: [
-      "高校を卒業したばかりのヒカキンは、雪の残る新潟を背に東京行きの列車へ乗った。鞄には着替えと練習ノート、そして海外のビートボクサーを見るために使ってきた安いパソコンが入っている。",
-      "親から渡された封筒の中身は二万円。東京のスーパーには社員寮があり、家賃は給料から引かれる。それでも、給料日まで何が起きるか分からない額だった。",
-      "YouTubeは、海外のビートボクサーを見るための場所だった。世界中から反応をもらう彼らを見て、自分も投稿すれば誰かに見つけてもらえるのではないかと考えている。",
+      "高校を卒業したばかりのヒカキンは、雪の残る新潟を背に東京行きの列車へ乗った。小学三年から続け、全国大会でも上位へ食い込んだスキージャンプ。その特技で大学へ進む道ではなく、二件しかなかった東京の求人からスーパーへの就職を選んだ。",
+      "鞄には着替えとビートボックスの練習ノート、足元には実家から持たされた食料の段ボール。銀行口座に貯金はなく、親から渡された封筒の二万円が使える現金のすべてだった。社員寮の家賃二万円は給料から引かれるが、初任給まではこの箱と封筒だけで生きることになる。",
+      "YouTubeは、古いパソコンで海外のビートボクサーを見るための場所だった。中学から誰にも習わず、聞こえた音を見よう見まねで分解してきた。自分も投稿すれば、世界の輪へ参加できるかもしれない。",
       "動画を仕事にするという発想はまだない。ただ、窓に映る十八歳の顔へ向かって、声に出さず誓った。"
     ],
     speaker: "ヒカキン",
@@ -39,7 +39,7 @@ export const chapter1Events: StoryEvent[] = [
           stats: { money: 2_000, energy: 6 },
           hidden: { ambition: 2 },
           routes: { stability: 3 },
-          addFlags: ["ch1_cash_guarded", "ch1_arrival_cautious"],
+          addFlags: ["ch1_cash_guarded", "ch1_arrival_cautious", "ch1_ski_discipline", "ch1_food_box_arrival"],
           queueEvent: "ch1_s1_envelope_budget"
         },
         { tone: "steady", subtext: "生活の余裕を残し、長く続ける準備をする" }
@@ -55,7 +55,7 @@ export const chapter1Events: StoryEvent[] = [
           stats: { money: -8_000, production: 2, beatbox: 1 },
           hidden: { ambition: 4 },
           routes: { craft: 3 },
-          addFlags: ["ch1_mic_first", "ch1_arrival_bold"],
+          addFlags: ["ch1_mic_first", "ch1_arrival_bold", "ch1_self_taught_beatbox", "ch1_food_box_arrival"],
           queueEvent: "ch1_s1_mic_shop"
         },
         { tone: "bold", subtext: "生活費を削って、音に先行投資する" }
@@ -71,7 +71,7 @@ export const chapter1Events: StoryEvent[] = [
           stats: { money: -3_000, energy: -6, beatbox: 2 },
           hidden: { ambition: 5, origin: 3 },
           routes: { network: 2, craft: 2 },
-          addFlags: ["ch1_first_stage_search", "ch1_arrival_bold"],
+          addFlags: ["ch1_first_stage_search", "ch1_arrival_bold", "ch1_school_stage_memory", "ch1_food_box_arrival"],
           queueEvent: "ch1_s1_live_house"
         },
         { tone: "risky", subtext: "腕試しと出会いを求めて街へ出る" }
@@ -98,8 +98,8 @@ export const chapter1Events: StoryEvent[] = [
     date: "2008年3月",
     location: "新潟発・東京行きの列車",
     body: [
-      "高校卒業直後、十八歳のヒカキンは東京のスーパーへ就職する列車で、保存しておいた海外ビートボクサーの動画をもう一度再生した。知らない国の観客が、たった一人の口から生まれる音に熱狂している。",
-      "通信は何度も途切れ、イヤホンも片方しか鳴らない。それでも画面の向こうには、出身も肩書も関係なく技術だけで発見される世界があった。",
+      "高校卒業直後、十八歳のヒカキンは東京のスーパーへ就職する列車で、保存しておいた海外ビートボクサーの動画をもう一度再生した。中学時代、テレビで偶然見た口だけの演奏に衝撃を受け、家族から『うるさい』と言われても毎日独学で続けてきた音だ。",
+      "実家の古いパソコンは音声ファイルさえ満足に再生できず、通信も何度も途切れた。それでも画面の向こうには、出身も肩書も関係なく技術だけで発見される世界があった。",
       "見るために開いていたYouTubeへ自分も投稿すれば、誰かに見つけてもらえるかもしれない。二万円と安い機材しかなくても、世界へ届く一本を作れるという予感が野心へ変わった。"
     ],
     speaker: "ヒカキン",
@@ -116,7 +116,7 @@ export const chapter1Events: StoryEvent[] = [
           stats: { beatbox: 3, production: 1 },
           hidden: { perfectionism: 2, ambition: 3, origin: 2 },
           routes: { craft: 4 },
-          addFlags: ["ch1_overseas_notebook", "ch1_sound_analysis"],
+          addFlags: ["ch1_overseas_notebook", "ch1_sound_analysis", "ch1_self_taught_beatbox"],
           queueEvent: "ch1_s1_mic_shop"
         },
         { tone: "steady", subtext: "世界の技術を研究材料に変える" }
@@ -132,7 +132,7 @@ export const chapter1Events: StoryEvent[] = [
           stats: { expression: 3, beatbox: 1 },
           hidden: { ambition: 3 },
           routes: { mainstream: 3 },
-          addFlags: ["ch1_audience_imagined", "ch1_performance_minded"],
+          addFlags: ["ch1_audience_imagined", "ch1_performance_minded", "ch1_school_stage_memory"],
           queueEvent: "ch1_s1_live_house"
         },
         { tone: "warm", subtext: "技術を見せる相手の顔まで考える" }
@@ -147,7 +147,7 @@ export const chapter1Events: StoryEvent[] = [
         {
           stats: { money: 1_000, energy: 4 },
           routes: { stability: 4, strategy: 1 },
-          addFlags: ["ch1_cash_guarded", "ch1_budget_planned"],
+          addFlags: ["ch1_cash_guarded", "ch1_budget_planned", "ch1_food_box_arrival"],
           queueEvent: "ch1_s1_envelope_budget"
         },
         { tone: "steady", subtext: "長く戦うため、まず暮らしを設計する" }
@@ -175,7 +175,7 @@ export const chapter1Events: StoryEvent[] = [
     date: "2008年3月",
     location: "新潟発・東京行きの列車",
     body: [
-      "高校卒業直後、十八歳で乗った東京行きの列車。その発車音を聞いた瞬間、ヒカキンは無意識に同じ音を口で返した。向かいの子供が遊ぶ携帯ゲームからも、短く覚えやすい旋律が漏れている。",
+      "高校卒業直後、十八歳で乗った東京行きの列車。その発車音を聞いた瞬間、ヒカキンは無意識に同じ音を口で返した。向かいの子供が遊ぶ携帯ゲームを見て、モンスター収集、電子ペット、対戦カード、改造する小さなレーサーに夢中だった少年時代を思い出す。",
       "どんな音でも、口の中で組み直せる。それだけが、自分の中で誰にも負けたくないと思えるものだった。",
       "これまでYouTubeは海外のビートボクサーを見る場所だった。しかし自分も投稿すれば、この得意技を誰かに見つけてもらえるかもしれない。",
       "親からもらった二万円を握り、東京で絶対に何者かになると決める。ただしその入口がゲームの音になることを、このときはまだ知らない。"
@@ -194,7 +194,7 @@ export const chapter1Events: StoryEvent[] = [
           stats: { production: 2, beatbox: 2 },
           hidden: { perfectionism: 1 },
           routes: { strategy: 2, craft: 2 },
-          addFlags: ["ch1_everyday_sound_hunter", "ch1_sound_analysis"],
+          addFlags: ["ch1_everyday_sound_hunter", "ch1_sound_analysis", "ch1_childhood_game_memory"],
           queueEvent: "ch1_s1_mic_shop"
         },
         { tone: "bold", subtext: "日常の音をすぐ素材にする" }
@@ -210,7 +210,7 @@ export const chapter1Events: StoryEvent[] = [
           stats: { expression: 2, trust: 1, beatbox: 1 },
           hidden: { origin: 3 },
           routes: { mainstream: 3 },
-          addFlags: ["ch1_first_small_audience", "ch1_game_sound_memory"],
+          addFlags: ["ch1_first_small_audience", "ch1_game_sound_memory", "ch1_childhood_game_memory"],
           queueEvent: "ch1_s1_live_house"
         },
         { tone: "warm", subtext: "最初の観客を笑顔にする" }
@@ -226,7 +226,7 @@ export const chapter1Events: StoryEvent[] = [
           stats: { energy: 4 },
           hidden: { ambition: 5, origin: 1 },
           routes: { stability: 3 },
-          addFlags: ["ch1_silent_vow", "ch1_cash_guarded"],
+          addFlags: ["ch1_silent_vow", "ch1_cash_guarded", "ch1_ski_discipline"],
           queueEvent: "ch1_s1_envelope_budget"
         },
         { tone: "steady", subtext: "衝動より継続を選ぶ" }
@@ -257,8 +257,8 @@ export const chapter1Events: StoryEvent[] = [
     date: "2008年3月",
     location: "スーパー社員寮・自室",
     body: [
-      "社員寮の部屋は、ベッドと机を置けばほとんど埋まった。窓の外には知らない建物が並び、廊下からは同郷らしい先輩たちの話し声が聞こえる。",
-      "給料から家賃が引かれるとはいえ、手元の二万円で日用品も食事も機材も揃えなければならない。机に硬貨まで並べると、夢が初めて具体的な値段を持った。"
+      "社員寮の部屋は、ベッドと机を置けばほとんど埋まった。窓の外には知らない建物が並び、廊下からは同郷らしい先輩たちの話し声が聞こえる。実家から運んだ段ボールには、乾麺、ココアの粉、保存の利く食料が詰められていた。",
+      "銀行に貯金はない。給料から家賃二万円が引かれるとはいえ、初任給まで手元の二万円で日用品も食事も機材も揃えなければならない。千円札を一枚減らすことさえ怖く、机に硬貨まで並べると、夢が初めて具体的な値段を持った。"
     ],
     speaker: "ヒカキン",
     quote: "二万円で人生は買えない。でも、最初の一歩くらいは買える。",
@@ -329,7 +329,7 @@ export const chapter1Events: StoryEvent[] = [
     location: "東京・中古機材店",
     body: [
       "壁一面に並ぶマイクは、どれもヒカキンの二万円を簡単に超えていた。店員に予算を伝えると、棚の下から傷だらけの一本と、さらに安い展示処分品を出してくれる。",
-      "音の違いは確かに分かる。だが良い方を選べば、給料日まで食費がほとんど残らない。何者かになるという決意が、初めて現実の値札に試された。"
+      "音の違いは確かに分かる。だが良い方を選べば、給料日まで値引き食パンへ実家のココアを振りかける生活になる。何者かになるという決意が、初めて現実の値札に試された。"
     ],
     choices: [
       choice(
@@ -471,7 +471,7 @@ export const chapter1Events: StoryEvent[] = [
     date: "2008年3月",
     location: "都内の小さなライブハウス",
     body: [
-      "地下の会場には、ヒカキンより派手で、自信に満ちた演者が何人もいた。受付へ参加費を払うと、手元の二万円が現実的に減っていく。",
+      "高校では、同じくビートボックスをする友人と音楽室へ通い、文化祭や小さなライブにも立った。それでも東京の地下会場には、ヒカキンより派手で、自信に満ちた演者が何人もいる。受付へ参加費を払うと、手元の二万円が現実的に減っていった。",
       "飛び入り枠でもらえた時間はわずか八小節。東京で絶対に何者かになるという言葉が、今度は観客の前で試される。"
     ],
     choices: [
@@ -486,7 +486,7 @@ export const chapter1Events: StoryEvent[] = [
           stats: { beatbox: 4, energy: -6 },
           hidden: { perfectionism: 4, ambition: 2 },
           routes: { craft: 4 },
-          addFlags: ["ch1_stage_technical", "ch1_stage_one_mistake"]
+          addFlags: ["ch1_stage_technical", "ch1_stage_one_mistake", "ch1_school_stage_memory"]
         },
         { tone: "bold", subtext: "失敗の危険ごと実力を見せる" }
       ),
@@ -501,7 +501,7 @@ export const chapter1Events: StoryEvent[] = [
           stats: { expression: 4, beatbox: 1, trust: 1 },
           hidden: { origin: 2 },
           routes: { mainstream: 3, network: 1 },
-          addFlags: ["ch1_stage_crowdwork", "ch1_audience_imagined"]
+          addFlags: ["ch1_stage_crowdwork", "ch1_audience_imagined", "ch1_school_stage_memory"]
         },
         { tone: "warm", subtext: "技術より観客の熱を選ぶ" }
       ),
@@ -516,7 +516,7 @@ export const chapter1Events: StoryEvent[] = [
           stats: { production: 3, beatbox: 1, energy: 2 },
           hidden: { ambition: 3 },
           routes: { strategy: 3 },
-          addFlags: ["ch1_stage_observer", "ch1_performance_notes"]
+          addFlags: ["ch1_stage_observer", "ch1_performance_notes", "ch1_school_stage_memory"]
         },
         { tone: "steady", subtext: "悔しさを研究材料として持ち帰る" }
       )
@@ -545,8 +545,8 @@ export const chapter1Events: StoryEvent[] = [
     date: "2008年4月",
     location: "東京・スーパーマーケット",
     body: [
-      "初出勤の日、ヒカキンは開店前から飲料の段ボールを運び続けた。接客の言葉、商品の位置、廃棄の時刻。覚えることは音のパターンより多い。",
-      "勤務後には足が震え、寮へ戻ってマイクを持つ余力がほとんど残っていなかった。それでもここで給料を得なければ、東京にも動画にも居続けられない。"
+      "初出勤の日、ヒカキンは早朝から飲料の段ボールを運び、倉庫を整理し、商品を売り場へ出し続けた。レジへ入れば接客の言葉と商品の位置も覚える。朝九時の開店時点で、すでに一日分働いたように腕が重い。",
+      "手取りは月十三〜十五万円ほど。そこから寮費が天引きされる。勤務後には足が震え、マイクを持つ余力もほとんど残っていなかった。それでもここで給料を得なければ、東京にも動画にも居続けられない。"
     ],
     choices: [
       choice(
@@ -616,8 +616,9 @@ export const chapter1Events: StoryEvent[] = [
     date: "2008年4月",
     location: "東京・スーパーマーケット",
     body: [
-      "機材へ金を使いすぎた週、ヒカキンの夕食は小さなパン一つになった。閉店後、売れ残った弁当が規則どおり廃棄箱へ入れられていく。",
-      "先輩は空腹に気づき、食事を奢る代わりに翌朝の早番を手伝ってほしいと言う。受ければ助かるが、夜の撮影と翌日の練習時間は消える。"
+      "機材へ金を使いすぎた週、朝食は肉まん一個。昼も夜も社員食堂で一番安い二百円の定食を選び、休日は実家から持ってきた業務用のそばを一食ずつ茹でた。周囲が外へ昼食に出ても、貯金を減らす怖さの方が勝った。",
+      "閉店後、売れ残った弁当が規則どおり廃棄箱へ入れられていく。先輩は空腹に気づき、食事を奢る代わりに翌朝の早番を手伝ってほしいと言う。",
+      "受ければ助かるが、夜の撮影と翌日の練習時間は消える。この二百円定食を何年続けることになるかも、まだ分からない。"
     ],
     choices: [
       choice(
@@ -632,7 +633,7 @@ export const chapter1Events: StoryEvent[] = [
           hidden: { fatigue: 2 },
           routes: { stability: 3, network: 1 },
           relationships: { supermarket: 7 },
-          addFlags: ["ch1_senior_helped", "ch1_owed_early_shift"]
+          addFlags: ["ch1_senior_helped", "ch1_owed_early_shift", "ch1_two_hundred_yen_meal"]
         },
         { tone: "warm", subtext: "撮影時間と引き換えに人との支えを得る" }
       ),
@@ -647,7 +648,7 @@ export const chapter1Events: StoryEvent[] = [
           stats: { energy: -9, beatbox: 3, production: 1 },
           hidden: { fatigue: 5, ambition: 3, perfectionism: 2 },
           routes: { craft: 4 },
-          addFlags: ["ch1_hungry_recording", "ch1_self_reliant_to_fault"]
+          addFlags: ["ch1_hungry_recording", "ch1_self_reliant_to_fault", "ch1_two_hundred_yen_meal"]
         },
         { tone: "risky", subtext: "空腹のまま作品を優先する" }
       ),
@@ -663,7 +664,7 @@ export const chapter1Events: StoryEvent[] = [
           hidden: { ambition: 2, fatigue: 2 },
           routes: { stability: 5 },
           relationships: { supermarket: 4 },
-          addFlags: ["ch1_extra_shift", "ch1_upload_delayed_for_life"]
+          addFlags: ["ch1_extra_shift", "ch1_upload_delayed_for_life", "ch1_two_hundred_yen_meal"]
         },
         { tone: "steady", subtext: "制作を止めて生活を立て直す" }
       )
@@ -689,7 +690,7 @@ export const chapter1Events: StoryEvent[] = [
     date: "2008年4月",
     location: "スーパー・従業員休憩室",
     body: [
-      "休憩室には同じ新潟県出身の社員が何人もいた。東京へ出たばかりのヒカキンへ、安い店や寮生活のコツを次々に教えてくれる。",
+      "高校へ届いた東京の求人は、たった二件。そのうち新潟県出身者が多く、社員寮もあるスーパーを選んだ。休憩室には実際に同郷の社員が何人もいて、安い店や寮生活のコツを次々に教えてくれる。",
       "話の流れでビートボックスを披露すると、先輩の一人が携帯電話を向けた。ネットへ出すなら、職場の名前や制服が映らないようにしろとも釘を刺される。"
     ],
     choices: [
@@ -764,7 +765,7 @@ export const chapter1Events: StoryEvent[] = [
     date: "2008年5月",
     location: "スーパー社員寮",
     body: [
-      "仕事を終えた夜、ヒカキンは安いマイクを机へ置いた。しかし自室では隣室のテレビと廊下の足音が入り、低音も壁へ吸われてしまう。",
+      "仕事を終えた夜、ヒカキンは安いマイクを机へ置いた。木造の壁は隣人のくしゃみまで聞こえるほど薄く、自室で低音を鳴らせば、そのまま相手の生活へ入り込んでしまう。",
       "浴室なら音はよく響く。屋外なら遠慮なく声を出せる。どこを選んでも欠点があり、理想の環境を待っていては一本も始まらない。"
     ],
     choices: [
@@ -834,7 +835,7 @@ export const chapter1Events: StoryEvent[] = [
     date: "2008年5月",
     location: "スーパー社員寮・共用浴室",
     body: [
-      "機材店で聞いた話やステージで覚えたマイク距離を試すと、浴室の反響はただ大きいだけではないと分かった。立つ位置を数十センチ変えるだけで、低音の輪郭が変わる。",
+      "隣人のくしゃみまで聞こえる薄い壁を避け、狭いユニットバスへ体を折るように入った。機材店で聞いた話やステージで覚えたマイク距離を試すと、浴室の反響はただ大きいだけではない。立つ位置を数十センチ変えるだけで、安いマイクの低音が変わった。",
       "問題は利用できる時間が短いことだった。廊下には夜勤明けの社員もいる。一つの音を追い込むほど、誰かの睡眠を削ってしまう。"
     ],
     choices: [
@@ -979,7 +980,7 @@ export const chapter1Events: StoryEvent[] = [
     date: "2008年6月",
     location: "スーパー社員寮・自室",
     body: [
-      "撮影したビートボックス動画を編集画面へ置くと、三分の映像がひどく長く見えた。冒頭にはマイクを触る音が入り、最後の数秒ではリズムがわずかに走っている。",
+      "高校時代にも、浴室でビートボックスを撮って投稿したことがある。だが後から見返すと、恥ずかしいほど未熟に聞こえて削除した。今度こそ残せる一本にするため、社員寮で撮った三分の映像を編集画面へ置く。冒頭にはマイクを触る音が入り、最後の数秒ではリズムがわずかに走っている。",
       "チャンネル登録者はゼロ。待っている人は誰もいないからこそ、公開ボタンを押す理由は自分で作らなければならない。"
     ],
     speaker: "ヒカキン",
@@ -996,7 +997,7 @@ export const chapter1Events: StoryEvent[] = [
           stats: { subscribers: 1, production: 2, expression: 1 },
           hidden: { perfectionism: -3, origin: 4, ambition: 2 },
           routes: { mainstream: 2 },
-          addFlags: ["ch1_first_upload_fast", "ch1_first_video_3_views"],
+          addFlags: ["ch1_first_upload_fast", "ch1_first_video_3_views", "ch1_deleted_early_video"],
           video: {
             title: "BEATBOX 001",
             views: 3,
@@ -1018,7 +1019,7 @@ export const chapter1Events: StoryEvent[] = [
           stats: { subscribers: 3, production: 3, beatbox: 1, energy: -4 },
           hidden: { perfectionism: 1, origin: 4 },
           routes: { craft: 2, strategy: 1 },
-          addFlags: ["ch1_first_upload_balanced", "ch1_first_foreign_comment"],
+          addFlags: ["ch1_first_upload_balanced", "ch1_first_foreign_comment", "ch1_deleted_early_video"],
           video: {
             title: "Japanese Beatbox Practice #1",
             views: 17,
@@ -1040,7 +1041,7 @@ export const chapter1Events: StoryEvent[] = [
           stats: { subscribers: 7, production: 3, beatbox: 3, energy: -9 },
           hidden: { perfectionism: 5, fatigue: 3, origin: 3 },
           routes: { craft: 4 },
-          addFlags: ["ch1_first_upload_perfect", "ch1_first_comment_sound"],
+          addFlags: ["ch1_first_upload_perfect", "ch1_first_comment_sound", "ch1_deleted_early_video"],
           video: {
             title: "JAPANESE BEATBOX",
             views: 47,
@@ -1073,7 +1074,7 @@ export const chapter1Events: StoryEvent[] = [
     location: "スーパー社員寮・浴室",
     body: [
       "低音を録り直している最中、隣の壁が三回鳴った。ヒカキンが音を止めると、廊下から夜勤明けの社員の咳払いが聞こえる。",
-      "録音はあと少しで完成する。続ければ良いテイクが取れるかもしれないが、社員寮は自分だけのスタジオではない。"
+      "実家で練習を始めたころも、家族から毎日『うるさい』と言われた。それでも続け、最後には何も言われなくなった。だが社員寮の隣人へ、家族と同じ我慢を求めることはできない。録音はあと少しで完成する。"
     ],
     choices: [
       choice(
@@ -1224,7 +1225,8 @@ export const chapter1Events: StoryEvent[] = [
     date: "2008年秋",
     location: "社員寮とスーパーマーケット",
     body: [
-      "季節が変わっても、ヒカキンの一日は品出しと接客で終わり、夜から撮影が始まった。納得できない動画は消すため、公開できるのは月に一、二本だけだった。",
+      "季節が変わっても、早朝の品出し、倉庫整理、接客が終わると夜から練習、撮影、編集が始まった。百パーセントうまくいったと思えるまで何度も撮り直し、睡眠を削っても公開できるのは月に一、二本だけだった。",
+      "朝起きると真っ先に古いパソコンを開き、再生数、海外からのアクセス、コメントを確認する。一回でも増えていれば『よっしゃ』と呟き、その小さな勝利を持ってスーパーへ向かった。",
       "登録者はまだ両手で数えられるほど。誰にも知られない時間が長くなるほど、『何者かになる』という言葉は希望ではなく、自分へ課した宿題になっていく。"
     ],
     choices: [
@@ -2350,6 +2352,7 @@ export const chapter1Events: StoryEvent[] = [
     location: "社員寮からスーパーマーケットへ",
     body: [
       "公開から一時間で八十一回。三時間後には千回を超え、ヒカキンは集計画面が壊れたと思った。出勤前には数字が一万を越え、更新するたび桁が変わる。",
+      "スーパーへ向かう駅のホームでも数字は増え続けた。眠れなかった夜、二百円の定食、浴室で消したテイクが一つずつ報われた気がして、電車が来る前に涙がにじんだ。それでも制服の上着を整え、いつもの職場へ向かう。",
       "勤務を終えて寮へ戻るころ、アクセスは二十万へ迫っていた。一週間後には百万人が見て、日本国内の月間アクセス一位として名前が表示される。",
       "長い時間をかけ、動画は三百万回を超えて伸び続けた。昨日まで誰も知らなかった青年へ、『次も同じものを』という期待が一斉に向けられる。"
     ],
@@ -2447,6 +2450,7 @@ export const chapter1Events: StoryEvent[] = [
     body: [
       "最初に異変が起きたのは、日本が眠る時間だった。英語、スペイン語、見たことのない文字のコメントが増え、海外掲示板からのアクセスが一本の太い線になる。",
       "朝には国内でも『海外で話題の日本人』として共有され、二十四時間で約二十万アクセス。一週間で百万人、日本国内の月間アクセス一位まで逆流する。",
+      "通勤途中の駅のホームで画面を更新すると、世界地図の点がまた増えた。古いパソコンで海外の音声さえ開けなかった少年が、今は海の向こうから見られている。目に涙がにじむ。それでも電車へ乗り、いつもの品出しへ向かった。",
       "長期的な再生数は一千万へ到達した。社員寮の小さな部屋から出した一本が、先に世界を回って帰ってきた。"
     ],
     speaker: "ヒカキン",
@@ -2544,6 +2548,7 @@ export const chapter1Events: StoryEvent[] = [
     body: [
       "ゲームファンが音を比較し始めると、再現度への称賛と同時に『編集で本物の音を混ぜたのでは』という疑いが広がった。検証する投稿が検証を呼び、二十四時間で約二十万アクセスへ跳ねる。",
       "一週間で百万人、日本国内の月間アクセス一位。長期的には一千万再生へ届くが、ヒカキンの名前には『本物なら証明しろ』という言葉も付いて回る。",
+      "スーパーへ向かう駅のホームで、疑いも称賛も混ざった数字を見つめた。誰にも習わず続けた音が、疑われるほど遠くへ届いた。悔しさと喜びで涙がにじんだが、電車が来ると携帯電話を閉じ、勤務へ向かった。",
       "技術が高すぎたから生まれた疑いを、誇りとして受け取るか、攻撃として受け取るかが次の道を分ける。"
     ],
     speaker: "ヒカキン",

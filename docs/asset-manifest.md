@@ -68,12 +68,13 @@
 - `public/assets/backgrounds/replay/caption-screen.webp`
 - `public/assets/backgrounds/replay/ch5-archive-screen.webp`
 - `public/assets/backgrounds/replay/ch5-dark-counter-room.webp`
-- `public/assets/backgrounds/replay/ch5-edit-timeline.webp`
 - `public/assets/backgrounds/replay/ch5-empty-studio.webp`
 - `public/assets/backgrounds/replay/ch5-equipment-storage.webp`
+- `public/assets/backgrounds/replay/ch5-ski-slope.webp`
 - `public/assets/backgrounds/replay/ch5-supermarket-night.webp`
 - `public/assets/backgrounds/replay/dorm-bathroom.webp`
 - `public/assets/backgrounds/replay/dorm-celebration.webp`
+- `public/assets/backgrounds/replay/dorm-cocoa-bread.webp`
 - `public/assets/backgrounds/replay/dorm-desk-night.webp`
 - `public/assets/backgrounds/replay/dorm-monitor-night.webp`
 - `public/assets/backgrounds/replay/dorm-monitor-zero.webp`
@@ -84,15 +85,14 @@
 - `public/assets/backgrounds/replay/home-no-phone.webp`
 - `public/assets/backgrounds/replay/hotel-corridor.webp`
 - `public/assets/backgrounds/replay/moderation-room.webp`
+- `public/assets/backgrounds/replay/niigata-ski-jump.webp`
 - `public/assets/backgrounds/replay/private-screening.webp`
 - `public/assets/backgrounds/replay/private-video-page.webp`
 - `public/assets/backgrounds/replay/product-shelf.webp`
 - `public/assets/backgrounds/replay/repair-shop.webp`
 - `public/assets/backgrounds/replay/studio-wrap.webp`
 - `public/assets/backgrounds/replay/suburban-platform.webp`
-- `public/assets/backgrounds/replay/supermarket-closing.webp`
 - `public/assets/backgrounds/replay/tax-desk.webp`
-- `public/assets/backgrounds/replay/tokyo-lost-found.webp`
 - `public/assets/backgrounds/replay/video-dashboard.webp`
 - `public/assets/bg/ch1_dorm_analytics_dawn.webp`
 - `public/assets/bg/ch1_dorm_analytics_debate.webp`
@@ -224,7 +224,7 @@
 - `public/assets/bg/ch4_video_message.webp`
 - `public/assets/bg/ch4_wrestling_gym.webp`
 
-## 立ち絵（基本キー）（170点）
+## 立ち絵（基本キー）（172点）
 
 - `public/assets/portrait/danke_early_confident_grin.webp`
 - `public/assets/portrait/danke_early_energetic_grin.webp`
@@ -362,6 +362,7 @@
 - `public/assets/portraits/hikakin/exhausted.webp`
 - `public/assets/portraits/hikakin/focused.webp`
 - `public/assets/portraits/hikakin/gentle.webp`
+- `public/assets/portraits/hikakin/high-school.webp`
 - `public/assets/portraits/hikakin/hollow.webp`
 - `public/assets/portraits/hikakin/inspired.webp`
 - `public/assets/portraits/hikakin/joy.webp`
@@ -384,6 +385,7 @@
 - `public/assets/portraits/hikakin/thoughtful.webp`
 - `public/assets/portraits/hikakin/tired.webp`
 - `public/assets/portraits/hikakin/uneasy.webp`
+- `public/assets/portraits/hikakin/winter.webp`
 - `public/assets/portraits/hikakin/working.webp`
 - `public/assets/portraits/hikakin/worried.webp`
 - `public/assets/portraits/hikakin/young-focused.webp`
@@ -397,7 +399,7 @@
 - `public/assets/portraits/zeikin/guarded.webp`
 - `public/assets/portraits/zeikin/soft.webp`
 
-## イベントCG（197点）
+## イベントCG（198点）
 
 - `public/assets/cg/ch1_asleep_at_upload.webp`
 - `public/assets/cg/ch1_bathroom_microphone.webp`
@@ -572,6 +574,7 @@
 - `public/assets/events/replay/broken-captions.webp`
 - `public/assets/events/replay/broken-earbud.webp`
 - `public/assets/events/replay/cable-knot.webp`
+- `public/assets/events/replay/cocoa-bread.webp`
 - `public/assets/events/replay/cold-bento.webp`
 - `public/assets/events/replay/corridor-edit.webp`
 - `public/assets/events/replay/counter-blackout.webp`
@@ -584,13 +587,13 @@
 - `public/assets/events/replay/first-street-fan.webp`
 - `public/assets/events/replay/first-tax-form.webp`
 - `public/assets/events/replay/foreign-letter.webp`
-- `public/assets/events/replay/future-viewer.webp`
-- `public/assets/events/replay/lost-notebook.webp`
+- `public/assets/events/replay/last-ski-jump.webp`
 - `public/assets/events/replay/mic-repair.webp`
 - `public/assets/events/replay/moderator-message.webp`
 - `public/assets/events/replay/night-stocking.webp`
 - `public/assets/events/replay/one-seat-premiere.webp`
 - `public/assets/events/replay/recommendation-drop.webp`
+- `public/assets/events/replay/twenty-year-ski.webp`
 - `public/assets/events/replay/unlisted-draft.webp`
 - `public/assets/events/replay/unopened-product.webp`
 - `public/assets/events/replay/voice-clone.webp`

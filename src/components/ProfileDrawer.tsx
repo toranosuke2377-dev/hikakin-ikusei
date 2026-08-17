@@ -91,6 +91,16 @@ export function ProfileDrawer({ state, open, onClose }: ProfileDrawerProps) {
         </header>
 
         <section>
+          <h3>この物語の原点</h3>
+          <ul className="relationship-list profile-origin-list">
+            <li><span>生まれ</span><strong>1989年4月・新潟</strong></li>
+            <li><span>競技歴</span><strong>小3〜高校・スキージャンプ全国8位</strong></li>
+            <li><span>最初の武器</span><strong>独学のビートボックス</strong></li>
+            <li><span>上京時</span><strong>所持金2万円・スーパー社員寮</strong></li>
+          </ul>
+        </section>
+
+        <section>
           <h3>能力</h3>
           {(["expression", "production", "beatbox"] as const).map((key) => (
             <div className="meter" key={key}>
