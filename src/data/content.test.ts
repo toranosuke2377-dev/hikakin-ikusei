@@ -175,6 +175,43 @@ describe("scenario content", () => {
     }
   });
 
+  it("二組の全メンバーを描きながらヒカキンを場面の中心に保つ", () => {
+    const roster = [
+      "テツ",
+      "としみち",
+      "丸眼鏡",
+      "yo!!",
+      "柴竜",
+      "ユメマール",
+      "シル子",
+      "ウダホ",
+      "masa",
+      "ザ顔",
+      "ダーマン",
+      "もとけ"
+    ];
+    const fullCorpus = allEvents
+      .flatMap((event) => [
+        ...event.body,
+        ...event.choices.flatMap((choice) => [choice.text, ...choice.result])
+      ])
+      .join("\n");
+
+    for (const name of roster) expect(fullCorpus, name).toContain(name);
+
+    const groupEvents = allEvents.filter((event) =>
+      event.tags?.some((tag) => tag === "tetsu" || tag === "shiruko")
+    );
+    expect(groupEvents.length).toBeGreaterThanOrEqual(8);
+    for (const event of groupEvents) {
+      const eventCorpus = [
+        ...event.body,
+        ...event.choices.flatMap((choice) => [choice.text, ...choice.result])
+      ].join("\n");
+      expect(eventCorpus, event.id).toContain("ヒカキン");
+    }
+  });
+
   it("炎上する選択は一回につき登録者約50万人を失う", () => {
     const inflammatoryChoices = allEvents.flatMap((event) =>
       event.choices.filter((choice) => isInflammatoryEffect(choice.effect))

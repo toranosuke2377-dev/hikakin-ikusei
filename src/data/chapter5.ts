@@ -422,8 +422,8 @@ export const chapter5Events: StoryEvent[] = [
     date: "最終決戦まで7か月",
     location: "クリエイター合同会議",
     body: [
-      "地方を背負う東大オンエアのテツ、子供たちの遊びを巨大企画へ育てた漁師たちのシル子、そして日本二位へ迫るはじめ課長。",
-      "業界紙は三人とヒカキンを『次代の四強』と呼び始めた。だが四人が残るには、互いを踏み台にせず、それぞれの場所を育てる必要がある。"
+      "地方を背負う東大オンエアのテツ、子供たちの遊びを巨大企画へ育てた漁師たちのシル子、そして日本二位へ迫るはじめ課長。六人組の看板を背負う二人の後ろには、違う才能で支える仲間たちがいる。",
+      "業界紙は三人とヒカキンを『次代の四強』と呼び始めた。日本一を目指すヒカキンが四人の中心を奪うのか、それぞれの強みを一つの時代として見せるのか。最後の企画へ向かう姿勢が試される。"
     ],
     speaker: "テツ",
     quote: "東京の真似で勝つより、地元ごと面白くして勝ちたいんです。",
@@ -446,12 +446,12 @@ export const chapter5Events: StoryEvent[] = [
     date: "最終決戦まで7か月",
     location: "東大オンエアの地元",
     body: [
-      "テツから、観光大使就任前の記念動画へ誘われた。行政は失敗のない紹介を望み、東大オンエアは地元の欠点まで笑いにしたいと言う。",
-      "ヒカキンが有名人として正解を決めれば早い。だが、この土地の主役はヒカキンではない。"
+      "テツから、観光大使就任前の記念動画へ誘われた。テツと柴竜の飛躍した案を丸眼鏡が行政向けの企画書へ直し、yo!!が現場を回し、としみちが町の舞台を盛り上げ、ユメマールが住民の輪へ自然に入っていく。",
+      "六人が憧れの先輩だったヒカキンへ、最後の構成判断を託した。有名人として正解を決めれば早い。だがヒカキンが何を足し、何を譲るかで、この土地の主役が変わってしまう。"
     ],
     choices: [
-      choice("ch5_tetsu_follow_lead", "テツの判断を信じて脇へ回る", "ヒカキンは効果音と進行補助に徹し、動画の中心を六人と町の人へ渡した。", { stats: { trust: 5, production: 4 }, relationships: { tetsu: 10 }, routes: { network: 6 }, addFlags: ["ch5_tetsu_ambassador", "ch5_tetsu_rising"] }, { tone: "warm" }),
-      choice("ch5_tetsu_polish", "行政にも届く構成へ整える", "尖りを残したまま説明を加え、企画は観光大使就任の決め手になった。", { stats: { production: 5, subscribers: 250_000, trust: 3 }, relationships: { tetsu: 6 }, routes: { strategy: 5 }, addFlags: ["ch5_tetsu_ambassador", "ch5_tetsu_rising"] }, { tone: "steady" }),
+      choice("ch5_tetsu_follow_lead", "テツの判断を信じ、音で六人を支える", "ヒカキンは自分の出演を増やさず、六人と町の音をビートでつないだ。動画の主役を譲っても、一本を完成させるヒカキンの技術は全編に残った。", { stats: { trust: 5, production: 4 }, relationships: { tetsu: 10 }, routes: { network: 6 }, addFlags: ["ch5_tetsu_ambassador", "ch5_tetsu_rising"] }, { tone: "warm" }),
+      choice("ch5_tetsu_polish", "六人の尖りを全国へ届く構成にする", "ヒカキンは柴竜の予測不能な場面も切らず、としみちの華と丸眼鏡の説明を交互に置いた。六人らしさを翻訳した一本が、観光大使就任の決め手になる。", { stats: { production: 5, subscribers: 250_000, trust: 3 }, relationships: { tetsu: 6 }, routes: { strategy: 5 }, addFlags: ["ch5_tetsu_ambassador", "ch5_tetsu_rising"] }, { tone: "steady" }),
       choice("ch5_tetsu_take_center", "全国人気のため自分を前面に出す", "再生数は大きく伸びたが、地元企画なのにヒカキンしか残らない編集になった。", { stats: { subscribers: 430_000, expression: 3 }, relationships: { tetsu: -8 }, routes: { mainstream: 4 }, addFlags: ["ch5_tetsu_eclipsed"] }, { tone: "risky" })
     ],
     when: { minRelationships: { tetsu: 32 }, maxRelationships: { shiruko: 39 } },
@@ -468,13 +468,13 @@ export const chapter5Events: StoryEvent[] = [
     date: "最終決戦まで7か月",
     location: "漁師たち・アスレチック会場",
     body: [
-      "シル子は最大規模の鬼ごっこを中止しようとしていた。安全検証で、子供が真似をした場合の危険が見つかったからだ。",
-      "スポンサーは延期を嫌がり、視聴者は予告を待っている。リーダーが人気より安全を選べるか、ヒカキンの言葉も試される。"
+      "最大規模の鬼ごっこを前に、シル子は短い睡眠の合間も走り込み、ヒカキンは連日編集と構成を詰めていた。二人の努力で完成寸前まで来たコースを、ザ顔とmasaの最終検証が止める。子供が真似した場合だけ、危険になる箇所が見つかった。",
+      "ウダホ、ダーマン、もとけも撮り直す覚悟を決めているが、スポンサーは延期を嫌がり、視聴者は予告を待っている。積み上げた努力を惜しむのか、努力したからこそ作り直すのか。ヒカキンの判断も試される。"
     ],
     speaker: "シル子",
     quote: "面白いって、無事に帰ってから言えることでしょ。",
     choices: [
-      choice("ch5_shiruko_redesign", "一緒に安全なルールへ作り直す", "派手さを競う代わりに、誰でも遊べるルールを発明した。動画は子供たちの新しい定番になった。", { stats: { production: 5, trust: 7, energy: -6 }, relationships: { shiruko: 10 }, routes: { network: 5 }, addFlags: ["ch5_shiruko_safe_leader", "ch5_shiruko_rising"] }, { tone: "warm" }),
+      choice("ch5_shiruko_redesign", "六人の強みを使って安全なルールへ作り直す", "ヒカキンはダーマンの作戦ともとけの子供目線を軸に再構成し、シル子とウダホの迫力を安全な区画へ移した。努力を捨てずに形を変えた動画は、子供たちの新しい定番になった。", { stats: { production: 5, trust: 7, energy: -6 }, relationships: { shiruko: 10 }, routes: { network: 5 }, addFlags: ["ch5_shiruko_safe_leader", "ch5_shiruko_rising"] }, { tone: "warm" }),
       choice("ch5_shiruko_cancel", "中止を共同で発表する", "再生数より判断理由を説明し、失敗を隠さない姿勢が支持された。", { stats: { trust: 8, subscribers: -70_000 }, hidden: { controversy: -3 }, relationships: { shiruko: 8 }, routes: { stability: 4 }, addFlags: ["ch5_shiruko_safe_leader", "ch5_shiruko_rising"] }, { tone: "steady" }),
       choice("ch5_shiruko_adult_only", "大人限定として予定どおり撮る", "事故なく終えたが、子供人気を築いた理由と企画の刺激が少しずれ始めた。", { stats: { subscribers: 360_000, money: 900_000, trust: -3 }, relationships: { shiruko: -3 }, routes: { mainstream: 4 }, addFlags: ["ch5_shiruko_risked_brand"] }, { tone: "risky" })
     ],

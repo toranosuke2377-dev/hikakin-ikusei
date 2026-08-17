@@ -336,6 +336,27 @@ export const replayEvents: StoryEvent[] = [
     visual: { background: "backgrounds/replay/fan-mail-desk.webp", portrait: "portraits/hikakin/moved.webp", expression: "moved", eventCg: "events/replay/foreign-letter.webp", accent: "violet" }
   }),
   rare({
+    id: "replay_ch3_yumemaru_drinking_accident",
+    chapter: 3,
+    slot: 8,
+    title: "ピンク色の放送事故",
+    date: "2016年・夏",
+    location: "東大オンエアの飲み企画部屋",
+    body: [
+      "成人した六人とヒカキンが、全員の合意で飲み企画を撮っていた。普段は穏やかなユメマールだけが次第に予測不能になり、意味の分からない演説の途中で服を脱ぎ、ついには全裸で次のゲームを始めようとする。",
+      "テツたち五人が看板とタオルを持って飛び込み、ヒカキンは裸を映さず、六人が笑い崩れる反応だけを撮り切った。翌日、ユメマール本人を含む全員で素材を確認する。本人の了承はある。あとは、ヒカキンがどんな笑いとして編集するかだ。"
+    ],
+    choices: [
+      choice("replay_ch3_yumemaru_reaction_edit", "巨大なモザイクと五人の反応を中心にする", "ヒカキンは体を完全に隠し、タオルを投げるyo!!、無言で看板を持つ柴竜、笑って進行不能になるテツたちの反応を主役にした。動画は六人の仲が伝わる伝説回になる。", { stats: { subscribers: 90_000, expression: 5, production: 3, trust: 3 }, relationships: { tetsu: 4 }, routes: { mainstream: 3, network: 3 }, addFlags: ["replay_yumemaru_censored_legend"] }, { tone: "bold" }),
+      choice("replay_ch3_yumemaru_animation", "裸の場面をすべてイラストへ置き換える", "ヒカキンは状況を派手なアニメーションで再構成し、本人の尊厳を守りながら想像の余地で笑わせた。編集技術そのものも話題になる。", { stats: { subscribers: 65_000, production: 6, trust: 5, energy: -5 }, relationships: { tetsu: 5 }, routes: { strategy: 4, network: 2 }, addFlags: ["replay_yumemaru_animated"] }, { tone: "steady" }),
+      choice("replay_ch3_yumemaru_sober_commentary", "翌日のユメマールと一緒に映像を振り返る", "何も覚えていないユメマールの静かな解説と、五人の証言が新しい笑いを生んだ。泥酔場面を長く使わず、六人の会話だけでも一本が成立した。", { stats: { subscribers: 55_000, expression: 4, trust: 6 }, relationships: { tetsu: 6 }, routes: { network: 4 }, addFlags: ["replay_yumemaru_sober_review"] }, { tone: "warm" })
+    ],
+    when: { minRelationships: { tetsu: 1 } },
+    priority: 8,
+    tags: ["replay", "rare", "tetsu", "group", "comedy"],
+    visual: { background: "backgrounds/replay/todai-drinking-room.webp", portrait: "portraits/hikakin/laughing.webp", expression: "laughing", eventCg: "events/replay/yumemaru-censored-chaos.webp", accent: "violet" }
+  }),
+  rare({
     id: "replay_ch3_algorithm_winter",
     chapter: 3,
     slot: 9,

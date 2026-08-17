@@ -7,7 +7,7 @@
 
 - `public/assets/ui/title_hero.webp`
 
-## 背景（214点）
+## 背景（215点）
 
 - `public/assets/backgrounds/ch5/athletic-course.webp`
 - `public/assets/backgrounds/ch5/award-stage.webp`
@@ -93,6 +93,7 @@
 - `public/assets/backgrounds/replay/studio-wrap.webp`
 - `public/assets/backgrounds/replay/suburban-platform.webp`
 - `public/assets/backgrounds/replay/tax-desk.webp`
+- `public/assets/backgrounds/replay/todai-drinking-room.webp`
 - `public/assets/backgrounds/replay/video-dashboard.webp`
 - `public/assets/bg/ch1_dorm_analytics_dawn.webp`
 - `public/assets/bg/ch1_dorm_analytics_debate.webp`
@@ -399,7 +400,7 @@
 - `public/assets/portraits/zeikin/guarded.webp`
 - `public/assets/portraits/zeikin/soft.webp`
 
-## イベントCG（198点）
+## イベントCG（199点）
 
 - `public/assets/cg/ch1_asleep_at_upload.webp`
 - `public/assets/cg/ch1_bathroom_microphone.webp`
@@ -597,6 +598,7 @@
 - `public/assets/events/replay/unlisted-draft.webp`
 - `public/assets/events/replay/unopened-product.webp`
 - `public/assets/events/replay/voice-clone.webp`
+- `public/assets/events/replay/yumemaru-censored-chaos.webp`
 - `public/assets/events/replay/zero-subscriber-video.webp`
 - `public/assets/events/replay/zero-views.webp`
 
