@@ -212,6 +212,27 @@ describe("scenario content", () => {
     }
   });
 
+  it("ヒカキンのカメラ内外と五章の成長線を保つ", () => {
+    const corpus = allEvents
+      .flatMap((event) => [
+        ...event.body,
+        ...event.choices.flatMap((choice) => [choice.text, ...choice.result])
+      ])
+      .join("\n");
+
+    for (const marker of [
+      "録画ランプが点くと姿勢が変わった",
+      "子供のように笑った",
+      "いや、それはさすがにやめてください",
+      "年間八百本を超える動画",
+      "……何者かには、なれたのかな"
+    ]) {
+      expect(corpus, marker).toContain(marker);
+    }
+    expect(endingDefinitions.find((ending) => ending.id === "number_one")?.finalQuote)
+      .toBe("……何者かには、なれたのかな。");
+  });
+
   it("炎上する選択は一回につき登録者約50万人を失う", () => {
     const inflammatoryChoices = allEvents.flatMap((event) =>
       event.choices.filter((choice) => isInflammatoryEffect(choice.effect))

@@ -1173,11 +1173,11 @@ export const chapter5Events: StoryEvent[] = [
     date: "二千万人達成の翌朝",
     location: "ヒカキンの撮影部屋",
     body: [
-      "祝勝会を終え、ヒカキンは一人で撮影部屋へ戻った。日本一を示す盾の横に、安い初代マイクを置く。",
-      "はじめ課長から届いた『次は勝ちます、親分』というメッセージへ、次の企画書の写真を返した。二千万人は結末ではない。"
+      "『どうもーーー！　ヒカキンです！』。二千万人を祝う配信を終え、録画ランプが消える。大歓声のあと、ヒカキンは一人で撮影部屋へ戻り、日本一を示す盾の横に安い初代マイクを置いた。",
+      "静かな声で『……何者かには、なれたのかな』とこぼす。廊下の向こうからゼイキンや仲間たちの笑い声が聞こえた。ヒカキンは少し笑い、はじめ課長の『次は勝ちます、親分』へ次の企画書の写真を返す。二千万人は結末ではない。"
     ],
     choices: [
-      choice("ch5_number_one_record", "最初と同じビートを一本だけ録る", "今度は何百万人もの人が、その一音を待っていた。", { stats: { beatbox: 3, trust: 5 }, hidden: { origin: 6 }, relationships: { hajime: 3 }, addFlags: ["ch5_number_one_origin_kept", "ch5_ending_ready"] }, { tone: "warm" }),
+      choice("ch5_number_one_record", "もう一度、録画ボタンを押す", "初代マイクへ最初と同じビートを入れる。今度は何百万人もの人が、その一音を待っていた。", { stats: { beatbox: 3, trust: 5 }, hidden: { origin: 6 }, relationships: { hajime: 3 }, addFlags: ["ch5_number_one_origin_kept", "ch5_ending_ready"] }, { tone: "warm" }),
       choice("ch5_number_one_plan", "すぐ次の企画書を開く", "日本一を守るためではなく、まだ見たことのない動画を作るために働き始めた。", { stats: { production: 4, expression: 2 }, hidden: { ambition: 4 }, addFlags: ["ch5_number_one_keeps_building", "ch5_ending_ready"] }, { tone: "bold" }),
       choice("ch5_number_one_call_family", "ゼイキンと家族へ電話する", "上京の日に二万円を渡された青年の声で、ようやく『日本一になった』と言えた。", { stats: { trust: 4, energy: 5 }, relationships: { zeikin: 5 }, addFlags: ["ch5_number_one_family", "ch5_ending_ready"] }, { tone: "warm" })
     ],
